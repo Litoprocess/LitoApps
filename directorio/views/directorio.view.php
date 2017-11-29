@@ -48,13 +48,13 @@
         <tbody class="nombres">
           <tr class="lista">
             <td><b>810</b></td>
-            <td class="nombres"><b>Carlos Charabati</b></td>
+            <td><b>Carlos Charabati</b></td>
             <td><b>Dirección de operaciones y ventas</b></td>
             <td><b>carlos@litoprocess.com</b></td>
           </tr>
           <tr class="lista">
             <td>107</td>
-            <td class="nombres">Maribel Tovar</td>
+            <td>Maribel Tovar</td>
             <td>Facturación</td>
             <td>litoprocess@litoprocess.com</td>
           </tr>                                                        
