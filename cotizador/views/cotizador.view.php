@@ -1,9 +1,9 @@
 <?php require 'views/head.php'; ?>
-<?php $fecha=date("d-m-Y"); ?>
+  <?php $fecha=date("d-m-Y"); ?>
 <main>
   <div class="container">
     <div class="row">
-      <form id="form1" class="col s12" method="POST">
+      <form id="form1" method="POST" action="guardar.php" class="col s12">
         <div id="box-continer" class="col s10">
         <div class="row" id="datos-encabezado">
           <div class="col s10">
@@ -63,7 +63,7 @@
                   <div class="col s12 margen">
                     <span class="lblcuerpo">Cantidad</span>
                     <div class="input-field inline">
-                      <input id="cantidad" name="cantidad" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="cantidad" name="cantidad" type="number" class="validate browser-default txtcuerpo" value="0">
                       <label for="cantidad"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">piezas.</div>
@@ -72,7 +72,7 @@
                   <div class="col s12 margen">
                     <span class="lblcuerpo">Ancho</span>
                     <div class="input-field inline">
-                      <input id="ancho" name="ancho" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="ancho" name="ancho" type="number" class="validate browser-default txtcuerpo" value="0">
                       <label for="ancho"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">cm.</div>
@@ -81,47 +81,47 @@
                   <div class="col s12 margen">
                     <span class="lblcuerpo">Alto</span>
                     <div class="input-field inline">
-                      <input id="alto" name="alto" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="alto" name="alto" type="number" class="validate browser-default txtcuerpo" value="0">
                       <label for="alto"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">cm.</div>
                   </div>    
 
                   <div class="col s12 margen">
-                    <span class="lblcuerpo">Medianil Ancho:</span>
+                    <span class="lblcuerpo">Med.Ancho:</span>
                     <div class="input-field inline">
-                      <input id="medancho" name="medancho" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="medancho" name="medancho" type="number" class="validate browser-default txtcuerpo" value="0">
                       <label for="medancho"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">cm.</div>
                   </div>  
 
                   <div class="col s12 margen">
-                    <span class="lblcuerpo">Medianil Alto:</span>
+                    <span class="lblcuerpo">Med.Alto:</span>
                     <div class="input-field inline">
-                      <input id="medalto" name="medalto" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="medalto" name="medalto" type="number" class="validate browser-default txtcuerpo" value="0">
                       <label for="medalto"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">cm.</div>
                   </div>   
 
                   <div class="col s12 margen">
-                    <span class="lblcuerpo">Total Ancho:</span>
+                    <span class="lblcuerpo">T.Ancho:</span>
                     <div class="input-field inline">
-                      <input id="totancho" name="totancho" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="totancho" name="totancho" type="number" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                       <label for="totancho"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">cm.</div>
                   </div>     
 
                   <div class="col s12 margen">
-                    <span class="lblcuerpo">Total Ancho:</span>
+                    <span class="lblcuerpo">T.Alto:</span>
                     <div class="input-field inline">
-                      <input id="totalto" name="totalto" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                      <input id="totalto" name="totalto" type="number" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                       <label for="totalto"></label>
                     </div>
                     <div class="datos-column-izq-der" style="display:inline-block;">cm.</div>
-                  </div>                                                  
+                  </div>                                                                    
 
                 </div>               
               </div>
@@ -139,19 +139,21 @@
                           <option value="0">ninguno</option>
                       </select>
                       <h3 id="titMat2"></h3>
-                  </div>                     
+                  </div> 
+                    <div id="div_material" class="col s12">
+                  <label for="material"></label>
+                    <select id="material" name="material" class="browser-default">
+                      <option value="0" selected>Ninguno</option>
+                      <?php include('modelo/class/materiales_plotter.php'); ?>
+                    </select>                                               
+                    </div>                                    
                   <div id="div_medidas" class="col s12">
-                    <br>
-                    <br>
                     <h3 id="titMat"></h3>
                     <span>Selecciona la medida que desea cotizar</span>
                     <br>
                     <label for="medidas"></label>
                     <select id="medidas" name="medidas" class="browser-default">
-                      <option value="ninguno" selected>Ninguno</option>
-                      <option value="1">Option 1</option>
-                      <option value="2">Option 2</option>
-                      <option value="3">Option 3</option>
+                      <option value="0" selected>Ninguno</option>
                     </select>   
                     <br>                   
                   </div> 
@@ -159,7 +161,6 @@
                     <table id="tblmedidas" class="compact" cellspacing="0" width="100%" style="text-align: center; font-size:9pt;">
                       <thead>
                         <tr>
-                          <th>Material</th>
                           <th>Medida</th>
                           <th>Ancho</th>
                           <th>Alto</th>
@@ -170,15 +171,6 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td>
-                              <label for="material"></label>
-                              <select id="material" name="material" class="browser-default" style="width: 50px; border: none 0em;">
-                                <option value="0" disabled selected>Ninguno</option>
-                                <option value="1">Option 1</option>
-                                <option value="2">Option 2</option>
-                                <option value="3">Option 3</option>
-                              </select>                                              
-                          </td>
                           <td> 
                             <div class="input-field">
                               <input id="m_medida" name="m_medida" type="number" class="validate browser-default txtinpttable" value="0" readonly>
@@ -211,7 +203,7 @@
                           </td>
                           <td>
                             <div class="input-field">
-                              <input id="m_orienta" name="m_orienta" type="number" class="validate browser-default txtinpttable" value="0" readonly>
+                              <input id="m_orienta" name="m_orienta" type="text" class="validate browser-default txtinpttable" value="0" readonly>
                               <label for="m_orienta"></label>
                             </div>                             
                           </td>
@@ -233,7 +225,7 @@
               <div class="col s12 margen">
                 <span class="lblcuerpo">Cantidad</span>
                 <div class="input-field inline">
-                  <input id="resCant" name="resCant" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resCant" name="resCant" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resCant"></label> 
                   <span id="titCantMat" name="titCantMat"></span>              
                 </div>
@@ -241,10 +233,10 @@
               <div class="col s12 margen">
                 <span class="lblcuerpo">Precio</span>
                 <div class="input-field inline">
-                  <input id="resPrecio" name="resPrecio" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
-                  <label for="resPrecio"></label>                   
+                  <input id="resPrecio" name="resPrecio" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
+                  <label for="resPrecio"></label> 
                 </div>
-              </div> 
+              </div>  
             </div>
             <div class="row" style="margin-top: 20px;">
               <div class="col s12" style="text-align:center;">
@@ -255,21 +247,21 @@
               <div class="col s12 margen">
                 <span class="lblcuerpo">Precio</span>
                 <div class="input-field inline">
-                  <input id="resTinta" name="resTinta" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
-                  <label for="resTinta"></label>                   
+                  <input id="resTinta" name="resTinta" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
+                  <label for="resTinta"></label> 
                 </div>
-              </div> 
-              <div class="col s12 margen">
+              </div>     
+              <!--div class="col s12 margen">
                 <span class="lblcuerpo">Barniz</span>
                 <div class="input-field inline">
-                  <input id="resB" name="resB" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
-                  <label for="resB"></label>                   
+                  <input id="resB" name="resB" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
+                  <label for="resB"></label> 
                 </div>
-              </div> 
+              </div-->  
               <div class="col s12 margen">
                 <span class="lblcuerpo">Blanco</span>
                 <div class="input-field inline">
-                  <input id="resBlanco" name="resBlanco" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resBlanco" name="resBlanco" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resBlanco"></label>                   
                 </div>
               </div>
@@ -283,45 +275,52 @@
               <div class="col s12 margen">
                 <span id="label-Acab1" class="lblcuerpo">Acabado1:</span>
                 <div class="input-field inline">
-                  <input id="resAcab1" name="resAcab1" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAcab1" name="resAcab1" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAcab1"></label>                   
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Acab2" class="lblcuerpo">Acabado2:</span>
                 <div class="input-field inline">
-                  <input id="resAcab2" name="resAcab2" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAcab2" name="resAcab2" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAcab2"></label>                   
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Acab3" class="lblcuerpo">Acabado3:</span>
                 <div class="input-field inline">
-                  <input id="resAcab3" name="resAcab3" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAcab3" name="resAcab3" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAcab3"></label>                   
                 </div>
               </div>
               <div class="col s12 margen">
                 <span id="label-Acab4" class="lblcuerpo">Acabado4:</span>
                 <div class="input-field inline">
-                  <input id="resAcab4" name="resAcab4" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAcab4" name="resAcab4" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAcab4"></label>                  
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Acab5" class="lblcuerpo">Acabado5:</span>
                 <div class="input-field inline">
-                  <input id="resAcab5" name="resAcab5" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAcab5" name="resAcab5" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAcab5"></label>                   
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Acab6" class="lblcuerpo">Acabado6:</span>
                 <div class="input-field inline">
-                  <input id="resAcab6" name="resAcab6" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAcab6" name="resAcab6" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAcab6"></label>                   
                 </div>
-              </div>            
+              </div>
+              <div class="col s12 margen" style="display: none;">
+                      <span class="lblcant" id="label-laminado">Laminado:</span>
+                <div class="input-field inline">
+                  <input id="resLamina" name="resLamina" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
+                  <label for="resLamina"></label>                   
+                </div>                      
+              </div>                                       
             </div>
           </div>
         </div>
@@ -337,25 +336,25 @@
               </div>
               <div class="col s2">
                 <p>
-                  <input name="resolucion" type="radio" id="720" />
+                  <input name="resolucion" type="radio" id="720" value="720" />
                   <label for="720">720</label>
-                </p>                   
+                </p>                  
               </div>
               <div class="col s2">
                 <p>
-                  <input name="resolucion" type="radio" id="1440" />
+                  <input name="resolucion" type="radio" id="1440" value="1440" checked/>
                   <label for="1440">1440</label>
                 </p>                   
               </div>        
               <div class="col s3">
                 <p>
-                  <input name="resolucion" type="radio" id="0" />
+                  <input name="resolucion" type="radio" id="0" value="0" />
                   <label for="0">s/impresión</label>
                 </p>                   
               </div>  
               <div class="col s2">
                 <p>
-                  <input name="resolucion" type="radio" id="Sandwich" />
+                  <input name="resolucion" type="radio" id="Sandwich" value="Sandwich" />
                   <label for="Sandwich">Sandwich</label>
                 </p>                   
               </div>   
@@ -380,42 +379,42 @@
               <div class="col s12 margen">
                 <span id="label-Adic1" class="lblcuerpo">Adicional1:</span>
                 <div class="input-field inline">
-                  <input id="resAdic1" name="resAdic1" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAdic1" name="resAdic1" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAdic1"></label>                   
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Adic2" class="lblcuerpo">Adicional2:</span>
                 <div class="input-field inline">
-                  <input id="resAdic2" name="resAdic2" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAdic2" name="resAdic2" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAdic2"></label>                   
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Adic3" class="lblcuerpo">Adicional3:</span>
                 <div class="input-field inline">
-                  <input id="resAdic3" name="resAdic3" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAdic3" name="resAdic3" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAdic3"></label>                   
                 </div>
               </div>
               <div class="col s12 margen">
                 <span id="label-Adic4" class="lblcuerpo">Adicional4:</span>
                 <div class="input-field inline">
-                  <input id="resAdic4" name="resAdic4" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAdic4" name="resAdic4" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAdic4"></label>                  
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Adic5" class="lblcuerpo">Adicional5:</span>
                 <div class="input-field inline">
-                  <input id="resAdic5" name="resAdic5" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAdic5" name="resAdic5" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAdic5"></label>                   
                 </div>
               </div> 
               <div class="col s12 margen">
                 <span id="label-Adic6" class="lblcuerpo">Adicional6:</span>
                 <div class="input-field inline">
-                  <input id="resAdic6" name="resAdic6" type="number" class="validate browser-default txtcuerpo" value="0" readonly>
+                  <input id="resAdic6" name="resAdic6" type="text" class="validate browser-default txtcuerpo campoBloqueado" value="0" readonly>
                   <label for="resAdic6"></label>                   
                 </div>
               </div>       
@@ -435,10 +434,8 @@
               <div class="col s10">
                 <label for="acab1"></label>
                 <select id="acab1" name="acab1" class="browser-default">
-                  <option value="" disabled selected>Choose your 0option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option value="1" selected>Ninguno</option>
+                    <?php include('modelo/class/medidas_plotter.php'); ?>
                 </select>                                
               </div>
               <div class="col s2" style="margin-top:8px;">
@@ -447,10 +444,8 @@
               <div class="col s10">
                 <label for="acab2"></label>
                 <select id="acab2" name="acab2" class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option value="1" selected>Ninguno</option>
+                  <?php include('modelo/class/medidas_plotter.php'); ?>
                 </select>                                
               </div>              
               <div class="col s2" style="margin-top:8px;">
@@ -459,10 +454,8 @@
               <div class="col s10">
                 <label for="acab3"></label>
                 <select id="acab3" name="acab3" class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option value="1" selected>Ninguno</option>
+                  <?php include('modelo/class/medidas_plotter.php'); ?>
                 </select>                                
               </div> 
               <div class="col s2" style="margin-top:8px;">
@@ -471,22 +464,18 @@
               <div class="col s10">
                 <label for="acab4"></label>
                 <select id="acab4" name="acab4" class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option value="1" selected>Ninguno</option>
+                  <?php include('modelo/class/medidas_plotter.php'); ?>
                 </select>                                
               </div> 
               <div class="col s2" style="margin-top:8px;">
                 <span>5to.Acabado:</span>
               </div>                
               <div class="col s10">
-                <label for="acab4"></label>
-                <select id="acab4" name="acab4" class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                <label for="acab5"></label>
+                <select id="acab5" name="acab5" class="browser-default">
+                  <option value="1" selected>Ninguno</option>
+                  <?php include('modelo/class/medidas_plotter.php'); ?>
                 </select>                                
               </div> 
               <div class="col s2" style="margin-top:8px;">
@@ -495,12 +484,20 @@
               <div class="col s10">
                 <label for="acab6"></label>
                 <select id="acab6" name="acab6" class="browser-default">
-                  <option value="" disabled selected>Choose your option</option>
-                  <option value="1">Option 1</option>
-                  <option value="2">Option 2</option>
-                  <option value="3">Option 3</option>
+                  <option value="1" selected>Ninguno</option>
+                  <?php include('modelo/class/medidas_plotter.php'); ?>
                 </select>                                
               </div> 
+              <div class="col s2" style="margin-top:8px; display:none;">
+                <span>Laminado:</span>
+              </div>                                             
+              <div class="col s10" id="div-acabados-der" style="margin-top:8px; display:none;">                
+                <label for="laminado"></label>
+                <select id="laminado" name="laminado" class="browser-default">
+                  <option value="1" selected>Ninguno</option>
+                  <?php include('modelo/class/laminado_plotter.php'); ?>
+                </select>                                
+              </div>                    
             </div>    
           </div>
         </div>
@@ -595,21 +592,19 @@
           </div>
         </div>
       </div>
-      </form>
-    </div>
-  </div>
+
           <div id="datos-footer">
             <div class="div-footer">
               <div class="row">
               <div class="col s12" style="margin-bottom:-0.99rem;">
-                <span class="lblfooter">Subtotal:</span>
+                <strong class="lblfooter">Subtotal:</strong>
                 <div class="input-field inline">
-                  <input id="resSubtotal" name="resSubtotal" type="number" class="validate browser-default txtfooter" value="0" readonly>
+                  <input id="resSubtotal" name="resSubtotal" type="text" class="validate browser-default txtfooter" value="0" readonly>
                   <label for="resSubtotal"></label>
                 </div>
               </div> 
               <div class="col s12" style="margin-bottom:-0.99rem;">
-                <span class="lblfooter">Margen:</span>
+                <strong class="lblfooter">Margen:</strong>
                 <div class="input-field inline">
                   <input id="resMargen" name="resMargen" type="text" class="validate browser-default txtfooter" value="0" readonly>
                   <label for="resMargen"></label>
@@ -618,7 +613,7 @@
                 </div>
               </div>
               <div class="col s12" style="margin-bottom:-0.99rem;">
-                <span class="lblfooter">Comisión:</span>
+                <strong class="lblfooter">Comisión:</strong>
                 <div class="input-field inline">
                   <input id="resComision" name="resComision" type="text" class="validate browser-default txtfooter" value="0" readonly>
                   <label for="resComision"></label>
@@ -627,23 +622,30 @@
                 </div>
               </div>    
               <div class="col s12" style="margin-bottom:-0.99rem;">
-                <span class="lblfooter">P.Unitario:</span>
+                <strong class="lblfooter">P.Unitario:</strong>
                 <div class="input-field inline">
-                  <input id="resPreUnit" name="resPreUnit" type="number" class="validate browser-default txtfooter" value="0" readonly>
+                  <input id="resPreUnit" name="resPreUnit" type="text" class="validate browser-default txtfooter" value="0" readonly>
                   <label for="resPreUnit"></label>
                 </div>
               </div> 
               <div class="col s12" style="margin-bottom:-0.99rem;">
-                <span class="lblfooter">P.Unitario:</span>
+                <strong class="lblfooter">Total:</strong>
                 <div class="input-field inline">
-                  <input id="resTotal" name="resTotal" type="number" class="validate browser-default txtfooter" value="0" readonly>
+                  <input id="resTotal" name="resTotal" type="text" class="validate browser-default txtfooter" value="0" readonly>
                   <label for="resTotal"></label>
                 </div>
               </div> 
               <div class="col s12" style="margin-bottom:-0.99rem;">
-                <span class="lblfooter">Total Anterior:</span>
+                <strong class="lblfooter">Lito:</strong>
                 <div class="input-field inline">
-                  <input id="resTotal2" name="resTotal2" type="number" class="validate browser-default txtfooter" value="0" readonly>
+                  <input id="resLito" name="resLito" type="text" class="validate browser-default txtfooter" value="0" readonly>
+                  <label for="resLito"></label>
+                </div>
+              </div>               
+              <div class="col s12" style="margin-bottom:-0.99rem;">
+                <strong class="lblfooter">T.Anterior:</strong>
+                <div class="input-field inline">
+                  <input id="resTotal2" name="resTotal2" type="text" class="validate browser-default txtfooter" value="0" readonly>
                   <label for="resTotal2"></label>
                 </div>
               </div> 
@@ -652,6 +654,11 @@
             </div>
 
  <?php require 'views/dialogos.php'; ?>
+
+      </form>
+    </div>
+  </div>
+
 
 </main>
 <?php require '../layout/scripts.php'; ?>

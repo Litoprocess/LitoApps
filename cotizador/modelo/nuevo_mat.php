@@ -21,9 +21,10 @@
     $traslucido = $_POST['traslucido_form'];
     $Corte = $_POST['corte_form'];
     
-    $insertar = mysql_query("INSERT INTO materiales_cotizador (NOMBRE_MATERIAL, ANCHO1, ALTO1, ANCHO2, ALTO2, ANCHO3, ALTO3, ANCHO4, ALTO4, ANCHO5, ALTO5, TIPO, IMPORTE, MONEDA, PROVEEDOR, ACTIVO, TRASLUCIDO, CORTE) VALUES ('$Nombre', '$Ancho1', '$Alto1', '$Ancho2', '$Alto2', '$Ancho3', '$Alto3', '$Ancho4', '$Alto4', '$Ancho5', '$Alto5', '$Tipo', '$Importe', '$Moneda', '$Proveedor', '1', '$traslucido', '$Corte')", $con);
+    $insertar = "INSERT INTO materiales_cotizador (NOMBRE_MATERIAL, ANCHO1, ALTO1, ANCHO2, ALTO2, ANCHO3, ALTO3, ANCHO4, ALTO4, ANCHO5, ALTO5, TIPO, IMPORTE, MONEDA, PROVEEDOR, ACTIVO, TRASLUCIDO, CORTE) VALUES ('$Nombre', '$Ancho1', '$Alto1', '$Ancho2', '$Alto2', '$Ancho3', '$Alto3', '$Ancho4', '$Alto4', '$Ancho5', '$Alto5', '$Tipo', '$Importe', '$Moneda', '$Proveedor', '1', '$traslucido', '$Corte')";
+    $stmt = sqlsrv_query($conn,$insertar);
 
-    if ($insertar) 
+    if ($stmt) 
     {
         $response->validacion="true";
     }

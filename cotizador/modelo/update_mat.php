@@ -23,18 +23,25 @@
     $TRASLUCIDO = $_POST['TRASLUCIDO'];
     $CORTE = $_POST['CORTE'];
     
-    $insertar = mysql_query("UPDATE materiales_cotizador SET NOMBRE_MATERIAL='$NOMBRE_MATERIAL', ANCHO1='$ANCHO1',ALTO1='$ALTO1', ANCHO2='$ANCHO2',ALTO2='$ALTO2',ANCHO3='$ANCHO3',ALTO3='$ALTO3',ANCHO4='$ANCHO4',ALTO4='$ALTO4',ANCHO5='$ANCHO5',ALTO5='$ALTO5',TIPO='$TIPO',IMPORTE='$IMPORTE',MONEDA='$MONEDA',PROVEEDOR='$PROVEEDOR',ACTIVO='$ACTIVO',TRASLUCIDO='$TRASLUCIDO',CORTE='$CORTE' WHERE ID_MATERIAL='$id_MAT'", $con);
-    
-    $id_MAT=mysql_insert_id();
-//    var_dump($insertar);
-    if ($insertar) 
+    $insertar = "UPDATE materiales_cotizador SET NOMBRE_MATERIAL='$NOMBRE_MATERIAL', ANCHO1='$ANCHO1',ALTO1='$ALTO1', ANCHO2='$ANCHO2',ALTO2='$ALTO2',ANCHO3='$ANCHO3',ALTO3='$ALTO3',ANCHO4='$ANCHO4',ALTO4='$ALTO4',ANCHO5='$ANCHO5',ALTO5='$ALTO5',TIPO='$TIPO',IMPORTE='$IMPORTE',MONEDA='$MONEDA',PROVEEDOR='$PROVEEDOR',ACTIVO='$ACTIVO',TRASLUCIDO='$TRASLUCIDO',CORTE='$CORTE' WHERE ID_MATERIAL='$id_MAT'";
+    $stmt = sqlsrv_query($conn,$insertar);
+
+    $params = array();
+    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+    $mat="SELECT @@IDENTITY AS id_mat";
+    $stmt2=sqlsrv_query($conn,$mat,$params,$options);
+    $num = sqlsrv_num_rows( $stmt2 );
+
+    while ($row =sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC)) 
     {
+    $id_MAT = trim($row["id_mat"]);
+    } 
+
+    if($num>0){
         $response->validacion="true";
         $response->folio=$id_MAT;
-    }
-    else
-    {
+    } else {
         $response->validacion="false";
     }
-    echo json_encode ($response);
+    echo json_encode ($response);      
 ?>

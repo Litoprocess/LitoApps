@@ -21,14 +21,15 @@
           <tr>
             <th>N°</th>
             <th>Solicita</th>
+            <th>Nombre empresa</th>
             <th>Título</th>
-            <th>Descripción</th>
+            <th>Detalles</th>
             <th>Departamento</th>
-            <th>Registro</th>
-            <th>Agente asignado</th>
+            <th>Fecha registro</th>
             <th>Prioridad</th>
-            <th>Compromiso</th>
-            <th>Estatus</th>
+            <th>Fecha entrega</th>
+            <th>Hora entrega</th> 
+            <th>Estatus</th>   
             <th>Finalizado</th>
             <th>Detalle</th>
             <th>Reporte</th>
@@ -48,7 +49,7 @@
 <?php require ('../templates/SeguimientoAgente.php'); ?>
 
 <?php require ('../layout/scripts.php'); ?>
-<script type="text/javascript" src="js/mod-solicitudes.js"></script>
+<script type="text/javascript" src="js/mod-solicitudes.js?v=<?php echo(rand()); ?>"></script>
 
 </body>
 </html>

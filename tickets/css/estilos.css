@@ -51,6 +51,7 @@ nav .brand-logo{
     margin-bottom: 0;
 }
 
+
 #logo-container {
 	
 	height: 35px;
@@ -92,6 +93,14 @@ td input {
 	display: block;
 	padding: 0;
 	height:auto !important;
+}
+
+.row{
+	margin-bottom: 8px;
+}
+
+p{
+	margin-top: 10px;
 }
 
 #SegTicket .row, #SegAgente .row{
@@ -179,12 +188,6 @@ input[type=date]:not(.browser-default){
 
 }
 
-.btn-detalles{
-
-	padding: 0 10px 0 10px !important;
-
-}
-
 #all-tickets_length {
 
 	padding-top: 4px;
@@ -208,3 +211,4 @@ input[type=date]:not(.browser-default){
 th {
 	text-align: center;
 }
+

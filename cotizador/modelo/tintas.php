@@ -1,23 +1,25 @@
 <?php
     require "conexion.php";
     $responsedos = new stdClass();
+    $rowdos =array();
                           
     $id=$_REQUEST['id'];
     
     $tintas="SELECT ID_TINTA, TINTA, BAJA, ALTA FROM tintas_plotter WHERE ID_TINTA = '$id' AND ACTIVO = 1";
-    $consulta_Tintas = sqlsrv_query($conn,$tintas);
-    $CT = sqlsrv_fetch_array($consulta_Tintas,SQLSRV_FETCH_ASSOC);    
+    $params = array();
+    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+    $consulta_Tintas = sqlsrv_query($conn,$tintas,$params, $options);
+    $CT = sqlsrv_num_rows( $consulta_Tintas );   
                      
     if ( $CT >0) 
     {
-        for($i=0;$i<$CT;$i++)
-        {
-            $ID_TINTA=mysql_result($consulta_Tintas,$i,"ID_TINTA");
-            $TINTA=mysql_result($consulta_Tintas,$i,"TINTA");
-            $BAJA=mysql_result($consulta_Tintas,$i,"BAJA");
-            $ALTA=mysql_result($consulta_Tintas,$i,"ALTA");
-            
-            $rowdos[] = array("id_Tinta"=>$ID_TINTA,"tinta"=>$TINTA,"baja"=>$BAJA,"alta"=>$ALTA);
+        while($row = sqlsrv_fetch_array($consulta_Tintas,SQLSRV_FETCH_ASSOC))
+        {            
+            $rowdos[] = array("id_Tinta"=>$row["ID_TINTA"],
+                "tinta"=>$row["TINTA"],
+                "baja"=>$row["BAJA"],
+                "alta"=>$row["ALTA"]
+                );
             $responsedos->rowdos = $rowdos;
             //echo var_dump($rowdos);
         }

@@ -3,12 +3,13 @@ session_start();
 
 //Asignacion de variables
 
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = utf8_decode(mb_strtoupper($_POST["NombreUsuario"]));
 $Titulo =  utf8_decode(mb_strtoupper($_POST['txtTitulo']));
 $Tarea =  utf8_decode(mb_strtoupper($_POST['txtProblema']));
-$Departamento = $_SESSION["Departamento"];
+$Departamento = utf8_decode(mb_strtoupper($_POST["Departamento"]));
 $Id_Categoria = $_POST['selCategoria'];
-$Correo = $_SESSION["CorreoUsuario"];
+$Correo = utf8_decode(mb_strtoupper($_POST["CorreoUsuario"]));
+$Correo2 = $_POST["CorreoCopia"];
 $IdTicket = $_POST["IdTicket"];
 $Fecha = date("d-m-Y H:i:s");
 
@@ -23,12 +24,14 @@ $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tsl';
 $mail->SMTPAuth = true;
-$mail->Username = "mantenimiento@litoprocess.com";
-$mail->Password = "m444nt0";
-$mail->setFrom('mantenimiento@litoprocess.com', 'Mantenimiento - Litoprocess');
+$mail->Username = "mantenimiento_lito@litoprocess.com";
+$mail->Password = "l1t0m444nt0";
+$mail->setFrom('mantenimiento_lito@litoprocess.com', 'Mantenimiento - Litoprocess');
 $mail->CharSet = 'UTF-8';
 
 $mail->addAddress($Correo, $NombreUsuario);
+$mail->AddCC($Correo2);
+
 $mail->Subject = "Su ticket ha sido registrado con el Folio N° ".$IdTicket;
 
 $mail->msgHTML("Detalles del ticket N° <b>$IdTicket</b>.

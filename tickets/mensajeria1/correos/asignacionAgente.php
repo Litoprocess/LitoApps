@@ -3,7 +3,7 @@ session_start();
 
 $IdTicket = $_POST['IdTicket'];
 $data = $_POST['data'];
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $cAgente = $_POST['cagente'];
 $Problema = $_POST['Problema'];
 

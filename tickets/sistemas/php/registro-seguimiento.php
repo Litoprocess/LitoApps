@@ -5,7 +5,7 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = $_SESSION["NombreUsuario"];//$_SESSION["IdUsuario"];
+$NombreUsuario = $_POST["NombreUsuario"];//$_SESSION['Permisos']["IdUsuario"];
 $IdTicket = $_POST['Ticket'];
 $Notas = utf8_decode(mb_strtoupper($_POST['Notas']));
 $CorreoAtencion = $_POST['CorreoUsuario'];

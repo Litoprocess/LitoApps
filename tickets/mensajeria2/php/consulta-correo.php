@@ -6,6 +6,7 @@ include 'conn.php';
     $agente = $_POST['data'];
 	
 	$sql = "SELECT * FROM v_catUsuarios WHERE Nombre = '$agente'";
+
     $stmt = sqlsrv_query($conn,$sql);
     $response = new stdClass(); 
     $response->validacion= "false";

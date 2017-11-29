@@ -20,9 +20,9 @@ $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tsl';
 $mail->SMTPAuth = true;
-$mail->Username = "sistemas@litoprocess.com";
-$mail->Password = "s444st33";
-$mail->setFrom('sistemas@litoprocess.com', 'SISTEMAS');
+$mail->Username = "envios2@litoprocess.com";
+$mail->Password = "33nv44422";
+$mail->setFrom('envios2@litoprocess.com', 'Mensajería 2 - Litoprocess');
 $mail->CharSet = 'UTF-8';
 
 $mail->addAddress($CorreoAgente, $NombreAgente);

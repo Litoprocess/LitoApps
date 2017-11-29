@@ -7,7 +7,7 @@
     </li>
     <li><div class="divider"></div></li>
     <li class="bold">
-      <a href="../index.php" id="nav-tickets1">
+      <a href="../" id="nav-tickets1">
         <i class="material-icons">home</i>Página principal
       </a>
     </li>
@@ -33,12 +33,11 @@
       </a>
     </li>
     <li><div class="divider"></div></li>
-    <li class="bold">
-      <a href="../index.php" id="nav-tickets1">
-        <i class="material-icons">arrow_back</i>Atras
-      </a>
-    </li>    
-    <li><div class="divider"></div></li>
+  <li class="bold" id="aside-atras">
+    <a class="waves-effect" href="../" id="nav-app16">
+      <i class="material-icons">arrow_back</i>Atras
+    </a>
+  </li>    
     <li class="bold">
       <a href="../cerrar.php" id="nav-tickets1">
         <i class="material-icons">exit_to_app</i>Salir

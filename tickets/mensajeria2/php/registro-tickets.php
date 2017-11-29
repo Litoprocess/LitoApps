@@ -5,9 +5,9 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 
-$sql = "SELECT * FROM Tickets WHERE Solicitante = '$NombreUsuario'";
+$sql = "SELECT * FROM Tickets WHERE NombreUsuario = '$NombreUsuario'";
 $stmt = sqlsrv_query( $conn, $sql );
 
 //Verifica instruccion SQL
@@ -20,30 +20,26 @@ $data = array();
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
-	if($row['FechaCompromiso']== null){
+	$Hora1 = $row['HoraEntrega1']->format("H:i");
+	$Hora2 = "";
+	$FechaFin = "SIN FINALIZAR";
 
-		$FechaCompromiso = "SIN DATOS";
-
-	}else{
-		$FechaCompromiso = $row['FechaCompromiso']->format("d-m-Y");
+	if($row['HoraEntrega2']->format("H:i")!='00:00'){
+		$Hora2 = " - ".$row['HoraEntrega2']->format("H:i");
 	}
 
-	if($row['FechaFinalizado']== null){
-
-		$FechaVencimiento = "SIN FINALIZAR";
-
-	}else{
-		$FechaVencimiento = $row['FechaFinalizado']->format("d-m-Y");
+	if($row['FechaFinalizado']!=null){
+		$FechaFin = $row['FechaFinalizado']->format("d-n-Y");
 	}
 
-	$data[] = array(utf8_encode($row['Id_Ticket']),
+	$data[] = array(utf8_encode($row['IdTicket']),
 		utf8_encode($row['Titulo']),
-		utf8_encode($row['Tarea']),
-		$row['FechaRegistro']->format("d-m-Y H:i"),
-		utf8_encode($row['Asignado']),
-		utf8_encode($row['Estado']),
-		$FechaCompromiso,
-		$FechaVencimiento); 
+		utf8_encode($row['NombreEmpresa']),
+		$row['FechaEntrega']->format("d-m-Y"),
+		$Hora1.$Hora2,
+		utf8_encode($row['Prioridad']),
+		utf8_encode($row['Estatus']),
+		$FechaFin); 
 
 }
 

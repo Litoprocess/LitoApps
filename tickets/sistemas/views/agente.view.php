@@ -47,7 +47,7 @@
 <?php require ('../templates/SeguimientoAgente.php'); ?>
 
 <?php require ('../layout/scripts.php'); ?>
-<script type="text/javascript" src="js/mod-agente.js"></script>
+<script type="text/javascript" src="js/mod-agente.js?v=<?php echo(rand()); ?>"></script>
 
 
 </body>

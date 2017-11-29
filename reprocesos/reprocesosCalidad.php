@@ -11,7 +11,7 @@ if(isset($_SESSION["Permisos"]['UserReprocesos']))
 		require 'views/reprocesosCalidad.view.php';
 		break;
 		case '3':
-		require 'views/reprocesosProduccion.view.php';
+		require 'views/reprocesosCalidad.view.php';
 		break;
 		default:
 		header('Location: ../index.php');

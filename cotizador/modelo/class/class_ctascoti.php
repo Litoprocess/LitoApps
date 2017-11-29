@@ -39,8 +39,8 @@ require "conexion.php;"
             {
                 $this->sql = "SELECT * FROM ACABADOS WHERE ACTIVO = 1 ORDER BY DESCRIPCION ASC";
                 $this->sql=$this->con->query($this->sql);
-                //print_r($this->sql);
-                //exit();	
+                print_r($this->sql);
+                exit();	
             } 
             catch (PDOException $e) 
             {

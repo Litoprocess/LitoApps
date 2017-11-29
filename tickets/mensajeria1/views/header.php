@@ -19,7 +19,10 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <script>
-    localStorage.setItem("Correo2", "<?php echo $_SESSION["CorreoCopia"];?>");
+    localStorage.NombreUsuario = "<?php echo $_SESSION['Permisos']["NombreUsuario"];?>";
+    localStorage.DepartamentoUsuario = "<?php echo $_SESSION['Permisos']["Departamento"];?>";
+    localStorage.CorreoUsuario = "<?php echo $_SESSION['Permisos']["CorreoUsuario"];?>";
+    localStorage.Correo2 = "<?php echo $_SESSION['Permisos']["CorreoCopia"];?>";
   </script>
   
 </head>
@@ -45,12 +48,12 @@
               <!--a href="#!user"><img class="circle" src="images/yuna.jpg"></a-->
               <a href="#!name">
                 <span class="white-text name">
-                  <?php echo $_SESSION["NombreUsuario"];?>
+                  <?php echo $_SESSION['Permisos']["NombreUsuario"];?>
                 </span>
               </a>
               <a href="#!email">
                 <span class="white-text email">
-                  <?php echo $_SESSION["Departamento"];?>
+                  <?php echo $_SESSION['Permisos']["Departamento"];?>
                 </span>
               </a>
             </div>

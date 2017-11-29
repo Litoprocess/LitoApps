@@ -149,6 +149,12 @@
   </li>
   <?php endif; ?>  
 
+  <li class="bold" id="aside-atras">
+    <a class="waves-effect" href="../" id="nav-app16">
+      <i class="material-icons">arrow_back</i>Atras
+    </a>
+  </li>
+
   <li><div class="divider"></div></li>
   <li class="bold">
     <a class="waves-effect" href="../cerrar.php" id="nav-tickets1">
@@ -158,3 +164,4 @@
 </ul>
 </ul>  
 </aside>
+

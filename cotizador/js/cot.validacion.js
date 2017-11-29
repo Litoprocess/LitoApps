@@ -9,8 +9,8 @@ $(document).ready(function()
     //                        Ocualtar elementos
     //--------------------------------------------------------------------------
 
-    $('#lblPasadas').hide();
-    $('#barniz_pasadas').hide();
+    //$('#lblPasadas').hide();
+    //$('#barniz_pasadas').hide();
     $("#inicio").hide();
     $("#div_medida_especial").hide();
     
@@ -214,7 +214,7 @@ $(document).ready(function()
     {
         $.val_medias();
         $.resolucion();
-        $.barniz();
+        //$.barniz();
         $.blanco();
         $.acab1();
         $.acab2();
@@ -228,7 +228,7 @@ $(document).ready(function()
         $.totalAncho();
         $.val_medias();
         $.resolucion();
-        $.barniz();
+        //$.barniz();
         $.blanco();
         $.acab1();
         $.acab2();
@@ -241,7 +241,7 @@ $(document).ready(function()
         $.totalAlto();
         $.val_medias();
         $.resolucion();
-        $.barniz();
+        //$.barniz();
         $.blanco();
         $.acab1();
         $.acab2();
@@ -316,23 +316,23 @@ $(document).ready(function()
         });
     });
     
-    $("#pasadas_imp").change(function()
+    /*$("#pasadas_imp").change(function()
     {
         $.resolucion();
         $.mod();
-    });
+    });*/
     
-    $("#barniz").change(function()
+    /*$("#barniz").change(function()
     {
         $.barniz();
         $.mod();
-    });
+    });*/
     
-    $("#barniz_pasadas").change(function()
+    /*$("#barniz_pasadas").change(function()
     {
         $.barnizPasadas();
         $.mod();
-    });
+    });*/
     
     $("#blanco").change(function()
     {
@@ -664,11 +664,11 @@ $(document).ready(function()
     //                              Validar BARNIZ
     //--------------------------------------------------------------------------
     
-    $.barniz = function()
+    /*$.barniz = function()
     {
         $.barnizPasadas();
         $.mod();
-    }
+    }*/
     
     //--------------------------------------------------------------------------
     //                              Validar BARNIZ

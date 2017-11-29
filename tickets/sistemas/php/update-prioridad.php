@@ -1,11 +1,10 @@
 <?php
-header ('Content-type: text/html; charset=utf-8');
 session_start();
 
 include 'conn.php';
 
 //Asignacion de variables
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_POST["NombreUsuario"];
 $IdTicket = $_POST['IdTicket'];
 $data = $_POST['data'];
 

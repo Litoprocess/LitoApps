@@ -60,7 +60,7 @@
 <?php require ('../templates/SeguimientoTicket.php'); ?>
 
 <?php require ('../layout/scripts.php'); ?>
-<script type="text/javascript" src="js/mod-clientes.js"></script>
+<script type="text/javascript" src="js/mod-clientes.js?v=<?php echo(rand()); ?>"></script>
 
 </body>
 </html>

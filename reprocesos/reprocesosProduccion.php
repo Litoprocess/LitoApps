@@ -5,10 +5,10 @@ if(isset($_SESSION["Permisos"]['UserReprocesos']))
 	switch ($_SESSION["Permisos"]['UserReprocesos']) 
 	{				
 		case '1':
-		require 'views/reprocesosCalidad.view.php';
+		require 'views/reprocesosProduccion.view.php';
 		break;
 		case '2':
-		require 'views/reprocesosCalidad.view.php';
+		require 'views/reprocesosProduccion.view.php';
 		break;
 		case '3':
 		require 'views/reprocesosProduccion.view.php';

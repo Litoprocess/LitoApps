@@ -1,8 +1,9 @@
 $(document).ready(function () {
 
   var table;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+  
+  var Nusuario = localStorage.NombreUsuario;
+  var Correo2 = localStorage.Correo2;
 
   table = $('#all-tickets').DataTable( {
     "ajax": 'php/agent-tickets.php',
@@ -88,6 +89,7 @@ function datos_agente(tbody, table) {
 
         $.post("php/update-asignado.php", {
           IdTicket: IdTicket,
+          NombreUsuario: Nusuario,
           data: selectval,
           cagente: mailAgente,
           Problema: proAgente
@@ -100,6 +102,7 @@ function datos_agente(tbody, table) {
 
               $.post("correos/asignacionAgente.php", {
                 IdTicket: IdTicket,
+                NombreUsuario: Nusuario,
                 data: selectval,
                 cagente: mailAgente,
                 Problema: proAgente
@@ -138,6 +141,7 @@ function datos_prioridad(tbody, table) {
 
     $.post("php/update-prioridad.php", {
       IdTicket: IdTicket,
+      NombreUsuario: Nusuario,
       data: Prioridad
     },
 
@@ -164,6 +168,7 @@ function datos_prioridad(tbody, table) {
                 alert(nagente);
                 $.post("correos/PrioridadTicket.php", {
                   IdTicket: IdTicket,
+                  NombreUsuario: Nusuario,
                   data: Prioridad,
                   cagente: cagente,
                   nagente: nagente
@@ -212,6 +217,7 @@ function datos_estado(tbody, table) {
 
     $.post("php/update-estado.php", {
      IdTicket: IdTicket,
+     NombreUsuario: Nusuario,
      data: Estado,
      mailSolicita: CorreoSolicita,
      nameSolicita: NombreSolicita
@@ -223,6 +229,7 @@ function datos_estado(tbody, table) {
 
         $.post("correos/estatusTicket.php", {
          IdTicket: IdTicket,
+         NombreUsuario: Nusuario,
          data: Estado,
          mailSolicita: CorreoSolicita,
          nameSolicita: NombreSolicita
@@ -256,6 +263,7 @@ function fecha_compromiso(tbody, table) {
 
    $.post("php/update-input.php", {
      IdTicket: IdTicket,
+     NombreUsuario: Nusuario,
      data: Fecha,
      mailSolicita: CorreoSolicita,
      nameSolicita: NombreSolicita
@@ -267,6 +275,7 @@ function fecha_compromiso(tbody, table) {
 
         $.post("correos/fechaCompromiso.php", {
           IdTicket: IdTicket,
+          NombreUsuario: Nusuario,
           data: Fecha,
           mailSolicita: CorreoSolicita,
           nameSolicita: NombreSolicita
@@ -303,8 +312,6 @@ function datos_modal(tbody, table) {
   Tarea = datos.Descripcion;
   Fecha = datos.Registro;
   Estado = datos.Finalizado;
-  Nusuario = datos.Solicita;
-
 
   $("#SegAgente #DetallesTitulo").empty();
   $("#SegAgente #txt-seguimiento").val("");
@@ -397,6 +404,7 @@ $("#frm-seguimiento").submit(function () {
 
     $.post("php/registro-seguimiento.php", {
       Ticket: IdTicket,
+      NombreUsuario: Nusuario,
       Notas: $("#txt-seguimiento").val(),
       CorreoUsuario: Correo,
       NombreUsuario: Nusuario,
@@ -411,6 +419,7 @@ $("#frm-seguimiento").submit(function () {
 
           $.post("correos/seguimientoTicket.php", {
             Ticket: IdTicket,
+            NombreUsuario: Nusuario,
             Notas: $("#txt-seguimiento").val(),
             CorreoUsuario: Correo,
             NombreUsuario: Nusuario,

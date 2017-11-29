@@ -1,8 +1,8 @@
 <?php session_start();
 
-if(isset($_SESSION['UserMensaje1'])){
+if(isset($_SESSION['Permisos']['UserMensaje1'])){
 
-	switch ($_SESSION['UserMensaje1']) {
+	switch ($_SESSION['Permisos']['UserMensaje1']) {
 		case '1':
 		header('Location: mensajeria1/solicitudes.php');
 		break;
@@ -21,7 +21,7 @@ if(isset($_SESSION['UserMensaje1'])){
 	}
 	
 } else {
-	header ('Location: login.php');
+	header ('Location: ../login.php');
 }
 
 ?>

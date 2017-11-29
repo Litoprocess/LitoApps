@@ -1,25 +1,10 @@
 <?php 
-    class Conexion 
-    {
-	var $connStr 	= "mysql:host=localhost;dbname=cotizador3";
-	var $user 		= "root";
-	var $pass		= "";
-	var $conn		= "";
-	
-	function sql() 
-        {
-            try 
-            {
-                $this->conn = new PDO($this->connStr,$this->user,$this->pass);
-                //print_r("conectado");
-                //exit;
-            }
-            catch(PDOException $pe) 
-            {
-                die('No se pudo conectar a la base de datos.');
-                $pe->getMessage();
-            }
-            return $this->conn;
-	}
-    }
+$serverName = "192.168.2.211"; 
+$connectionInfo = array( "Database"=>"Cotizador", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
+$conn = sqlsrv_connect( $serverName, $connectionInfo);
+//Verifica la conexion
+if( $conn === true ) {
+    die( print_r( sqlsrv_errors(), true));
+}
+
 ?>

@@ -14,7 +14,7 @@
   <?php require 'layout/aside.php'; ?>
   <header style="  width: 100%; position: fixed; z-index: 100;">
     <ul class="dropdown-content" id="user_dropdown">
-      <li><a href="cerrar.php" class="indigo-text text-darken-3" href="#!">Logout</a></li>
+      <li><a href="cerrar.php" class="indigo-text text-darken-3" href="#!">Salir</a></li>
     </ul>
     <nav class="indigo darken-3" role="navigation">
       <div class="nav-wrapper">
