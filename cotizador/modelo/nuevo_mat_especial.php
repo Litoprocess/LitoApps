@@ -16,28 +16,36 @@
         $traslucido = $_POST['traslucido_form_mat'];
         $Corte = $_POST['corte_form_mat'];
         
-        $insertar = mysql_query("INSERT INTO materiales_especiales_cotizador (NOMBRE_MATERIAL, ANCHO, ALTO, TIPO, IMPORTE, MONEDA, PROVEEDOR, ACTIVO, TRASLUCIDO, CORTE) VALUES ('$Nombre', '$Ancho', '$Alto', '$Tipo', '$Importe', '$Moneda', '$Proveedor', '$Activo', '$traslucido', '$Corte')", $con);
+        $insertar = "INSERT INTO materiales_especiales_cotizador (NOMBRE_MATERIAL, ANCHO, ALTO, TIPO, IMPORTE, MONEDA, PROVEEDOR, ACTIVO, TRASLUCIDO, CORTE) VALUES ('$Nombre', '$Ancho', '$Alto', '$Tipo', '$Importe', '$Moneda', '$Proveedor', '$Activo', '$traslucido', '$Corte')";
+        $stmt = sqlsrv_query($conn,$insertar);
     }
     else
     {
-        $insertar = mysql_query("INSERT INTO materiales_especiales_cotizador (ID_MAT_ESPECIAL, NOMBRE_MATERIAL, ANCHO, ALTO, TIPO, IMPORTE, MONEDA, PROVEEDOR, ACTIVO, TRASLUCIDO, CORTE) VALUES ()", $con);
+        $insertar = "INSERT INTO materiales_especiales_cotizador (ID_MAT_ESPECIAL, NOMBRE_MATERIAL, ANCHO, ALTO, TIPO, IMPORTE, MONEDA, PROVEEDOR, ACTIVO, TRASLUCIDO, CORTE) VALUES ()";
+        $stmt = sqlsrv_query($conn,$insertar);
     }
     
-    $idMat=mysql_insert_id();
-    
-    if ($insertar) 
+    $params = array();
+    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
+    $mat="SELECT @@IDENTITY AS idmat";
+    $stmt2=sqlsrv_query($conn,$mat,$params,$options);
+    $num = sqlsrv_num_rows( $stmt2 );
+
+    while ($row =sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC)) 
     {
+    $idMat = trim($row["idmat"]);
+    } 
+
+    if($num>0){
         $response->validacion="true";
         $response->idMat=$idMat;
         $response->Nombre=$Nombre;
-        $response->Tipo=$Tipo;
-    }
-    else
-    {
+        $response->Tipo=$Tipo;  
+    } else {
         $response->validacion="false";
     }
-    
     echo json_encode ($response);
+    
 ?>
 
     

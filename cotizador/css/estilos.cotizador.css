@@ -28,7 +28,7 @@ body{
     border-width: 1px;
 }
 #datos-footer {
-    background-color: #fff;
+    background-color: #c5cae9;
     box-shadow: 3px 4px 7px #7F7E7E;
     -webkit-box-shadow: 3px 4px 7px #7F7E7E;
     -moz-box-shadow: 3px 4px 7px #7F7E7E;
@@ -54,11 +54,13 @@ body{
     margin-left: 5px;
     //border: none 0em;
     //background: transparent;
+    text-align: right;
 }
 .lblfooter {
     display: inline-block;
     width: 50px;
     margin: 5px;
+    text-align: right;
 }
 .lblencabezados {
     display: inline-block;
@@ -79,12 +81,14 @@ body{
 }
 .lblcuerpo {
     display: inline-block;
-    width: 80px;
+    width: 70px;
     margin: 5px;
 }
 .txtcuerpo {
+    font-size: 12px;
     margin-left: 5px;
-    width: 50px;
+    width: 65px;
+    text-align: right;
 }
 .margen {
   margin-bottom: -1rem;
@@ -175,6 +179,7 @@ select {
 }  
 .inptsize2{
   width:95%;
+  text-align: right;
 }  
 .lblcant-tit {
     color: #283593;
@@ -229,4 +234,9 @@ td, th {
     text-align: left;
     vertical-align: middle;
     border-radius: 0px;
+}
+
+.campoBloqueado{
+background: #eceff1;   
+border-width:1px; 
 }

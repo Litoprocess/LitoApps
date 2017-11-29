@@ -5,7 +5,7 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $SelectEstatus = "";
 
 $sql = "SELECT * FROM Tickets WHERE Asignado = '$NombreUsuario'";

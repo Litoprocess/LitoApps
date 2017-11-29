@@ -4,9 +4,9 @@ session_start();
 //Asignacion de variables
 
 $IdTicket = $_POST['Ticket'];
-$Notas = utf8_decode(mb_strtoupper($_POST['Notas']));
-$CorreoAtencion = $_POST['CorreoUsuario'];
 $NombreUser = $_POST['NombreUsuario'];
+$CorreoAtencion = $_POST['CorreoUsuario'];
+$Notas = utf8_decode(mb_strtoupper($_POST['Notas']));
 $Correo2 = $_POST['Correo2'];
 
 date_default_timezone_set('Etc/UTC');

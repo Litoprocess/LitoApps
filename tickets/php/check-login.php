@@ -12,24 +12,25 @@ $response = new stdClass();
 $response->validacion= "false";
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
-    $_SESSION["NombreUsuario"] = trim(utf8_encode($row['Nombre']));
-    $_SESSION["IdUsuario"] = $row['Id_Usuario'];
-    $_SESSION["UserSistemas"] = $row['TipoUsuarioTSistemas'];
-    $_SESSION["UserManto"] = $row['TipoUsuarioTMantto'];
-    $_SESSION["UserMensaje1"] = $row['TipoUsuarioTMensajeria1'];
-    $_SESSION["UserMensaje2"] = $row['TipoUsuarioTMensajerias2'];
-    $_SESSION["UserLibera"] = $row['TipoUsuarioLibera'];
 
-    $_SESSION["MenuSistemas"] = $row['EstatusTSistemas'];
-    $_SESSION["MenuManto"] = $row['EstatusTMantto'];
-    $_SESSION["MenuMensaje1"] = $row['EstatusTMensajerias1'];
-    $_SESSION["MenuMensaje2"] = $row['EstatusTMensajerias2'];
-    $_SESSION["MenuLibera"] = $row['EstatusLibera'];
+    $_SESSION['Permisos']["IdUsuario"] = $row['Id_Usuario'];
+    $_SESSION['Permisos']["NombreUsuario"] = trim(utf8_encode($row['Nombre']));
+    $_SESSION['Permisos']["Departamento"] = $row['Departamento'];
+    $_SESSION['Permisos']["CorreoUsuario"] = $row['Correo'];
+    $_SESSION['Permisos']["CorreoCopia"] = $row['Correo2'];
+
+    //Variables de tipo de usuario
+    $_SESSION['Permisos']["UserSistemas"] = $row['TipoUsuarioTSistemas'];
+    $_SESSION['Permisos']["UserManto"] = $row['TipoUsuarioTMantto'];
+    $_SESSION['Permisos']["UserMensaje1"] = $row['TipoUsuarioTMensajeria1'];
+    $_SESSION['Permisos']["UserMensaje2"] = $row['TipoUsuarioTMensajerias2'];
+
+    //Variables de menu de usuario
+    $_SESSION['Permisos']["MenuSistemas"] = $row['EstatusTSistemas'];
+    $_SESSION['Permisos']["MenuManto"] = $row['EstatusTMantto'];
+    $_SESSION['Permisos']["MenuMensaje1"] = $row['EstatusTMensajerias1'];
+    $_SESSION['Permisos']["MenuMensaje2"] = $row['EstatusTMensajerias2'];
     
-    $_SESSION["Departamento"] = $row['Departamento'];
-    $_SESSION["CorreoUsuario"] = $row['Correo'];
-
-    $_SESSION["CorreoCopia"] = $row['Correo2'];
 
 
     //$response->Estatus=$row['Estatus'];

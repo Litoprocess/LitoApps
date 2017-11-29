@@ -15,8 +15,8 @@
                 </div>
 
                 <div class="input-field col s6 m2">
-                    <input type="checkbox" class="filled-in" id="chk-correo2" />
-                    <label for="chk-correo2">Enviar copia</label>
+                    <input type="checkbox" class="filled-in" id="correoSolicitud2" />
+                    <label for="correoSolicitud2">Enviar copia</label>
                 </div>
 
                 <div class="input-field col s6 m4">

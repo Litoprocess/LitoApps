@@ -17,7 +17,7 @@
     <header>
     <ul class="dropdown-content" id="user_dropdown">
       <li><a href="#!" class="indigo-text text-darken-3"><?php echo $_SESSION["Permisos"]["NombreUsuario"];?></a></li>
-      <li><a href="cerrar.php" class="indigo-text text-darken-3" href="#!">Salir</a></li>
+      <li><a href="../cerrar.php" class="indigo-text text-darken-3">Salir</a></li>
     </ul>
 
     <nav class="nav-extended indigo darken-3">
@@ -31,7 +31,7 @@
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               
-          <li><a href="../cerrar.php">Cerrar sesión</a></li>
+          <li><a href="../cerrar.php">Salir</a></li>
         </ul>
       </div>
     </nav>

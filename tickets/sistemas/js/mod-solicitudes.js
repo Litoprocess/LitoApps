@@ -2,8 +2,9 @@ $(document).ready(function () {
 
   var table;
   var titulo;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+
+  var Nusuario = localStorage.NombreUsuario;
+  var Correo2 = localStorage.Correo2;
 
   table = $('#all-tickets').DataTable( {
     "ajax": 'php/admin-tickets.php',
@@ -99,7 +100,8 @@ function datos_agente(tbody, table) {
           IdTicket: IdTicket,
           data: selectval,
           cagente: mailAgente,
-          Problema: proAgente
+          Problema: proAgente,
+          NombreUsuario: Nusuario
         },
 
         function (form) {
@@ -112,7 +114,8 @@ function datos_agente(tbody, table) {
                 titulo: titulo,
                 data: selectval,
                 cagente: mailAgente,
-                Problema: proAgente
+                Problema: proAgente,
+                NombreUsuario: Nusuario
               });
 
               table.ajax.reload ();
@@ -150,7 +153,8 @@ function datos_prioridad(tbody, table) {
 
     $.post("php/update-prioridad.php", {
       IdTicket: IdTicket,
-      data: Prioridad
+      data: Prioridad,
+      NombreUsuario: Nusuario
     },
 
     function (form) {
@@ -176,6 +180,7 @@ function datos_prioridad(tbody, table) {
                 var nagente = correo.nombreAgente;
                 $.post("correos/PrioridadTicket.php", {
                   IdTicket: IdTicket,
+                  NombreUsuario: Nusuario,
                   titulo: titulo,
                   data: Prioridad,
                   cagente: cagente,
@@ -218,14 +223,20 @@ function datos_estado(tbody, table) {
   NombreSolicita = data.Solicita;
   FCompromiso = $(data.Compromiso).attr("value");
 
-  if(FCompromiso == ""){
-    Materialize.toast('¡Error!, Falta fecha compromiso', 1200, 'yellow darken-4', function(){
-      table.ajax.reload ();
-    })
-  }else{
+  if(Estado == "CERRADO RESUELTO" || Estado == "CERRADO SIN RESOLVER"){
 
+    if(FCompromiso == ""){
+
+    Materialize.toast('¡Error!, Falta fecha compromiso', 1200, 'yellow darken-4');
+    return false;
+
+    }
+
+  }
+  
     $.post("php/update-estado.php", {
      IdTicket: IdTicket,
+     NombreUsuario: Nusuario,
      data: Estado,
      mailSolicita: CorreoSolicita,
      nameSolicita: NombreSolicita
@@ -237,6 +248,7 @@ function datos_estado(tbody, table) {
 
         $.post("correos/estatusTicket.php", {
          IdTicket: IdTicket,
+         NombreUsuario: Nusuario,
          titulo: titulo,
          data: Estado,
          mailSolicita: CorreoSolicita,
@@ -247,8 +259,6 @@ function datos_estado(tbody, table) {
     }
 
   }, 'json');
-
-  }
 
 });
 }
@@ -272,6 +282,7 @@ function fecha_compromiso(tbody, table) {
 
    $.post("php/update-input.php", {
      IdTicket: IdTicket,
+     NombreUsuario: Nusuario,
      data: Fecha,
      mailSolicita: CorreoSolicita,
      nameSolicita: NombreSolicita
@@ -283,6 +294,7 @@ function fecha_compromiso(tbody, table) {
 
         $.post("correos/fechaCompromiso.php", {
           IdTicket: IdTicket,
+          NombreUsuario: Nusuario,
           titulo: titulo,
           data: Fecha,
           mailSolicita: CorreoSolicita,
@@ -320,7 +332,6 @@ function datos_modal(tbody, table) {
   Tarea = datos.Descripcion;
   Fecha = datos.Registro;
   Estado = datos.Finalizado;
-  Nusuario = datos.Solicita;
 
 
   $("#SegAgente #DetallesTitulo").empty();
@@ -368,25 +379,6 @@ function datos_modal(tbody, table) {
 
    }
 
-     //Checkbox del tiket
-
-     $( "#chk-correo2" ).change(function() {
-
-      if($("#chk-correo2").prop( "checked" )==true){
-
-        $("#txt-correo21").attr( "disabled", false );
-
-        $("#txt-correo21").val(Correo2).siblings().addClass("active");
-
-      }else{
-
-        $("#txt-correo21").attr( "disabled", true );
-
-        $("#txt-correo21").val("").siblings().removeClass("active");
-
-      }
-
-    });
 
    } else {
      $("#SegAgente #HistorialTickets").empty();
@@ -418,6 +410,7 @@ $("#frm-seguimiento").submit(function () {
 
     $.post("php/registro-seguimiento.php", {
       Ticket: IdTicket,
+      NombreUsuario: Nusuario,
       Notas: $("#txt-seguimiento").val(),
       CorreoUsuario: Correo,
       NombreUsuario: Nusuario,
@@ -453,6 +446,27 @@ $("#frm-seguimiento").submit(function () {
   return false;
 });
 
+
+//Checkbox del tiket
+
+$('#correoSolicitud2').on('click', function() { 
+
+  if( $('#correoSolicitud2').prop("checked") == true){
+
+   $("#SegAgente #txt-correo21").attr( "disabled", false );
+
+   $("#SegAgente #txt-correo21").val(lsCorreo2).siblings().addClass("active");
+
+   $("#SegAgente #txt-correo21").focus();
+
+ }else{
+
+  $("#SegAgente #txt-correo21").attr( "disabled", true );
+
+  $("#SegAgente #txt-correo21").val("").siblings().removeClass("active");
+
+}
+});
 
 
 //Filtrado

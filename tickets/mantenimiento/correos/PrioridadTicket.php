@@ -3,7 +3,7 @@ session_start();
 
 $IdTicket = $_POST['IdTicket'];
 $data = $_POST['data'];
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $cAgente = $_POST['cagente'];
 $nAgente = $_POST['nagente'];
 
@@ -18,9 +18,9 @@ $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tsl';
 $mail->SMTPAuth = true;
-$mail->Username = "mantenimiento@litoprocess.com";
-$mail->Password = "m444nt0";
-$mail->setFrom('mantenimiento@litoprocess.com', 'Mantenimiento - Litoprocess');
+$mail->Username = "mantenimiento_lito@litoprocess.com";
+$mail->Password = "l1t0m444nt0";
+$mail->setFrom('mantenimiento_lito@litoprocess.com', 'Mantenimiento - Litoprocess');
 $mail->CharSet = 'UTF-8';
 
 $mail->addAddress($cAgente, $nAgente);

@@ -6,19 +6,19 @@ include 'conn.php';
 //Asignacion de variables
 
 $IdTicket = $_POST['IdTicket'];
-$data = $_POST['data'];
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_POST["NombreUsuario"];
+$data = utf8_decode($_POST['data']);
 $CorreoSolicita = $_POST['mailSolicita'];
 $NombreSolicita = $_POST['nameSolicita'];
 
 if($data == 'CERRADO RESUELTO' || $data == 'CERRADO SIN RESOLVER' || $data == 'CANCELADO'){
 
-	$sql = "UPDATE Tickets SET ESTADO = '$data', FechaFinalizado = GetDate()  WHERE Id_Ticket = $IdTicket";
+	$sql = "UPDATE Tickets SET ESTATUS = '$data', FechaFinalizado = GetDate()  WHERE IdTicket = $IdTicket";
 	$stmt = sqlsrv_query( $conn, $sql );
 
 }else{
 
-	$sql = "UPDATE Tickets SET ESTADO = '$data', FechaFinalizado = null  WHERE Id_Ticket = $IdTicket";
+	$sql = "UPDATE Tickets SET ESTATUS = '$data', FechaFinalizado = null  WHERE IdTicket = $IdTicket";
 
 	$stmt = sqlsrv_query( $conn, $sql );
 }

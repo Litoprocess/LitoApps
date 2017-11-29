@@ -6,7 +6,7 @@
 		$(".dropdown-button").dropdown();
 		$('.button-collapse').sideNav();
 
-		switch(<?php echo $_SESSION["UserMensaje1"];?>){
+		switch(<?php echo $_SESSION['Permisos']["UserMensaje1"];?>){
 
 			case 1: $('#li-usuario, #li-agente, #li-admin').show();
 			$('#li-agente').hide();
@@ -23,25 +23,25 @@
 
 		}
 
-		if(<?php echo $_SESSION["MenuSistemas"];?> != 1){
+		if(<?php echo $_SESSION['Permisos']["MenuSistemas"];?> != 1){
 
 			$('#aside-sistemas').hide();
 
 		}
 
-		if(<?php echo $_SESSION["MenuManto"];?> != 1){
+		if(<?php echo $_SESSION['Permisos']["MenuManto"];?> != 1){
 
 			$('#aside-manto').hide();
 
 		}
 
-		if(<?php echo $_SESSION["MenuMensaje1"];?> != 1){
+		if(<?php echo $_SESSION['Permisos']["MenuMensaje1"];?> != 1){
 
 			$('#aside-mensaje1').hide();
 
 		}
 
-		if(<?php echo $_SESSION["MenuMensaje2"];?> != 1){
+		if(<?php echo $_SESSION['Permisos']["MenuMensaje2"];?> != 1){
 
 			$('#aside-mensaje2').hide();
 

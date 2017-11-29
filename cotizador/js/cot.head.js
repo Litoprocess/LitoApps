@@ -210,9 +210,9 @@ $(document).ready(function()
                                     $("#Sandwich").prop("checked", true);
                                 }
                                 
-                                $("#pasadas_imp").val(data.rows[0].imp_pasadas);
+                                //$("#pasadas_imp").val(data.rows[0].imp_pasadas);
 
-                                if(data.rows[0].barniz=="on")
+                                /*if(data.rows[0].barniz=="on")
                                 {
                                     $("#barniz").prop("checked", true);
                                     $("#barniz_pasadas").val(data.rows[0].barniz_pasadas);
@@ -222,7 +222,7 @@ $(document).ready(function()
                                     $("#barniz").prop("checked", false);
                                     $("#barniz").focus();
                                     $("#barniz").blur();
-                                }
+                                }*/
                                 
                                 if(data.rows[0].blanco=="on")
                                 {
@@ -422,7 +422,7 @@ $(document).ready(function()
                                 $.totalAncho();
                                 $.totalAlto();
                                 $.resolucion();
-                                $.barniz();
+                                //$.barniz();
                                 $.blanco();
                                 $.acab1();
                                 $.acab2();
@@ -498,20 +498,20 @@ $(document).ready(function()
     $("#actualizar").click(function(){
                 if($("#mat_especial").prop("checked") == true)
                 {
-                    $("#dialogoguardar").dialog("close");
+                    $("#dialogoguardar").modal("close");
                     $.update();
                 }
                 else
                 {
                     if($("#material").val() == "0")
                     {
-                        $("#dialogoguardar").dialog("close");
+                        $("#dialogoguardar").modal("close");
                         $("#dialogoerror").html('<br/><center><span style="color:red;">Primero selecciona un material</span></center>');
-                        $("#dialogoerror").dialog("open");
+                        $("#dialogoerror").modal("open");
                     }
                     else
                     {
-                        $("#dialogoguardar").dialog("close");
+                        $("#dialogoguardar").modal("close");
                         $.update();
                     }
                 }
@@ -520,20 +520,20 @@ $(document).ready(function()
     $("#guardarnuevo").click(function(){
         if($("#mat_especial").prop("checked") == true)
         {
-            $("#dialogoguardar").dialog("close");
+            $("#dialogoguardar").modal("close");
             $.guardar();
         }
         else
         {
             if($("#material").val() == "0")
             {
-                $("#dialogoguardar").dialog("close");
+                $("#dialogoguardar").modal("close");
                 $("#dialogoerror").html('<br/><center><span style="color:red;">Primero selecciona un material</span></center>');
-                $("#dialogoerror").dialog("open");
+                $("#dialogoerror").modal("open");
             }
             else
             {
-                $("#dialogoguardar").dialog("close");
+                $("#dialogoguardar").modal("close");
                 $.guardar();
             }
         }
@@ -656,7 +656,7 @@ $(document).ready(function()
                 {
                     $("#dialogoerror").html("");
                     $("#dialogoerror").html('<span style="color:red;">Error los datos no se han guardado o ya se genero la orden de produccion</span>');
-                    $("#dialogoerror").dialog("open");
+                    $("#dialogoerror").modal("open");
                 }
             },"json"
         );
@@ -665,11 +665,11 @@ $(document).ready(function()
     //Dialogo de Fecha_limite y Or_Metrix
             $("#aceptar5").click(function(){
                 $.UpdateionOrden();
-                $("#dialogo_imp_orden").dialog("close");
+                $("#dialogo_imp_orden").modal("close");
             });
 
             $("#cancelar4").click(function(){
-                $("#dialogo_imp_orden").dialog("close");
+                $("#dialogo_imp_orden").modal("close");
             });
 
     //Dialogo de Fecha_limite y Or_Metrix
@@ -782,7 +782,7 @@ $(document).ready(function()
                 {
                     $("#dialogoerror").html("");
                     $("#dialogoerror").html('<span style="color:red;">Error el folio no existe<br/>Primero genera la orden de produccion</span>');
-                    $("#dialogoerror").dialog("open");
+                    $("#dialogoerror").modal("open");
                 }
             },"json"
         );
@@ -805,7 +805,7 @@ $(document).ready(function()
                 {
                     $("dialogoerror").html("");
                     $("#dialogoerror").html('<span style="color:red;">Error el folio no existe<br/>Primero genera la orden de produccion</span>');
-                    $("#dialogoerror").open("open");
+                    $("#dialogoerror").modal("open");
                 }
             },"json"
         );

@@ -502,7 +502,7 @@ $(document).ready(function()
         var alto = $("#totalto").val();
         var cantidad = $("#cantidad").val();
         var material = $("#material").val();
-        var PasadasImpresio = $("#pasadas_imp").val();
+        //var PasadasImpresio = $("#pasadas_imp").val();
 
         if($("#mat_especial").prop("checked") == true)
         {
@@ -571,7 +571,8 @@ $(document).ready(function()
                                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                //PasadasImpresio
                                                                             }
                                                                         }
                                                                     },"json"
@@ -631,7 +632,8 @@ $(document).ready(function()
                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                //PasadasImpresio
                                                             }
                                                         }
                                                     },"json"
@@ -722,7 +724,8 @@ $(document).ready(function()
                                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                //PasadasImpresio
                                                                             }
                                                                         }
                                                                     },"json"
@@ -782,7 +785,8 @@ $(document).ready(function()
                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                //PasadasImpresio
                                                             }
                                                         }
                                                     },"json"
@@ -817,7 +821,7 @@ $(document).ready(function()
         var alto = $("#totalto").val();
         var cantidad = $("#cantidad").val();
         var material = $("#material").val();
-        var PasadasImpresio = $("#pasadas_imp").val();
+        //var PasadasImpresio = $("#pasadas_imp").val();
         
         if($("#mat_especial").prop("checked") == true)
         {
@@ -886,7 +890,8 @@ $(document).ready(function()
                                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                //PasadasImpresio
                                                                             }
                                                                         }
                                                                     },"json"
@@ -946,7 +951,8 @@ $(document).ready(function()
                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                //PasadasImpresio
                                                             }
                                                         }
                                                     },"json"
@@ -1036,7 +1042,8 @@ $(document).ready(function()
                                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                                //PasadasImpresio
                                                                             }
                                                                         }
                                                                     },"json"
@@ -1096,7 +1103,8 @@ $(document).ready(function()
                                                                 var costoImpAlta=data.rowdos[i].alta;
 
                                                                 //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                                                                calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                                                                //PasadasImpresio
                                                             }
                                                         }
                                                     },"json"
@@ -1124,7 +1132,7 @@ $(document).ready(function()
         var ancho="0";
         var alto="0";
         var cantidad="0";
-        var PasadasImpresio = "1";
+        //var PasadasImpresio = "1";
         var costoTraslucido="0";
         var idTintaBD="0";
         var tintaBD="0";
@@ -1133,7 +1141,8 @@ $(document).ready(function()
         var costoImpBaja="0";
         var costoImpAlta="0";
 
-        calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+        calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+        //PasadasImpresio
     }
     
     $.Sandwich = function()
@@ -1143,7 +1152,7 @@ $(document).ready(function()
         var ancho = $("#totancho").val();
         var alto = $("#totalto").val();
         var cantidad = $("#cantidad").val();
-        var PasadasImpresio = $("#pasadas_imp").val();
+        //var PasadasImpresio = $("#pasadas_imp").val();
         
         var costoTraslucido="0";
         var costoAltaBD="0";
@@ -1162,7 +1171,8 @@ $(document).ready(function()
                         var costoBajaBD=data.rowdos[i].baja;
 
                         //alert ("Data: " + data + " Tinta: " + tinta + " Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " ID Tinta: " + idTintaBD + " Tinta: " + tintaBD + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-                        calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                        calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta);
+                        //PasadasImpresio
                     }
                 }
             },"json"
@@ -1175,7 +1185,7 @@ $(document).ready(function()
     //           EN BAJA RESOLUCION (720) Y ALTA RESOLUCION(1440)
     //--------------------------------------------------------------------------
 
-    function calcTinta(PasadasImpresio, resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta)
+    function calcTinta(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD, costoImpBaja, costoImpAlta) //PasadasImpresio
     {
         //--Variables necesarias para la funcion...........
         var resolucion = resolucion;
@@ -1183,7 +1193,7 @@ $(document).ready(function()
         var alto = alto;
         var cantidad = cantidad;
         var costoTraslucido = costoTraslucido;
-        var PasadasImpresio = PasadasImpresio;
+        //var PasadasImpresio = PasadasImpresio;
         var costoImpBaja = costoImpBaja;
         var costoImpAlta = costoImpAlta;
 
@@ -1194,8 +1204,8 @@ $(document).ready(function()
         //$.imp_pasadas(resolucion, ancho, alto, cantidad, costoTraslucido, costoBajaBD, costoAltaBD)
         
         //alert ("Resolucion: " + resolucion + " Ancho: " + ancho + " Alto: " + alto + " Cantidad: " + cantidad + " Costo Translucido: " + costoTraslucido + " Costo Baja: " + costoBajaBD + " Costo Alta: " + costoAltaBD);
-        if (PasadasImpresio == "1")
-        {
+        //if (PasadasImpresio == "1")
+        //{
             if (resolucion == "720")
             {
                 //Calcular el costo de la tinta de BajaResolucion
@@ -1223,12 +1233,12 @@ $(document).ready(function()
                 var areaImpresion = (parseFloat(ancho)/100) *  (parseFloat(alto)/100) * parseInt(cantidad);
                 var valor = parseFloat(costoBajaBD) * parseFloat(areaImpresion);
 
-                $("#pasadas_imp").val("1");
+                //$("#pasadas_imp").val("1");
                 $("#resTinta").val(currency(valor));
             }
-        }
-        else if (PasadasImpresio == "2")
-        {
+        //}
+        //else if (PasadasImpresio == "2")
+        //{
             if (resolucion == "720")
             {
                 //Calcular el costo de la tinta de BajaResolucion
@@ -1258,11 +1268,11 @@ $(document).ready(function()
                 var areaImpresion = (parseFloat(ancho)/100) *  (parseFloat(alto)/100) * parseInt(cantidad);
                 var valor = parseFloat(costoBajaBD) * parseFloat(areaImpresion);
 
-                $("#pasadas_imp").val("1");
+                //$("#pasadas_imp").val("1");
                 $.mod();
                 $("#resTinta").val(currency(valor));
             }
-        }
+        //}
         
         $.calculos();
     }
@@ -1271,7 +1281,7 @@ $(document).ready(function()
     //                 FUNCI�N PARA CALCULAR EL BARNIZ
     //--------------------------------------------------------------------------
     
-    $.barnizPasadas = function()
+    /*$.barnizPasadas = function()
     {
         if ($("#barniz").prop("checked") == true) 
         {
@@ -1310,7 +1320,7 @@ $(document).ready(function()
             $("#resB").val("0");
             $.calculos();
         }
-    }
+    }*/
     
     //--------------------------------------------------------------------------
     //                  FUNCI�N PARA CALCULAR LA TINTA BLANCO 
@@ -2348,7 +2358,7 @@ $(document).ready(function()
     {
         var resPrecio = parseFloat($("#resPrecio").val().replace(/,/gi,''));
         var resTinta = parseFloat($("#resTinta").val().replace(/,/gi,''));
-        var resBarniz = parseFloat($("#resB").val().replace(/,/gi,''));
+        //var resBarniz = parseFloat($("#resB").val().replace(/,/gi,''));
         var resBlanco = parseFloat($("#resBlanco").val().replace(/,/gi,''));
         var resAcab1 = parseFloat($("#resAcab1").val().replace(/,/gi,''));
         var resAcab2 = parseFloat($("#resAcab2").val().replace(/,/gi,''));
@@ -2364,7 +2374,7 @@ $(document).ready(function()
         var resAdic5 = parseFloat($("#resAdic5").val().replace(/,/gi,''));
         var resAdic6 = parseFloat($("#resAdic6").val().replace(/,/gi,''));
 
-        var value = parseFloat(resPrecio)+parseFloat(resTinta)+parseFloat(resAcab1)+parseFloat(resAcab2)+parseFloat(resAcab3)+parseFloat(resAcab4)+parseFloat(resAcab5)+parseFloat(resAcab6)+parseFloat(resBarniz)+parseFloat(resBlanco)+parseFloat(resLamina)+parseFloat(resAdic1)+parseFloat(resAdic2)+parseFloat(resAdic3)+parseFloat(resAdic4)+parseFloat(resAdic5)+parseFloat(resAdic6);
+        var value = parseFloat(resPrecio)+parseFloat(resTinta)+parseFloat(resAcab1)+parseFloat(resAcab2)+parseFloat(resAcab3)+parseFloat(resAcab4)+parseFloat(resAcab5)+parseFloat(resAcab6)+parseFloat(resBlanco)+parseFloat(resLamina)+parseFloat(resAdic1)+parseFloat(resAdic2)+parseFloat(resAdic3)+parseFloat(resAdic4)+parseFloat(resAdic5)+parseFloat(resAdic6); //parseFloat(resBarniz)
         $("#resSubtotal").val(currency(value));
     }
 
@@ -2465,7 +2475,7 @@ $(document).ready(function()
             var  resTintalito = 0;
         }
 
-        if($("#lito4").prop('checked'))
+        /*if($("#lito4").prop('checked'))
         {
             var  resBarniz = 0;
             var  resBarnizlito = parseFloat($("#resB").val().replace(/,/gi,''));
@@ -2474,7 +2484,7 @@ $(document).ready(function()
         {
             var  resBarniz = parseFloat($("#resB").val().replace(/,/gi,''));
             var  resBarnizlito = 0;
-        }
+        }*/
 
         if($("#lito5").prop('checked'))
         {
@@ -2632,9 +2642,9 @@ $(document).ready(function()
 
         var pormargen = parseFloat($("#porcientoMargen").val().replace(/,/gi,''));
 
-        var value = (resPrecio + resTinta + resBarniz + resBlanco +resAcab1 +resAcab2 +resAcab3 +resAcab4 +resAcab5 +resAcab6 + resLamina + resAdic1 + resAdic2 + resAdic3 + resAdic4 + resAdic5 + resAdic6);
+        var value = (resPrecio + resTinta + resBlanco +resAcab1 +resAcab2 +resAcab3 +resAcab4 +resAcab5 +resAcab6 + resLamina + resAdic1 + resAdic2 + resAdic3 + resAdic4 + resAdic5 + resAdic6); //+ resBarniz
 
-        var valuelito = (resPreciolito + resTintalito + resBarnizlito + resBlancolito + resAcab1lito + resAcab2lito + resAcab3lito + resAcab4lito + resAcab5lito + resAcab6lito + resLaminalito + resAdic1lito + resAdic2lito + resAdic3lito + resAdic4lito + resAdic5lito + resAdic6lito);
+        var valuelito = (resPreciolito + resTintalito + resBlancolito + resAcab1lito + resAcab2lito + resAcab3lito + resAcab4lito + resAcab5lito + resAcab6lito + resLaminalito + resAdic1lito + resAdic2lito + resAdic3lito + resAdic4lito + resAdic5lito + resAdic6lito); //+ resBarnizlito 
 
         var valueimprimart1 = (value * (pormargen/100)) + value;
         var valueimprimart2 = valueimprimart1 * (90/100);

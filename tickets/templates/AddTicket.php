@@ -8,21 +8,18 @@
         <div class="modal-content">
           <h4 class="center-align">Generar ticket</h4>
           <div class="row">
-            <div class="col s12">
+            <div class="col s12 m4">
               <label>Categoría</label>
               <select id="selCategoria" name="selCategoria" class="browser-default">
                 <option value="" disabled selected>Selecciona una opción</option>
               </select>
             </div>
-          </div>
-          <br>
-          <div class="row">
-            <div class="input-field col s12">
-              <input type="text" name="txtTitulo" id="txtTitulo">
+            <div class="input-field col s12 m8" style="margin-top: 20px;">
+              <input type="text" name="txtTitulo" id="txtTitulo" data-length="200">
               <label for="txtTitulo">Título</label>
             </div>
           </div>
-
+          <br>
           <div class="row">
             <div class="input-field col s12">
               <textarea id="txtProblema" name="txtProblema" class="materialize-textarea"></textarea>
@@ -38,7 +35,7 @@
               </p>
             </div>
             <div class="input-field col s6 m4">
-            <input type="text" name="txt-correo2" id="txt-correo2" disabled>
+              <input type="text" name="txt-correo2" id="txt-correo2" disabled>
               <label for="txtTitulo">Correo</label>
             </div>
           </div>

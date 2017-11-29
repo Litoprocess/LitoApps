@@ -10,7 +10,7 @@
     <div class="row">
       <h3 class="center-align">Bienvenido al sistema de tickets</h3>
     </div>
-    <div class="row">      
+    <div class="row">
       <div class="col s12 m3" id="princi-sistemas">
         <div class="center promo">
           <a href="sistemas-tipo.php"><i class="material-icons red-text text-darken-4">desktop_windows</i></a>
@@ -38,7 +38,6 @@
           <p class="promo-caption">Mensajería 2</p>
         </div>
       </div>
-      </div>      
     </div>
   </main>
 
@@ -56,7 +55,7 @@
     $(".dropdown-button").dropdown();
     $('.button-collapse').sideNav();
 
-    switch(<?php echo $_SESSION["UserSistemas"];?>){
+    switch(<?php echo $_SESSION['Permisos']["UserSistemas"];?>){
 
       case 1: $('#li-usuario, #li-agente, #li-admin').show();
       break;
@@ -72,28 +71,28 @@
 
     }
 
-    if(<?php echo $_SESSION["MenuSistemas"];?> != 1){
+    if(<?php echo $_SESSION['Permisos']["MenuSistemas"];?> != 1){
 
       $('#aside-sistemas').hide();
       $('#princi-sistemas').hide();
 
     }
 
-    if(<?php echo $_SESSION["MenuManto"];?> != 1){
+    if(<?php echo $_SESSION['Permisos']["MenuManto"];?> != 1){
 
       $('#aside-manto').hide();
       $('#princi-manto').hide();
 
     }
 
-    if(<?php echo $_SESSION["MenuMensaje1"];?> != 1){
+    if(<?php echo $_SESSION['Permisos']["MenuMensaje1"];?> != 1){
 
       $('#aside-mensaje1').hide();
       $('#princi-mensaje1').hide();
 
     }
 
-    if(<?php echo $_SESSION["MenuMensaje2"];?> != 1){
+    if(<?php echo $_SESSION['Permisos']["MenuMensaje2"];?> != 1){
 
       $('#aside-mensaje2').hide();
       $('#princi-mensaje2').hide();

@@ -22,12 +22,12 @@
             <tr>
               <th>Folio</th>
               <th>Título</th>
-              <th>Descripción</th>
-              <th>F_Registro</th>
-              <th>Asignado</th>
-              <th>Estado</th>
-              <th>F_Compromiso</th>
-              <th>F_Finalizado</th>
+              <th>Empresa</th>
+              <th>Fecha de Entrega</th>
+              <th>Hora de Entrega</th>
+              <th>Prioridad</th>
+              <th>Estatus</th>
+              <th>Fecha finalizado</th>
             </tr>
           </thead>
           <tbody>
@@ -54,13 +54,13 @@
 </div>
 
 <!-- SegTicket (Seguimiento de Tickets)-->
-<?php require ('../templates/AddTicket.php'); ?>
+<?php require ('../templates/AddEnvio.php'); ?>
 
 <!-- SegTicket (Seguimiento de Tickets)-->
 <?php require ('../templates/SeguimientoTicket.php'); ?>
 
 <?php require ('../layout/scripts.php'); ?>
-<script type="text/javascript" src="js/mod-clientes.js"></script>
+<script type="text/javascript" src="js/mod-clientes.js?v=<?php echo(rand()); ?>"></script>
 
 </body>
 </html>

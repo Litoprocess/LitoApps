@@ -5,7 +5,7 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $SelectAgente = "";
 $SelectEstatus = "";
 $SelectPrioridad = "";

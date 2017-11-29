@@ -1,8 +1,8 @@
 <?php session_start();
 
-if(isset($_SESSION['UserSistemas'])){
+if(isset($_SESSION['Permisos']['UserSistemas'])){
 
-	switch ($_SESSION['UserSistemas']) {
+	switch ($_SESSION['Permisos']['UserSistemas']) {
 		case '1':
 		header('Location: sistemas/solicitudes.php');
 		break;
@@ -21,8 +21,7 @@ if(isset($_SESSION['UserSistemas'])){
 	}
 	
 } else {
-
-	//header ('Location: login.php');
+	header ('Location: ../login.php');
 }
 
 ?>

@@ -20,9 +20,9 @@ $mail->Host = 'smtp.gmail.com';
 $mail->Port = 587;
 $mail->SMTPSecure = 'tsl';
 $mail->SMTPAuth = true;
-$mail->Username = "mantenimiento@litoprocess.com";
-$mail->Password = "m444nt0";
-$mail->setFrom('mantenimiento@litoprocess.com', 'Mantenimiento - Litoprocess');
+$mail->Username = "mantenimiento_lito@litoprocess.com";
+$mail->Password = "l1t0m444nt0";
+$mail->setFrom('mantenimiento_lito@litoprocess.com', 'Mantenimiento - Litoprocess');
 $mail->CharSet = 'UTF-8';
 
 $mail->addAddress($CorreoAtencion, $NombreUser);

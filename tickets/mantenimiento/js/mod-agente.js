@@ -1,8 +1,9 @@
 $(document).ready(function () {
 
   var table;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+
+  var Nusuario = localStorage.NombreUsuario;
+  var Correo2 = localStorage.Correo2;
 
   table = $('#all-tickets').DataTable( {
     "ajax": 'php/agent-tickets.php',
@@ -303,7 +304,6 @@ function datos_modal(tbody, table) {
   Tarea = datos.Descripcion;
   Fecha = datos.Registro;
   Estado = datos.Finalizado;
-  Nusuario = datos.Solicita;
 
 
   $("#SegAgente #DetallesTitulo").empty();

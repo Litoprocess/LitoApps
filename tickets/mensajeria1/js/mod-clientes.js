@@ -7,8 +7,11 @@ $(document).ready(function() {
   var table;
   var Nasignado;
   var CorreoAgente;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+  
+  var lsNombre = localStorage.NombreUsuario;
+  var lsDepartamento = localStorage.DepartamentoUsuario;
+  var lsCorreo = localStorage.CorreoUsuario;
+  var lsCorreo2 = localStorage.Correo2;
 
   opt_categorias();
 
@@ -20,15 +23,43 @@ $(document).ready(function() {
 
   setInterval(welcome, 4000);
 
+  $('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15, // Creates a dropdown of 15 years to control year,
+    today: 'Hoy',
+    clear: 'Cancelar',
+    close: 'Ok',
+    closeOnSelect: false // Close upon selecting a date,
+  });
 
+  $('.timepicker').pickatime({
+    default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+    fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+    twelvehour: true, // Use AM/PM or 24-hour format
+    donetext: 'OK', // text for done-button
+    cleartext: 'Cancelar', // text for clear-button
+    canceltext: 'Cerrar', // Text for cancel-button
+    autoclose: false, // automatic close timepicker
+    ampmclickable: true, // make AM PM clickable
+    aftershow: function(){} //Function for after opening timepicker
+  });
 
 //Modal Agregar ticket
 
 $( "#btn-AddTicket" ).click(function() {
-  $('#AddTicket').modal('open');
-  $("#AddTicket #txtProblema").val("");
-  $("#AddTicket #txtTitulo").val("");
-  $("#AddTicket #selCategoria").prop('selectedIndex',0);
+  $('#AddEnvio').modal('open');
+  $("#AddEnvio #selCategoria").prop('selectedIndex',0);
+  $("#AddEnvio #txtTitulo").val("");
+  $("#AddEnvio #txtNombreEmp").val("");
+  $("#AddEnvio #txtDomicilio").val("");
+  $("#AddEnvio #txtNcontacto").val("");
+  $("#AddEnvio #txtTelefono").val("");
+  $("#AddEnvio #selPrioridad").prop('selectedIndex',0);
+  $("#AddEnvio #txtFecha").val("");
+  $("#AddEnvio #txtHora1").val("");
+  $("#AddEnvio #txtHora2").val("");
+  $("#AddEnvio #txtNotas").val("");
+  $("#txt-correo2").val("");
   $("#chk-correo").attr( "checked", false );
   $("#txt-correo2").val("").siblings().removeClass("active");
 });
@@ -41,7 +72,8 @@ $( "#chk-correo" ).change(function() {
 
     $("#txt-correo2").attr( "disabled", false );
 
-    $("#txt-correo2").val(Correo2).siblings().addClass("active");
+    $("#txt-correo2").val(lsCorreo2).siblings().addClass("active").focus();
+
 
   }else{
 
@@ -58,23 +90,26 @@ $( "#chk-correo" ).change(function() {
 
 $("#form-ticket").submit(function(){
 
-  if($('#selCategoria').val()== null || $('#txtProblema').val()== ""){
+  if($('#selCategoria').val()== null || $('#txtTitulo').val()== ""){
 
     Materialize.toast('Completa los campos', 1200,'blue darken-4',function(){
     })
 
   }else{
 
-    var datosTicket = $(this).serialize() + '&CorreoCopia=' + $("#txt-correo2").val();
+
+    var datosTicket = $(this).serialize() + '&CorreoCopia=' + $("#txt-correo2").val() + '&NombreUsuario=' + lsNombre + '&Departamento=' + lsDepartamento + '&CorreoUsuario=' + lsCorreo;
+
     $.post("php/agregar-ticket.php", datosTicket,
       function(form){ 
 
         if(form.validacion == "true"){
 
-          $('#AddTicket').modal('close');
+          $('#AddEnvio').modal('close');
           Materialize.toast('Guardado', 1200,'blue darken-4',function(){
             $('#tbl-pendiente').DataTable().ajax.reload();
-            $.post("correos/registroTicket.php", datosTicket + "&IdTicket=" + form.idAgregado + '&CorreoCopia=' + $("#txt-correo2").val(), 'json');
+            $.post("correos/registroTicket.php", datosTicket + "&IdTicket=" + form.idAgregado + '&NombreUsuario=' + lsNombre + '&Departamento=' + lsDepartamento + '&CorreoUsuario=' + lsCorreo + '&Correo2=' + $("#txt-correo2").val(), 'json');
+            $.post("correos/newTicket.php", datosTicket + "&IdTicket=" + form.idAgregado + '&NombreUsuario=' + lsNombre + '&Departamento=' + lsDepartamento);
 
           })
         }
@@ -100,6 +135,7 @@ $("#frm-seguimiento").submit(function(){
 
     $.post("php/regseguimiento-usuario.php",
       {Ticket: IdTicket,
+        NombreUsuario: lsNombre,
         Notas: $("#txt-seguimiento").val(),
         txtCorreo2: $("#txt-correo21").val()
       },
@@ -112,7 +148,7 @@ $("#frm-seguimiento").submit(function(){
           Materialize.toast('Guardado', 1200,'blue darken-4',function(){
 
            $.post("php/consulta-correo.php", {
-            data: Nasignado
+            data: 'MARIBEL TOVAR'
           }, function(correo){
             var cagente = correo.correoAgente;
             var nagente = correo.nombreAgente;
@@ -190,7 +226,6 @@ $('#tbl-pendiente tbody').on('click', 'tr', function () {
     Titulo = $(this).find('td').eq(1).html();
     Tarea = $(this).find('td').eq(2).html();
     Fecha = $(this).find('td').eq(3).html();
-    Nasignado = $(this).find('td').eq(4).html();
 
     $("#SegTicket #DetallesTitulo").append("<h5>Ticket N°"+IdTicket+" - <small>" + Titulo + "</small></h5><blockquote>"+Tarea+"<br><small>"+Fecha+"</small></blockquote>");
 
@@ -217,7 +252,7 @@ $('#tbl-pendiente tbody').on('click', 'tr', function () {
 
             $("#txt-correo21").attr( "disabled", false );
 
-            $("#txt-correo21").val(Correo2).siblings().addClass("active");
+            $("#txt-correo21").val(lsCorreo2).siblings().addClass("active");
 
           }else{
 

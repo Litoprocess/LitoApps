@@ -2,8 +2,8 @@
 session_start();
 
 $IdTicket = $_POST['IdTicket'];
+$NombreUsuario = $_POST["NombreUsuario"];
 $data = $_POST['data'];
-$NombreUsuario = $_SESSION["NombreUsuario"];
 $cAgente = $_POST['cagente'];
 $nAgente = $_POST['nagente'];
 
@@ -19,7 +19,7 @@ $mail->Port = 587;
 $mail->SMTPSecure = 'tsl';
 $mail->SMTPAuth = true;
 $mail->Username = "envios2@litoprocess.com";
-$mail->Password = "33nv4442";
+$mail->Password = "33nv44422";
 $mail->setFrom('envios2@litoprocess.com', 'Mensajería 2 - Litoprocess');
 $mail->CharSet = 'UTF-8';
 

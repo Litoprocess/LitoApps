@@ -2,8 +2,10 @@ $(document).ready(function () {
 
   var table;
   var titulo;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+  
+  var lsNombre = localStorage.NombreUsuario;
+  var Correo2 = localStorage.Correo2;
+
 
   table = $('#all-tickets').DataTable( {
     "ajax": 'php/admin-tickets.php',
@@ -26,20 +28,21 @@ $(document).ready(function () {
     },
     "columns":[
     {"data":"Folio"},
-    {"data":"Solicita"},
+    {"data":"Solicita",
+    "width":"15%"},
+    {"data":"Empresa",
+    "width":"15%"},
     {"data":"Titulo"},
     {"data":"Descripcion"},
     {"data":"Departamento"},
     {"data":"Registro"},
-    {"data":"Agente",
-    "render": function ( data, type, full, meta ) {
-      return "<select class='personal-dt'>"+data+"</select>";
-    }},
     {"data":"Prioridad",
     "render": function ( data, type, full, meta ) {
       return "<select class='select-prio'>"+data+"</select>";
     }},
-    {"data":"Compromiso"},
+    {"data":"Entrega"},
+    {"data":"Hora",
+    "width": "12%"},
     {"data":"Estatus",
     "width":"12%",
     "render": function ( data, type, full, meta ) {
@@ -52,7 +55,7 @@ $(document).ready(function () {
     ],
     "columnDefs": [
     {
-      "targets": [ 3, 4, 13 ],
+      "targets": [ 4, 5, 14 ],
       "visible": false,
       "searchable": false
     }
@@ -145,13 +148,15 @@ function datos_prioridad(tbody, table) {
   $(tbody).on("change", "select.select-prio", function () {
 
     var data = table.row($(this).parents("tr")).data();
+    var Prioridad = $(this).val();
     IdTicket = data.Folio;
     titulo = data.Titulo;
-    var Prioridad = $(this).val();
+    
 
 
     $.post("php/update-prioridad.php", {
       IdTicket: IdTicket,
+      NombreUsuario: lsNombre,
       data: Prioridad
     },
 
@@ -172,12 +177,13 @@ function datos_prioridad(tbody, table) {
               var nombreAgente = nombreAgente.Agente;
 
               $.post("php/consulta-correo.php", {
-                data: nombreAgente
+                data: 'MARIA ELENA CERVANTES'
               }, function(correo){
                 var cagente = correo.correoAgente;
                 var nagente = correo.nombreAgente;
                 $.post("correos/PrioridadTicket.php", {
                   IdTicket: IdTicket,
+                  NombreUsuario: lsNombre,
                   titulo: titulo,
                   data: Prioridad,
                   cagente: cagente,
@@ -228,6 +234,7 @@ function datos_estado(tbody, table) {
 
     $.post("php/update-estado.php", {
      IdTicket: IdTicket,
+     NombreUsuario: lsNombre,
      data: Estado,
      mailSolicita: CorreoSolicita,
      nameSolicita: NombreSolicita
@@ -239,6 +246,7 @@ function datos_estado(tbody, table) {
 
         $.post("correos/estatusTicket.php", {
          IdTicket: IdTicket,
+         NombreUsuario: lsNombre,
          titulo: titulo,
          data: Estado,
          mailSolicita: CorreoSolicita,
@@ -274,6 +282,7 @@ function fecha_compromiso(tbody, table) {
 
    $.post("php/update-input.php", {
      IdTicket: IdTicket,
+     NombreUsuario: lsNombre,
      data: Fecha,
      mailSolicita: CorreoSolicita,
      nameSolicita: NombreSolicita
@@ -285,6 +294,7 @@ function fecha_compromiso(tbody, table) {
 
         $.post("correos/fechaCompromiso.php", {
           IdTicket: IdTicket,
+          NombreUsuario: lsNombre,
           titulo: titulo,
           data: Fecha,
           mailSolicita: CorreoSolicita,
@@ -322,8 +332,6 @@ function datos_modal(tbody, table) {
   Tarea = datos.Descripcion;
   Fecha = datos.Registro;
   Estado = datos.Finalizado;
-  Nusuario = datos.Solicita;
-
 
   $("#SegAgente #DetallesTitulo").empty();
   $("#SegAgente #txt-seguimiento").val("");
@@ -331,7 +339,7 @@ function datos_modal(tbody, table) {
   $("#AddTicket #txtProblema").val("");
   $("#AddTicket #txtTitulo").val("");
   $("#AddTicket #selCategoria").prop('selectedIndex',0);
-  $("#chk-correo2").attr( "checked", false );
+  $("#chk-correo2-solicitud").attr( "checked", false );
   $("#txt-correo21").val("").siblings().removeClass("active");
 
   if(Estado != 'SIN FINALIZAR'){
@@ -369,39 +377,19 @@ function datos_modal(tbody, table) {
       <small>" + result.history[i].Fecha + "</small></p>");
 
    }
+   
 
-     //Checkbox del tiket
+ } else {
+   $("#SegAgente #HistorialTickets").empty();
+   $("#SegAgente #HistorialTickets").append("<p class='center-align'>No hay registro de ticktes</p>");
 
-     $( "#chk-correo2" ).change(function() {
+ }
 
-      if($("#chk-correo2").prop( "checked" )==true){
-
-        $("#txt-correo21").attr( "disabled", false );
-
-        $("#txt-correo21").val(Correo2).siblings().addClass("active");
-
-      }else{
-
-        $("#txt-correo21").attr( "disabled", true );
-
-        $("#txt-correo21").val("").siblings().removeClass("active");
-
-      }
-
-    });
-
-   } else {
-     $("#SegAgente #HistorialTickets").empty();
-     $("#SegAgente #HistorialTickets").append("<p class='center-align'>No hay registro de ticktes</p>");
-
-   }
-
- }, 'json');
+}, 'json');
 
 
 });
 }
-
 
 //Imprimir
 
@@ -410,20 +398,13 @@ function datos_imp(tbody, table) {
 
   var datos = table.row($(this).parents("tr")).data();
   IdTicket = datos.Folio;
-  Agente = $(datos.Agente).attr("value");
-  Correo = datos.Correo;
-  Titulo = datos.Titulo;
-  Tarea = datos.Descripcion;
-  Fecha = datos.Registro;
-  Compromiso = $(datos.Compromiso).attr("value");;
-  Nusuario = datos.Solicita;
 
-  window.open('pdf.php?Titulo='+Titulo+'&Fecha='+Fecha+'&Tarea='+Tarea+'&Nusuario='+Nusuario+'&Compromiso='+Compromiso+'&Agente='+Agente, '_blank');
+  window.open('pdf.php?IdTicket='+IdTicket, '_blank');
+  
 
 });
 
 }
-
 
 //Guardar seguimiento
 
@@ -441,9 +422,9 @@ $("#frm-seguimiento").submit(function () {
 
     $.post("php/registro-seguimiento.php", {
       Ticket: IdTicket,
+      NombreUsuario: lsNombre,
       Notas: $("#txt-seguimiento").val(),
       CorreoUsuario: Correo,
-      NombreUsuario: Nusuario,
       Correo2: txtCorreo2
     },
     function (data) {
@@ -455,9 +436,9 @@ $("#frm-seguimiento").submit(function () {
 
           $.post("correos/seguimientoTicket.php", {
             Ticket: IdTicket,
-            Notas: $("#txt-seguimiento").val(),
+            NombreUsuario: lsNombre,
             CorreoUsuario: Correo,
-            NombreUsuario: Nusuario,
+            Notas: $("#txt-seguimiento").val(),
             Correo2: txtCorreo2
           });
 
@@ -474,6 +455,27 @@ $("#frm-seguimiento").submit(function () {
   }
 
   return false;
+});
+
+//Checkbox del tiket
+
+$('#correoSolicitud2').on('click', function() { 
+
+  if( $('#correoSolicitud2').prop("checked") == true){
+
+   $("#SegAgente #txt-correo21").attr( "disabled", false );
+
+   $("#SegAgente #txt-correo21").val(lsCorreo2).siblings().addClass("active");
+
+   $("#SegAgente #txt-correo21").focus();
+
+ }else{
+
+  $("#SegAgente #txt-correo21").attr( "disabled", true );
+
+  $("#SegAgente #txt-correo21").val("").siblings().removeClass("active");
+
+}
 });
 
 

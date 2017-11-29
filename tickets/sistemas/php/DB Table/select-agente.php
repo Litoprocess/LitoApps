@@ -4,9 +4,9 @@ $stmt2 = sqlsrv_query( $conn, $sql2 );
 
 $SelectAgente = "";
 
-while( $row2 = sqlsrv_fetch_array( $stmt2, SQLSRV_FETCH_ASSOC) ) {
+while( $row2 = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC) ) {
 
-	$Agente = trim(utf8_decode($row2['Nombre']));
+	$Agente = trim(utf8_encode($row2['Nombre']));
 
 	switch ($AgenteBD) {
 

@@ -2,20 +2,23 @@
     require "conexion.php";
 
     $response = new stdClass();
+    $rows =array();    
                           
     $Folio=$_REQUEST['FOLIO'];
     $clientes="SELECT OR_MATRIX, FECHA_ENTREGA FROM or_produccion WHERE FOLIO=$Folio";
-    $consulta=mysql_query($clientes);
-    $num= mysql_num_rows($consulta);
+    $params = array();
+    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );    
+    $consulta=sqlsrv_query($conn,$clientes,$params,$options);
+    $num= sqlsrv_num_rows($consulta);
                      
     if ( $num >0) 
     {
         for($i=0;$i<$num;$i++)
         {
-            $OR_MATRIX=mysql_result($consulta,$i,"OR_MATRIX");
-            $FECHA_ENTREGA=mysql_result($consulta,$i,"FECHA_ENTREGA");
-
-            $rows[] = array("matrix"=>$OR_MATRIX,"fentrega"=>$FECHA_ENTREGA);
+            $rows[] = array(
+                "matrix"=>$row["OR_MATRIX"],
+                "fentrega"=>$row["FECHA_ENTREGA"]
+                );
             $response->rows = $rows;
         }
     }

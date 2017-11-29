@@ -7,8 +7,11 @@ $(document).ready(function() {
   var table;
   var Nasignado;
   var CorreoAgente;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+
+  var lsNombre = localStorage.NombreUsuario;
+  var lsDepartamento = localStorage.DepartamentoUsuario;
+  var lsCorreo = localStorage.CorreoUsuario;
+  var lsCorreo2 = localStorage.Correo2;
 
   opt_categorias();
 
@@ -41,7 +44,7 @@ $( "#chk-correo" ).change(function() {
 
     $("#txt-correo2").attr( "disabled", false );
 
-    $("#txt-correo2").val(Correo2).siblings().addClass("active");
+    $("#txt-correo2").val(lsCorreo2).siblings().addClass("active");
 
   }else{
 
@@ -65,7 +68,8 @@ $("#form-ticket").submit(function(){
 
   }else{
 
-    var datosTicket = $(this).serialize() + '&CorreoCopia=' + $("#txt-correo2").val();
+    var datosTicket = $(this).serialize() + '&CorreoCopia=' + $("#txt-correo2").val() + '&NombreUsuario=' + lsNombre + '&Departamento=' + lsDepartamento + '&CorreoUsuario=' + lsCorreo;
+
     $.post("php/agregar-ticket.php", datosTicket,
       function(form){ 
 
@@ -74,7 +78,7 @@ $("#form-ticket").submit(function(){
           $('#AddTicket').modal('close');
           Materialize.toast('Guardado', 1200,'blue darken-4',function(){
             $('#tbl-pendiente').DataTable().ajax.reload();
-            $.post("correos/registroTicket.php", datosTicket + "&IdTicket=" + form.idAgregado + '&CorreoCopia=' + $("#txt-correo2").val(), 'json');
+            $.post("correos/registroTicket.php", datosTicket + "&IdTicket=" + form.idAgregado + '&CorreoCopia=' + '&CorreoCopia=' + $("#txt-correo2").val() + '&NombreUsuario=' + lsNombre + '&Departamento=' + lsDepartamento + '&CorreoUsuario=' + lsCorreo);
 
           })
         }
@@ -100,6 +104,7 @@ $("#frm-seguimiento").submit(function(){
 
     $.post("php/regseguimiento-usuario.php",
       {Ticket: IdTicket,
+        NombreUsuario: lsNombre,
         Notas: $("#txt-seguimiento").val(),
         txtCorreo2: $("#txt-correo21").val()
       },
@@ -217,7 +222,7 @@ $('#tbl-pendiente tbody').on('click', 'tr', function () {
 
             $("#txt-correo21").attr( "disabled", false );
 
-            $("#txt-correo21").val(Correo2).siblings().addClass("active");
+            $("#txt-correo21").val(lsCorreo2).siblings().addClass("active");
 
           }else{
 

@@ -6,7 +6,7 @@
     $idMat=$_REQUEST['idMat'];
 
     $borrar = "DELETE FROM materiales_cotizador WHERE ID_MATERIAL=$idMat";
-    $result=mysql_query($borrar);
+    $result = sqlsrv_query($conn,$borrar);
 
     if ($result)//si se realiza la eliminacion
     {

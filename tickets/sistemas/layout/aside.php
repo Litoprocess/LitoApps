@@ -7,10 +7,15 @@
     </li>
     <li><div class="divider"></div></li>
     <li class="bold">
-    <a href="../index.php" id="nav-tickets1">
+    <a href="../../index.php" id="nav-tickets1">
         <i class="material-icons">home</i>Página principal
       </a>
     </li>
+    <!--li class="bold" id="aside-litoapps">
+      <a class="waves-effect" href="../../index.php" id="nav-app1">
+        <i class="material-icons">apps</i>LitoApps
+     </a>
+   </li-->    
     <li><div class="divider"></div></li>
     <li class="bold" id="aside-sistemas">
       <a href="../sistemas-tipo.php" id="nav-tickets1">
@@ -31,10 +36,15 @@
       <a href="../mensaje-tipo2.php" id="nav-tickets3">
         <i class="material-icons yellow-text text-darken-4">mail_outline</i>Mensajería 2
       </a>
-    </li>
+    </li>    
     <li><div class="divider"></div></li>
+  <li class="bold" id="aside-atras">
+    <a class="waves-effect" href="../" id="nav-app16">
+      <i class="material-icons">arrow_back</i>Atras
+    </a>
+  </li>    
     <li class="bold">
-      <a href="../cerrar.php" id="nav-tickets1">
+      <a href="../../cerrar.php" id="nav-tickets1">
         <i class="material-icons">exit_to_app</i>Salir
       </a>
     </li>

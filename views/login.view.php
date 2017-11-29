@@ -17,7 +17,7 @@
         <br>
         <div class="row">
             <div class="col s12 m4 offset-m4 center">
-                <img class="responsive-img" src="images/logo_b.png" alt="Litoprocess">
+                <img class="responsive-img" src="img/logo_b.png" alt="Litoprocess">
             </div>
         </div>
 

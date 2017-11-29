@@ -5,8 +5,7 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = $_SESSION["NombreUsuario"];
-$SelectAgente = "";
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $SelectEstatus = "";
 $SelectPrioridad = "";
 
@@ -23,30 +22,15 @@ $data = array();
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	
+	$Vencimiento = "SIN FINALIZAR";
 
 	if($row['FechaFinalizado'] != null){
 
 		$Vencimiento = $row['FechaFinalizado']->format("Y-m-d");
-	}else{
-
-		$Vencimiento = "SIN FINALIZAR";
 	}
 
-	$AgenteBD = $row['Asignado'];
-	$EstatusBD = utf8_encode($row['Estado']);
+	$EstatusBD = utf8_encode($row['Estatus']);
 	$PrioridadBD = utf8_encode($row['Prioridad']);
-	
-
-	if($row['FechaCompromiso'] != null){
-
-		$Compromiso = $row['FechaCompromiso']->format("Y-m-d");
-	}else{
-
-		$Compromiso = "";
-	}
-
-//Select Agente
-	require 'DB Table/select-agente.php';
 
 //Select Estatus
 	require 'DB Table/select-estatus.php';
@@ -54,18 +38,26 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 //Select Prioridad
 	require 'DB Table/select-prioridad.php';
 
-	$data[] = array("Folio"=>$row['Id_Ticket'],
-		"Solicita"=>utf8_encode($row['Solicitante']),
+	$Hora1 = $row['HoraEntrega1']->format("H:i");
+	$Hora2 = "";
+
+	if($row['HoraEntrega2']->format("H:i")!='00:00'){
+		$Hora2 = " - ".$row['HoraEntrega2']->format("H:i");
+	}
+
+	$data[] = array("Folio"=>$row['IdTicket'],
+		"Solicita"=>utf8_encode($row['NombreUsuario']),
+		"Empresa"=>utf8_encode($row['NombreEmpresa']),
 		"Titulo"=>trim(utf8_encode($row['Titulo'])),
-		"Descripcion"=>trim(utf8_encode($row['Tarea'])),
-		"Departamento"=>utf8_encode($row['Departamento']),
+		"Descripcion"=>trim(utf8_encode($row['Detalles'])),
+		"Departamento"=>utf8_encode($row['DepartamentoUsuario']),
 		"Registro"=>$row['FechaRegistro']->format("d-m-Y"),
-		"Estatus"=>$SelectEstatus,
-		"Compromiso"=>"<input type='date' class='Fcompro' value='".$Compromiso."'>",
-		"Agente"=>$SelectAgente,
-		"Finalizado"=>$Vencimiento,
 		"Prioridad"=>$SelectPrioridad,
-		"Correo"=>utf8_encode($row['CorreoSolicitante'])); 
+		"Estatus"=>$SelectEstatus,
+		"Entrega"=>$row['FechaEntrega']->format("d-m-Y"),
+		"Hora"=>$Hora1.$Hora2,
+		"Finalizado"=>$Vencimiento,
+		"Correo"=>utf8_encode($row['CorreoUsuario'])); 
 
 }
 

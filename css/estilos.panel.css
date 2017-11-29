@@ -3,7 +3,14 @@ header, main, footer {
 }
 
 body {
-  background: white;
+background: white;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;  
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 @media only screen and (max-width: 992px) {
@@ -74,4 +81,11 @@ footer.page-footer {
     margin: 0 auto;
     max-width: 100% !important;
     width: 98%;
+}
+
+.card{
+   -webkit-box-shadow: none;
+    box-shadow: none; 
+}
+
 }

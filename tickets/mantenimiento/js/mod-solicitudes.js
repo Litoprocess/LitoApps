@@ -2,8 +2,9 @@ $(document).ready(function () {
 
   var table;
   var titulo;
-  var Nusuario = localStorage.getItem("Nusuario");
-  var Correo2 = localStorage.getItem("Correo2");
+  
+  var Nusuario = localStorage.NombreUsuario;
+  var Correo2 = localStorage.Correo2;
 
   table = $('#all-tickets').DataTable( {
     "ajax": 'php/admin-tickets.php',
@@ -320,8 +321,6 @@ function datos_modal(tbody, table) {
   Tarea = datos.Descripcion;
   Fecha = datos.Registro;
   Estado = datos.Finalizado;
-  Nusuario = datos.Solicita;
-
 
   $("#SegAgente #DetallesTitulo").empty();
   $("#SegAgente #txt-seguimiento").val("");
@@ -368,25 +367,6 @@ function datos_modal(tbody, table) {
 
    }
 
-     //Checkbox del tiket
-
-     $( "#chk-correo2" ).change(function() {
-
-      if($("#chk-correo2").prop( "checked" )==true){
-
-        $("#txt-correo21").attr( "disabled", false );
-
-        $("#txt-correo21").val(Correo2).siblings().addClass("active");
-
-      }else{
-
-        $("#txt-correo21").attr( "disabled", true );
-
-        $("#txt-correo21").val("").siblings().removeClass("active");
-
-      }
-
-    });
 
    } else {
      $("#SegAgente #HistorialTickets").empty();
@@ -453,6 +433,27 @@ $("#frm-seguimiento").submit(function () {
   return false;
 });
 
+
+//Checkbox del tiket
+
+$('#correoSolicitud2').on('click', function() { 
+
+  if( $('#correoSolicitud2').prop("checked") == true){
+
+   $("#SegAgente #txt-correo21").attr( "disabled", false );
+
+   $("#SegAgente #txt-correo21").val(lsCorreo2).siblings().addClass("active");
+
+   $("#SegAgente #txt-correo21").focus();
+
+ }else{
+
+  $("#SegAgente #txt-correo21").attr( "disabled", true );
+
+  $("#SegAgente #txt-correo21").val("").siblings().removeClass("active");
+
+}
+});
 
 
 //Filtrado

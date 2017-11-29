@@ -1,14 +1,17 @@
 <?php
-    require "conexion.php";
+    include "conexion.php";
     
     $response = new stdClass();
     
     $foliob = $_POST['foliob'];
     
-    $comparacion = mysql_query("SELECT * FROM v_bitacora WHERE FOLIO='$foliob'", $con);
+    $comparacion = "SELECT * FROM v_bitacora WHERE FOLIO='$foliob'";
+    $stmt = sqlsrv_query($conn,$comparacion);
     //echo $selectv = "SELECT * FROM v_bitacora WHERE FOLIO='$foliob'";
     
-    $registros = mysql_num_rows($comparacion);
+    $registros = sqlsrv_num_rows($stmt);
+    var_dump($registros);
+    exit();
     if($registros>0)
     {
         $response->validacion="true";

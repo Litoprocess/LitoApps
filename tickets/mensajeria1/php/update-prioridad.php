@@ -5,11 +5,11 @@ session_start();
 include 'conn.php';
 
 //Asignacion de variables
-$NombreUsuario = $_SESSION["NombreUsuario"];
+$NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $IdTicket = $_POST['IdTicket'];
 $data = $_POST['data'];
 
-$sql = "UPDATE Tickets SET Prioridad = '$data' WHERE Id_Ticket = $IdTicket";
+$sql = "UPDATE Tickets SET Prioridad = '$data' WHERE IdTicket = $IdTicket";
 $stmt = sqlsrv_query( $conn, $sql );
 
 //Verifica instruccion SQL
