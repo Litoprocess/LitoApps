@@ -13,7 +13,7 @@ $response = new stdClass();
 $rows = array();
 
 //$_search=$_REQUEST['_search'];
-$usuario=$_SESSION["id_proveedor"];
+$usuario=$_SESSION['Permisos']["Departamento"];
 //echo $usuario;
 
 $month = date('m');
