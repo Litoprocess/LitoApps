@@ -106,7 +106,7 @@ jQuery("#consulta").jqGrid({
             function(data){
               if(typeof data.validacion !== "undefined" && data.validacion){
               $("#guardaActividad").show();
-                $("#valorNombre").html(data.validacion);
+                $("#valorNombre").val(data.validacion);
                   if(data.prov=="Lito"){
                     $("#lito").prop("checked", true);
                     $("#prov").html("<b>Proveedor: Lito</b>");
@@ -120,7 +120,7 @@ jQuery("#consulta").jqGrid({
 
               }else{
                   $("#guardaActividad").hide();
-                  $("#valorNombre").html("<p style='color:red;'>No.Empleado no existe</p>");
+                  $("#valorNombre").val("<p style='color:red;'>No.Empleado no existe</p>");
                   $("#noEmpleado").focus();
                   $("#lito").prop("checked", false);
                   $("#maq").prop("checked", false);
@@ -214,7 +214,7 @@ jQuery("#consultaEmpleados").jqGrid({
              valores = a.toString().split(",");
              var ddd=jQuery("#consultaEmpleados").jqGrid('getRowData',a).ClaveID;
 
-             alert(ddd);
+             //alert(ddd);
               
 }
 

@@ -241,7 +241,7 @@ alert("Datos guardados correctamente. :)");
 				function(data){
 					if(typeof data.validacion !== "undefined" && data.validacion){
 						$("#guardaActividad").show();
-						$("#valorNombre").html(data.validacion);
+						$("#valorNombre").val(data.validacion).siblings().addClass( "active" );
 						if(data.prov=="Lito"){
 							$("#lito").prop("checked", true);
 							$("#prov").html("<b>Proveedor: Lito</b>");
@@ -255,7 +255,7 @@ alert("Datos guardados correctamente. :)");
 
 					}else{
 						$("#guardaActividad").hide();
-						$("#valorNombre").html("<p style='color:red;'>No.Empleado no existe</p>");
+						$("#valorNombre").val("<p style='color:red;'>No.Empleado no existe</p>");
 						$("#noEmpleado").focus();
 						$("#lito").prop("checked", false);
 						$("#maq").prop("checked", false);
@@ -601,7 +601,7 @@ $("#inicio").change(function(){
 		 				$("#repo").val("");
 		 				$("#TiempoTrasncurrido").hide();
 		 				$("#valorOrden").html("");
-		 				$("#valorNombre").html("");
+		 				$("#valorNombre").val("");
 		 				$("#lito").prop("checked", false);
 		 				$("#maq").prop("checked", false);
 		 				$("#prov").html("");

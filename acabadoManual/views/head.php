@@ -25,12 +25,12 @@
         <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Acabado Manual</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li id="side-user"><a href="regActividades.php">R.Actividades</a></li>
+          <li id="side-user"><a href="index.php">R.Actividades</a></li>
           <li id="side-agente"><a href="regEmpleados.php">R.Empleados</a></li>
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li id="side-user"><a href="regActividades.php">R.Actividades</a></li>
+          <li id="side-user"><a href="index.php">R.Actividades</a></li>
           <li id="side-agente"><a href="regEmpleados.php">R.Empleados</a></li>                   
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>

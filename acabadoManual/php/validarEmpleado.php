@@ -12,8 +12,8 @@ $sql = "SELECT  * from vEmpAcabadoManual WHERE NumEmpleado='$idempleado'";
 $stmt = sqlsrv_query( $conn,$sql);
 while( @$row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
     $id=$row['NumEmpleado'];
-    $nom=$row['Nombre'];
-    $idProv=$row['idprov'];
+    $nom=utf8_encode($row['Nombre']);
+    $idProv=utf8_encode($row['idprov']);
     if(isset($id)){
         	//extraer Nombre de proveedor
        $sql2 = "SELECT  * from ProveedoresMaquila WHERE Clave='$idProv'";
