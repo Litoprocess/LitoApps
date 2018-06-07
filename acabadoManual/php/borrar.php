@@ -1,10 +1,8 @@
 <?php
 
-$serverName = "192.168.2.211"; 
-$connectionInfo = array( "Database"=>"AcabadoManual", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+include 'conexion.php';
 
-$id=$_REQUEST['id'];
+$id=$_POST['id'];
 
 $sql = "DELETE FROM Registro_de_Actividad WHERE id=$id";
 $empleado = sqlsrv_query( $conn,$sql);

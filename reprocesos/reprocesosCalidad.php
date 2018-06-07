@@ -10,15 +10,13 @@ if(isset($_SESSION["Permisos"]['UserReprocesos']))
 		case '2':
 		require 'views/reprocesosCalidad.view.php';
 		break;
-		case '3':
-		require 'views/reprocesosCalidad.view.php';
-		break;
+
 		default:
-		header('Location: ../index.php');
+		header('Location: index.php');
 		break;
-	}	
+	}
 } else {
-	header('Location: ../index.php');
+	header('Location: index.php');
 }
 
 ?>

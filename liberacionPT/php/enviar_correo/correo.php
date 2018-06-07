@@ -37,11 +37,11 @@ $message = "Te informamos que Calidad ha rechazado la liberación de la orden: "
 	$mail->CharSet = 'UTF-8';
 
 	$mail->addAddress("sgarcia@litoprocess.com","Sergio Garcia");
-	//$mail->addAddress("mlegorreta@litoprocess.com","Mario Legorreta");
-	//$mail->addAddress("mcharabati@litoprocess.com","Moises Charabati");
-	//$mail->addAddress("vmartinez@litoprocess.com","Victor Martinez");
-	//$mail->addAddress("mvega@litoprocess.com","");
-	//$mail->addAddress("gmedrano@litoprocess.com","Guillermo Medrano");
+	$mail->addAddress("mlegorreta@litoprocess.com","Mario Legorreta");
+	$mail->addAddress("mcharabati@litoprocess.com","Moises Charabati");
+	$mail->addAddress("vmartinez@litoprocess.com","Victor Martinez");
+	$mail->addAddress("mvega@litoprocess.com","");
+	$mail->addAddress("gmedrano@litoprocess.com","Guillermo Medrano");
 	$mail->Subject = 'Notificacion de muestra rechazada';
 	$mail->AddEmbeddedImage($file, 'imagen');
 	$mensaje=$message;

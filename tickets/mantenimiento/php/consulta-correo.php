@@ -15,8 +15,8 @@ include 'conn.php';
 
     while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
-        $response->nombreAgente=utf8_encode($row['Nombre']);
-        $response->correoAgente=utf8_encode($row['Correo']);
+        $response->nombreAgente=$row['Nombre'];
+        $response->correoAgente=$row['Correo'];
         $response->validacion= "true";
 
      }

@@ -4,7 +4,7 @@ session_start();
 //Asignacion de variables
 
 $IdTicket = $_POST['IdTicket'];
-$Notas = utf8_decode(mb_strtoupper($_POST['Notas']));
+$Notas = mb_strtoupper($_POST['Notas']);
 $CorreoAgente = $_POST['CorreoAgente'];
 $NombreAgente = $_POST['NombreAgente'];
 $Correo2 = $_POST['Correo2'];
@@ -29,7 +29,7 @@ $mail->addAddress($CorreoAgente, $NombreAgente);
 $mail->AddCC($Correo2);
 $mail->Subject = "Hay una actualización en el ticket N° ".$IdTicket;
 
-$mail->msgHTML("<b>Seguimiento del ticket N° $IdTicket</b><br><br>".utf8_encode($Notas)."<br><br>Para ver el seguimiento completo del ticket <a href='http://201.149.83.215:8080/tickets/sistemas/usuarios.php'>haz click aquí.</a>
+$mail->msgHTML("<b>Seguimiento del ticket N° $IdTicket</b><br><br>".$Notas."<br><br>Para ver el seguimiento completo del ticket <a href='http://201.149.83.216/litoapps/login.php'>haz click aquí.</a>
 	<br><br><br><br><br><br><br>
 	<p style='color:#a1a1a1;'>Este e-mail se ha generado por un sistema automático. Por favor, no respondas a este e-mail directamente.</p>");
 $mail->AltBody = 'Litoprocess';

@@ -21,10 +21,10 @@ $history = array();
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
-	$history[] = array("Id_Ticket"=>utf8_encode($row['Id_Ticket']),
-		"Usuario"=>utf8_encode($row['NombreUsuario']),
+	$history[] = array("Id_Ticket"=>$row['Id_Ticket'],
+		"Usuario"=>$row['NombreUsuario'],
 		"Fecha"=>$row['FechaEvento']->format("d-m-Y, H:i"),
-		"Notas"=>mb_strtoupper(utf8_encode($row['Notas']))); 
+		"Notas"=>mb_strtoupper($row['Notas'])); 
 
 }
 

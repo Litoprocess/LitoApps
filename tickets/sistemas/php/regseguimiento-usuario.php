@@ -7,7 +7,7 @@ include 'conn.php';
 
 $NombreUsuario = $_POST["NombreUsuario"];
 $IdTicket = $_POST['Ticket'];
-$Notas = utf8_decode(mb_strtoupper($_POST['Notas']));
+$Notas = mb_strtoupper($_POST['Notas']);
 $Correo = $_POST['txtCorreo2'];
 
 $sql = "INSERT INTO SeguimientoTickets (Id_Ticket, NombreUsuario, FechaEvento, Notas, Mail)

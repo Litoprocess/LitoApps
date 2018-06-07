@@ -6,24 +6,24 @@
   <form id="frm-liberacion" method="POST" name="liberacion" enctype="multipart/form-data"><!--Formulario-->  
     <div class="row"><!--Datos de la orden-->                              
       <div class="input-field col s1">
-        <label for="folio">Folio</label>
-        <input type="text" id="folio" class="validate" placeholder="Folio" readonly>                     
+        <label for="folio">Folio:</label>
+        <input type="text" id="folio" class="validate readonly" placeholder="Folio" readonly>                     
       </div>
-      <div class="input-field col s2">
-        <label for="noorden">Orden</label>
+      <div class="input-field col s1">
+        <label for="noorden">Orden:</label>
         <input type="text" id="noorden" class="validate">            
       </div>         
-      <div class="input-field col s5">
-        <label for="trabajo">Trabajo</label>
-        <input type="text" id="trabajo" class="validate" readonly> 
+      <div class="input-field col s6">
+        <label for="trabajo">Trabajo:</label>
+        <input type="text" id="trabajo" class="validate readonly" readonly> 
       </div>                  
       <div class="input-field col s2">
         <label for="fecha">Fecha</label>
-        <input type="text" id="fecha" class="validate" readonly>                       
+        <input type="text" id="fecha" class="validate readonly" readonly>                       
       </div>                     
       <div class="input-field col s2">
-        <label for="cantidad">Cantidad</label>
-        <input type="text" id="cantidad" class="validate" readonly>                    
+        <label for="cantidad">Cantidad:</label>
+        <input type="text" id="cantidad" class="validate readonly" readonly>                    
       </div>                     
     </div><!--/Datos de la orden-->
     <div class="row">
@@ -37,28 +37,28 @@
       </div><!--/Tamaño--> 
       <div class="col s8">               
         <div class="input-field col s2 offset-s1">           
-          <label for="tamlote">Tam.Lote</label>
+          <label for="tamlote">Tam.Lote:</label>
           <input type="text" id="tamlote" class="validate" disabled>
         </div>
         <div class="input-field col s2">
-          <label for="nivel">Nivel</label>
-          <input type="text" id="nivel" class="validate" readonly>
+          <label for="nivel">Nivel:</label>
+          <input type="text" id="nivel" class="validate readonly" readonly>
         </div>
         <div class="input-field col s2">
-          <label for="tamuestra">Tam.Muestra</label>
-          <input type="text" id="tamuestra" class="validate" readonly>
+          <label for="tamuestra">Tam.Muestra:</label>
+          <input type="text" id="tamuestra" class="validate readonly" readonly>
         </div>
         <div class="input-field col s2">
-          <label for="aceptado">Aceptado</label>
-          <input type="text" id="aceptado" class="validate" readonly>
+          <label for="aceptado">Aceptado:</label>
+          <input type="text" id="aceptado" class="validate readonly" readonly>
         </div> 
         <div class="input-field col s2">
-          <label for="rechazado">Rechazado</label>
-          <input type="text" id="rechazado" class="validate" readonly>
+          <label for="rechazado">Rechazado:</label>
+          <input type="text" id="rechazado" class="validate readonly" readonly>
         </div>
         <div class="input-field col s2 offset-s2">
-          <label for="acumulado">Acumulado</label>
-          <input type="text" id="acumulado" class="validate" readonly>
+          <label for="acumulado">Acumulado:</label>
+          <input type="text" id="acumulado" class="validate readonly" readonly>
         </div>
         <div class="input-field col s2 offset-s1">
           <label for="suma"></label>
@@ -69,7 +69,7 @@
           <input type="text" id="muestraOk" class="validate amt" disabled>
         </div>
         <div class="input-field col s2">
-          <label for="muestraRechazada"></label>
+          <label for="muestraRechazada" color:"white"></label>
           <input type="text" id="muestraRechazada" class="validate amt" disabled>          
         </div>                         
       </div>       
@@ -78,6 +78,9 @@
           <!-- Aceptado/Rechazado-->
         </div>                                 
       </div>
+        <div id="ceros" class="offset-s7 col s5" >
+          <!--Si muestraOk y muestraRechazada se encuentran ambas en ceros-->
+        </div>        
     </div>
   </div>
   <div class="row">
@@ -89,7 +92,7 @@
     </div>    
   </div>  
   <div class="row"><!--Observaciones-->
-    <div class="input-field">
+    <div class="input-field col s12">
       <label for="observaciones">Observaciones</label>
       <textarea id="observaciones" class="materialize-textarea" disabled></textarea>              
     </div>                

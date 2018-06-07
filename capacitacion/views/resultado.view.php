@@ -1,8 +1,7 @@
 <?php require 'head.php'; ?>
-<main class="container">
+<main class="">
   <div class="row">
     <div class="col s3">
-      <!--div class="row"-->
       <h5>Listado de cursos</h5>     
       <br>
       <br>
@@ -10,8 +9,6 @@
         <input id="id" name="id" type="text" class="validate" hidden>
         <div class="row">
           <div class="input-field col s10">
-            <!--input id="curso_real" name="curso_real" type="text" class="validate" style="text-transform: capitalize;" readonly>
-            <label for="curso_real">Curso</label-->
           <textarea id="curso_real" name="curso_real" class="materialize-textarea"></textarea>
           <label for="curso_real">Curso</label>            
           </div>
@@ -74,9 +71,26 @@
         </div>        
       </div>                
     </form>
-    <!--/div-->  
   </div>
   <div class="col s9">
+    <div class="row">
+    <div class="col s4 offset-s1">
+      <div class="right">
+        <p>
+          <input type="radio" class="with-gap" id="chk2017" name="ano" value="2017"/>
+          <label for="chk2017">Año 2017</label>
+        </p>
+      </div>     
+    </div>
+    <div class="col s4">
+      <div class="right">
+        <p>
+          <input type="radio" class="with-gap" id="chk2018" name="ano" value="2018" checked/>
+          <label for="chk2018">Año 2018</label>
+        </p>
+      </div>     
+    </div>          
+    </div>
     <div class="row">
       <table id="tblCurso" class="hover compact row-border" cellspacing="0" width="100%" style="font-size:70%;">
         <thead>
@@ -94,7 +108,8 @@
             <th style="background: cyan;">Duración Real</th>
             <th style="background: cyan;">Horas Real</th>
             <th style="background: cyan;">Mes Real</th>
-            <th style="background: cyan;">Estatus</th>          
+            <th style="background: cyan;">Estatus</th>
+            <th>Año</th>          
           </tr>
         </thead>
         <tbody>

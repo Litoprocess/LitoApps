@@ -11,7 +11,7 @@ $NombreUsuario = $_POST["NombreUsuario"];
 $CorreoSolicita = $_POST['mailSolicita'];
 $NombreSolicita = $_POST['nameSolicita'];
 
-$sql = "UPDATE Tickets SET FechaCompromiso = '$data'  WHERE Id_Ticket = $IdTicket";
+$sql = "UPDATE Tickets SET FechaCompromiso = '$data', FechaRespuesta = GetDate()  WHERE Id_Ticket = $IdTicket";
 $stmt = sqlsrv_query( $conn, $sql );
 
 //Verifica instruccion SQL
@@ -19,7 +19,7 @@ if( $stmt === false) {
 	die( print_r( sqlsrv_errors(), true) );
 }
 
-$texto = utf8_decode("LA FECHA DE COMPROMISO CAMBIÃ“ A: ".$data);
+$texto ="LA FECHA DE COMPROMISO CAMBIÓ A: ".$data;
 
 $seg = "INSERT INTO SeguimientoTickets (Id_Ticket, NombreUsuario, FechaEvento, Notas)
 VALUES ('$IdTicket', '$NombreUsuario', GetDate(), '$texto' )";

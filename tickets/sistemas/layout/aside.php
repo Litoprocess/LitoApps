@@ -8,7 +8,7 @@
     <li><div class="divider"></div></li>
     <li class="bold">
     <a href="../../index.php" id="nav-tickets1">
-        <i class="material-icons">home</i>Página principal
+        <i class="material-icons">apps</i>LitoApps
       </a>
     </li>
     <!--li class="bold" id="aside-litoapps">

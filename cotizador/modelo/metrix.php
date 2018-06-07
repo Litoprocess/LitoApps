@@ -13,8 +13,8 @@
                      
     if ( $num >0) 
     {
-        for($i=0;$i<$num;$i++)
-        {
+        while ($row =sqlsrv_fetch_array($consulta,SQLSRV_FETCH_ASSOC)) 
+        { 
             $rows[] = array(
                 "matrix"=>$row["OR_MATRIX"],
                 "fentrega"=>$row["FECHA_ENTREGA"]

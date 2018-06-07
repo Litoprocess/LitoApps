@@ -1,5 +1,14 @@
 $(document).ready(function() 
 {
+
+if(window.location.pathname == '/litoapps/reprocesos/consultaReprocesos.php')
+{
+  $("#repProd").removeClass("active");
+  $("#repCali").removeClass("active");
+  $("#consRep").addClass("active");
+  $("#titulo").html("Reprocesos/Consulta reprocesos");
+} 
+
   $('.button-collapse').sideNav();  
   //LLenar la tabla con la BD
   $('#tblConsultaReproceso').DataTable(

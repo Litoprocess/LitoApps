@@ -460,140 +460,253 @@ while($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC)){
 <body>
 
   <header>
-    <nav class="indigo darken-4">
-      <div class="nav-wrapper container">
-        <a href="#" class="brand-logo">Inventario Sistemas</a>
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="dropdown-content" id="user_dropdown">
+      <li><a href="#!" class="indigo-text text-darken-3"><?php echo $_SESSION["Permisos"]["NombreUsuario"];?></a></li>
+      <li><a href="../../cerrar.php" class="indigo-text text-darken-3">Salir</a></li>
+    </ul>  	
+    <nav class="nav-extended indigo darken-3">
+      <div class="nav-wrapper">
+        <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Inventario Sistemas</a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <!--li class="active"><a href="inventario.php">Inventario</a></li-->
-          <li class="active"><a href="../detalle.php">Detalle</a></li>
+
+          <?php switch( $_SESSION['Permisos']["UserInventario"] ) { 
+          case 1: ?>
+          <li id="inventario"><a href="../inventario.php">Inventario</a></li>
+          <li id="detalle"><a href="../detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="inventario"><a href="../inventario.php">Inventario</a></li>
+          <li id="detalle"><a href="../detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?> 
+           
+          <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
-        <ul class="side-nav" id="slide-out">
-          <li>
-            <div class="userView">
-              <div class="background">
-                <img src="../../images/lito-planta.jpg" class="responsive-img">
-              </div>
-              <!--a href="#!user"><img class="circle" src="images/yuna.jpg"></a-->
-              <a href="#!name">
-                <span class="white-text name">
-                  <?php echo $_SESSION["NombreUsuario"];?>
-                </span>
-              </a>
-              <a href="#!email">
-                <span class="white-text email">
-                  <?php echo $_SESSION["Departamento"];?>
-                </span>
-              </a>
-            </div>
-          </li>
-          <!--li class="active"><a href="inventario.php">Inventario</a></li-->
-          <li><a href="../detalle.php">Detalle</a></li>                 
+        <ul class="side-nav" id="mobile-demo">
+
+          <?php switch( $_SESSION['Permisos']["UserInventario"] ) { 
+          case 1: ?>
+          <li id="sideinventario"><a href="../inventario.php">Inventario</a></li>
+          <li id="sidedetalle"><a href="../detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="sideinventario"><a href="../inventario.php">Inventario</a></li>
+          <li id="sidedetalle"><a href="../detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?> 
+
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               
-          <li><a href="../../cerrar.php">Cerrar sesión</a></li>
+          <li><a href="../../cerrar.php">Salir</a></li>
         </ul>
       </div>
     </nav>  
 
-		<aside>
-			<ul id="slide-out" class="side-nav fixed">
-				<li class="logo">
-					<a id="logo-container" href="#" class="brand-logo">
-						<object id="front-page-logo" type="image/png" data="../../img/logo_b.png"></object>
-					</a>
-				</li>
-				<li><div class="divider"></div></li>
-				<li class="bold">
-					<a href="../../index.php" id="nav-app">
-						<i class="material-icons">home</i>Página principal
-					</a>
-				</li>
-				<li><div class="divider"></div></li>
-				<li class="bold" id="aside-tickets">
-					<a href="../../tickets/index.php" id="nav-app1">
-						<i class="material-icons red-text text-darken-4"><img src="../../icons/tickets.png" alt="Tickets" width="25"></i>Tickets
-					</a>
-				</li>
-				<li class="bold" id="aside-directorio">
-					<a href="../../directorio/directorio.php" id="nav-app2">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/directorio.png" alt="" width="25"></i>Directorio
-					</a>
-				</li>    
-				<li class="bold" id="aside-libera">
-					<a href="../../liberaTipo.php" id="nav-app3">
-						<i class="material-icons green-text text-darken-4"><img src="../../icons/liberacion.png" alt="" width="25"></i>Liberacion
-					</a>
-				</li>
-				<li class="bold" id="aside-controlm">
-					<a href="../../muestrasTipo.php" id="nav-app4">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/control_muestras.png" alt="" width="25"></i>Muestras
-					</a>
-				</li>    
-				<li class="bold" id="aside-muestreo">
-					<a href="../../muestreoTipo.php" id="nav-app5">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/muestreo_bd.png" alt="" width="25"></i>Muestreo BDD
-					</a>
-				</li>
-				<li class="bold" id="aside-acabadom">
-					<a href="../../acabadomTipo.php" id="nav-app6">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/acabado_manual.png" alt="" width="25"></i>Acabado Manual
-					</a>
-				</li>
-				<li class="bold" id="aside-reprocesos">
-					<a href="../../reprocesosTipo.php" id="nav-app7">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/reprocesos.png" alt="" width="25"></i>Reprocesos
-					</a>
-				</li>
-				<li class="bold" id="aside-iDashboards">
-					<a href="http://192.168.2.217:8080/idashboards/" target="_blank" id="nav-app8">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/idashboard.jpg" alt="" width="25"></i>iDashboards
-					</a>
-				</li>
-				<li class="bold" id="aside-dbxtra">
-					<a href="http://192.168.2.211:8082/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app9">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/dbxtra.png" alt="" width="25"></i>DBxtra
-					</a>
-				</li>    
-				<li class="bold" id="aside-krispykreme">
-					<a href="http://192.168.2.211:8080/KryspyKreme/public/login" target="_blank" id="nav-app10">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/krispykreme.png" alt="" width="25"></i>Krispy kreme
-					</a>
-				</li> 
-				<li class="bold" id="aside-starbucks">
-					<a href="http://192.168.2.211:8080/starbucks/public/login" target="_blank" id="nav-app11">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks.png" alt="" width="25"></i>Starbucks
-					</a>
-				</li>
-				<li class="bold" id="aside-starbucks2">
-					<a href="http://192.168.2.211:8080/starbucks2/public/login" target="_blank" id="nav-app12">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks2.png" alt="" width="25"></i>Starbucks2
-					</a>
-				</li> 
-				<li class="bold" id="aside-capacitacion">
-					<a href="../../capacitacionTipo.php" id="nav-app13">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/capacitacion.png" alt="" width="25"></i>Capacitación
-					</a>
-				</li>
-				<li class="bold" id="aside-inventario">
-					<a href="../../inventarioTipo.php" id="nav-app14">
-						<i class="material-icons blue-text text-darken-4"><img src="../../icons/inventario_sistemas.png" alt="" width="25"></i>Inventario
-					</a>
-				</li>                     
-				<li><div class="divider"></div></li>
-				<li class="bold" id="aside-atras">
-					<a href="../../" id="nav-tickets3">
-						<i class="material-icons">arrow_back</i>Atras
-					</a>
-				</li>    
-				<li class="bold">
-					<a href="../../cerrar.php" id="nav-tickets1">
-						<i class="material-icons">exit_to_app</i>Salir
-					</a>
-				</li>
-			</ul>
-		</aside>
+<aside>
+  <ul id="slide-out" class="side-nav fixed z-depth-2">
+    <li class="center no-padding">
+      <div class="indigo darken-3 white-text" style="height: 128px;">
+        <div class="row">
+          <img style="margin-top: 15%;" width="150"src="../../img/Logo_lito.png" />
+          <p style="margin-top: -13%;">
+            Panel de Aplicaciones
+          </p>
+        </div>
+      </div>
+    </li>
+    <li class="bold">
+      <a class="waves-effect" href="../index.php" id="nav-app">
+        <i class="material-icons">home</i>Página principal
+      </a>
+    </li>
+    <li><div class="divider"></div></li>
+
+    <?php if ($_SESSION["Permisos"]["MenuTickets"] === 1): ?>
+    <li class="bold" id="aside-tickets">
+      <a class="waves-effect" href="../../tickets/index.php" id="nav-app1">
+       <i class="material-icons red-text text-darken-4"><img src="../../icons/tickets.png" alt="Tickets" width="25"></i>Tickets
+     </a>
+   </li>
+   <?php endif; ?>
+
+   <li class="bold" id="aside-directorio">
+    <a class="waves-effect" href="../../directorio/directorio.php" id="nav-tickets2">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/directorio.png" alt="" width="25"></i>Directorio
+    </a>
+  </li> 
+
+  <?php if ($_SESSION["Permisos"]["MenuReportesProduccion"] === 1): ?>   
+  <li class="bold" id="aside-reportes">
+    <a class="waves-effect" href="../../reportesProduccion/index.php" id="nav-app17">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/reportar.png" alt="" width="25"></i>Reportes Prod.
+    </a>
+  </li>
+  <?php endif; ?>     
+
+  <?php if ($_SESSION["Permisos"]["MenuPreviewOP"] === 1): ?>   
+  <li class="bold" id="aside-preview">
+    <a class="waves-effect" href="../../informeOP/index.php" id="nav-app17">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/ordenproduccion.png" alt="" width="25"></i>Preview OP
+    </a>
+  </li>
+  <?php endif; ?>   
+
+  <?php if ($_SESSION["Permisos"]["MenuiDashboards"] === 1): ?>
+  <li class="bold" id="aside-iDashboards">
+    <a class="waves-effect" href="http://192.168.2.217:8080/idashboards/" target="_blank" id="nav-app8">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/idashboard.png" alt="" width="25"></i>iDashboards
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuDBxtra"] === 1): ?>
+  <li class="bold" id="aside-dbxtra">
+    <a class="waves-effect" href="http://192.168.2.211:8081/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app9">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/dbxtra.png" alt="" width="25"></i>DBxtra
+    </a>
+  </li> 
+  <?php endif; ?> 
+
+  <?php if ($_SESSION["Permisos"]["MenuKrispykreme"] === 1): ?>  
+  <li class="bold" id="aside-krispykreme">
+    <a class="waves-effect" href="http://192.168.2.211:8080/KryspyKreme/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank" id="nav-app10">      
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/krispykreme.png" alt="" width="25"></i>KrispyKreme
+    </a>
+  </li> 
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuStarbucks"] === 1): ?>
+  <li class="bold" id="aside-starbucks">
+    <a class="waves-effect" href="http://192.168.2.211:8080/starbucks/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>" target="_blank" id="nav-app11">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks.png" alt="" width="25"></i>Starbucks
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuStarbucks2"] === 1): ?>
+  <li class="bold" id="aside-starbucks2">
+    <a class="waves-effect" href="http://192.168.2.211:8080/starbucks2/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>" target="_blank" id="nav-app12">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks2.png" alt="" width="25"></i>Starbucks2
+    </a>
+  </li>
+  <?php endif; ?>  
+
+  <?php if ($_SESSION["Permisos"]["MenuLibera"] === 1): ?>    
+  <li class="bold" id="aside-libera">
+    <a class="waves-effect" href="../../liberacionPT/index.php" id="nav-tickets3">
+      <i class="material-icons green-text text-darken-4"><img src="../../icons/liberacion.png" alt="" width="25"></i>Liberacion
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuMuestras"] === 1): ?>
+  <li class="bold" id="aside-controlm">
+    <a class="waves-effect" href="../../muestras/index.php" id="nav-tickets4">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/control_muestras.png" alt="" width="25"></i>Muestras
+    </a>
+  </li> 
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuRevBDD"] === 1): ?>   
+  <li class="bold" id="aside-muestreo">
+    <a class="waves-effect" href="../../muestreoBD/index.php" id="nav-tickets5">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/muestreo_bd.png" alt="" width="25"></i>Revision BD
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuMaquilas"] === 1): ?>
+  <li class="bold" id="aside-acabadom">
+    <a class="waves-effect" href="../../acabadomanual/index.php" id="nav-tickets6">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/acabado_manual.png" alt="" width="25"></i>A.Manual
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuReprocesos"] === 1): ?>
+  <li class="bold" id="aside-reprocesos">
+    <a class="waves-effect" href="../../reprocesos/index.php" id="nav-app7">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/reprocesos.png" alt="" width="25"></i>Reprocesos
+    </a>
+  </li>
+  <?php endif; ?> 
+
+  <?php if ($_SESSION["Permisos"]["MenuCapacitacion"] === 1): ?>
+  <li class="bold" id="aside-capacitacion">
+    <a class="waves-effect" href="../../capacitacion/index.php" id="nav-app13">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/capacitacion.png" alt="" width="25"></i>Capacitación
+    </a>
+  </li>
+  <?php endif; ?> 
+
+  <?php if ($_SESSION["Permisos"]["MenuInventario"] === 1): ?>
+  <li class="bold" id="aside-inventario">
+    <a class="waves-effect" href="../../inventarioSistemas/index.php" id="nav-app13">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/inventario_sistemas.png" alt="" width="25"></i>Inventario
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuNissan"] === 1): ?>
+  <li class="bold" id="aside-nissan">
+    <a class="waves-effect" href="../../nissan/index.php" id="nav-app14">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/nissan.png" alt="" width="25"></i>Nissan Scan
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <!--li class="bold" id="aside-consumibles">
+    <a class="waves-effect" href="../../nissanTipo.php" id="nav-app15">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/consumibles.png" alt="" width="25"></i>Inv.Consumibles
+    </a>
+  </li--> 
+
+  <?php if ($_SESSION["Permisos"]["MenuCotizador"] === 1): ?>   
+  <li class="bold" id="aside-cotizador">
+    <a class="waves-effect" href="../../cotizador/index.php" id="nav-app16">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/presupuesto.png" alt="" width="25"></i>Cotizador
+    </a>
+  </li>
+  <?php endif; ?>    
+
+  <?php if ($_SESSION["Permisos"]["MenuMantenimiento"] === 1): ?>   
+  <li class="bold" id="aside-mantenimiento">
+    <a class="waves-effect" href="../../mantenimientopreventivo/index.php" id="nav-app17">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/mantenimiento.png" alt="" width="25"></i>Mantenimiento
+    </a>
+  </li>
+  <?php endif; ?>  
+
+  <li><div class="divider"></div></li>
+
+  <li class="bold" id="aside-atras">
+    <a class="waves-effect" href="../../" id="nav-app16">
+      <i class="material-icons">arrow_back</i>Atras
+    </a>
+  </li>
+    
+  <li class="bold">
+    <a class="waves-effect" href="../../cerrar.php" id="nav-tickets1">
+      <i class="material-icons">exit_to_app</i>Salir
+    </a>
+  </li>
+</ul>
+</ul>  
+</aside>
   </header>
 
 <main class="container">

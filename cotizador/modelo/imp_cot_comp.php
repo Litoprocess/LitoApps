@@ -1,18 +1,18 @@
 <?php
-    include "conexion.php";
+    require "conexion.php";
     
     $response = new stdClass();
     
     $foliob = $_POST['foliob'];
     
+    $params = array();
+    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
     $comparacion = "SELECT * FROM v_bitacora WHERE FOLIO='$foliob'";
-    $stmt = sqlsrv_query($conn,$comparacion);
+    $stmt = sqlsrv_query($conn,$comparacion, $params, $options);
+    $num = sqlsrv_num_rows( $stmt );
     //echo $selectv = "SELECT * FROM v_bitacora WHERE FOLIO='$foliob'";
-    
-    $registros = sqlsrv_num_rows($stmt);
-    var_dump($registros);
-    exit();
-    if($registros>0)
+
+    if($num>0)
     {
         $response->validacion="true";
         //$response->folio=$foliob;

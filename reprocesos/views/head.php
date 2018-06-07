@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head> 
   <meta charset="UTF-8">
@@ -25,18 +25,65 @@
 
     <nav class="nav-extended indigo darken-3">
       <div class="nav-wrapper">
-        <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Reprocesos</a>
+        <a id="titulo" style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!"></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <?php switch( $_SESSION['Permisos']["UserReprocesos"] ) { 
+          case 1: ?>
           <li id="repProd"><a href="reprocesosProduccion.php">Producci&oacute;n</a></li>
           <li id="repCali"><a href="reprocesosCalidad.php">Calidad</a></li>
-          <li id="consRep"><a href="consultaReprocesos.php">Consulta Rep.</a></li>
+          <li id="consRep"><a href="consultaReprocesos.php">Consulta Reprocesos</a></li>
+          <li id="consRep"><a href="reprocesosQuejas.php">Quejas Clientes</a></li>
+          <?php 
+          break;
+
+          case 2: ?>
+          <li id="repCali"><a href="reprocesosCalidad.php">Calidad</a></li>
+          <li id="consRep"><a href="consultaReprocesos.php">Consulta Reprocesos</a></li>
+          <li id="consRep"><a href="reprocesosQuejas.php">Quejas Clientes</a></li>
+          <?php 
+          break;
+
+          case 3: ?> 
+          <li id="repProd"><a href="reprocesosProduccion.php">Producci&oacute;n</a></li> 
+          <li id="consRep"><a href="consultaReprocesos.php">Consulta Reprocesos</a></li> 
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?>
+
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-        <li><a href="reprocesosProduccion.php">Rep.Producción</a></li>
-        <li><a href="reprocesosCalidad.php">Rep.Calidad</a></li>
-        <li><a href="consultaReprocesos.php">Consulta Rep</a></li>                 
+
+          <?php switch( $_SESSION['Permisos']["UserReprocesos"] ) { 
+          case 1: ?>
+          <li id="sideProduccion"><a href="reprocesosProduccion.php">Producci&oacute;n</a></li>
+          <li id="sideCalidad"><a href="reprocesosCalidad.php">Calidad</a></li>
+          <li id="sideConsulta"><a href="consultaReprocesos.php">Consulta Reprocesos</a></li>
+          <li id="consRep"><a href="reprocesosQuejas.php">Quejas Clientes</a></li>
+          <?php 
+          break;
+
+          case 2: ?>
+          <li id="sideCalidad"><a href="reprocesosCalidad.php">Calidad</a></li>
+          <li id="sideConsulta"><a href="consultaReprocesos.php">Consulta Reprocesos</a></li>
+          <li id="consRep"><a href="reprocesosQuejas.php">Quejas Clientes</a></li>
+          <?php 
+          break;
+
+          case 3: ?> 
+          <li id="sideProduccion"><a href="reprocesosProduccion.php">Producci&oacute;n</a></li> 
+          <li id="sideConsulta"><a href="consultaReprocesos.php">Consulta Reprocesos</a></li>  
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?>
+
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               

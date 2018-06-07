@@ -7,7 +7,7 @@ include 'conn.php';
 
 $NombreUsuario = $_POST["NombreUsuario"];
 $IdTicket = $_POST['Ticket'];
-$Notas = utf8_decode(mb_strtoupper($_POST['Notas']));
+$Notas = mb_strtoupper($_POST['Notas']);
 $CorreoAtencion = $_POST['CorreoUsuario'];
 $NombreUser = $_POST['NombreUsuario'];
 $Correo2 = $_POST['Correo2'];

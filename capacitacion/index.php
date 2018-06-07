@@ -5,14 +5,13 @@ if(isset($_SESSION["Permisos"]['UserCapacitacion']))
 	switch ($_SESSION["Permisos"]['UserCapacitacion']) 
 	{
 		case '1':
-		require 'views/capacitacion.view.php';
+		header('Location: resultado.php');
 		break;
-		case '2':
-		require 'views/capacitacion.view.php';
-		break;
+
 		case '3':
-		require 'views/capacitacion.view.php';
-		break;		
+		header('Location: registro.php');
+		break;	
+
 		default:
 		header('Location: ../index.php');
 		break;

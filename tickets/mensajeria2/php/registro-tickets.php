@@ -32,13 +32,13 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 		$FechaFin = $row['FechaFinalizado']->format("d-n-Y");
 	}
 
-	$data[] = array(utf8_encode($row['IdTicket']),
-		utf8_encode($row['Titulo']),
-		utf8_encode($row['NombreEmpresa']),
+	$data[] = array($row['IdTicket'],
+		$row['Titulo'],
+		$row['NombreEmpresa'],
 		$row['FechaEntrega']->format("d-m-Y"),
 		$Hora1.$Hora2,
-		utf8_encode($row['Prioridad']),
-		utf8_encode($row['Estatus']),
+		$row['Prioridad'],
+		$row['Estatus'],
 		$FechaFin); 
 
 }

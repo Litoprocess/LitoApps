@@ -14,6 +14,7 @@ $(document).ready(function () {
     "paging": false,
     "dom": '<"wrapper"lpti>',
     "language": {
+      loadingRecords: "Cargando...",
       zeroRecords: "No hay tickets activos",
       info: "Viendo  _TOTAL_ de _MAX_ registros.",
       infoEmpty: "Viendo  _TOTAL_ de _MAX_ registros.",
@@ -22,7 +23,7 @@ $(document).ready(function () {
         first:      "Primero",
         previous:   "Anterior",
         next:       "Siguiente",
-        last:       "Ãšltimo"
+        last:       "Último"
       }
     },
     "columns":[
@@ -193,7 +194,7 @@ function datos_prioridad(tbody, table) {
             }
             else{
 
-              Materialize.toast('No se enviÃ³ el correo, no hay agente asignado', 1600, 'red darken-4')
+              Materialize.toast('No se envió el correo, no hay agente asignado', 1600, 'red darken-4')
 
             }
 
@@ -227,7 +228,7 @@ function datos_estado(tbody, table) {
 
     if(FCompromiso == ""){
 
-    Materialize.toast('Â¡Error!, Falta fecha compromiso', 1200, 'yellow darken-4');
+    Materialize.toast('¡Error!, Falta fecha compromiso', 1200, 'yellow darken-4');
     return false;
 
     }
@@ -359,7 +360,7 @@ function datos_modal(tbody, table) {
 
  }
 
- $("#SegAgente #DetallesTitulo").append("<h4>Ticket NÂ°" + IdTicket + " - <small>" + Titulo + "</small></h4><blockquote>" + Tarea + "<br><small>" + Fecha + "</small></blockquote>");
+ $("#SegAgente #DetallesTitulo").append("<h4>Ticket N°" + IdTicket + " - <small>" + Titulo + "</small></h4><blockquote>" + Tarea + "<br><small>" + Fecha + "</small></blockquote>");
 
  $.post("php/seguimiento.php", {
    IdTicket: IdTicket
@@ -471,7 +472,7 @@ $('#correoSolicitud2').on('click', function() {
 
 //Filtrado
 
-table.search( "SIN FINALIZAR" ).draw(); 
+/*table.search( "SIN FINALIZAR" ).draw(); 
 
 $('#chkMostrar').on('click', function() { 
 
@@ -485,6 +486,70 @@ $('#chkMostrar').on('click', function() {
     var Valor = "SIN FINALIZAR"
     table.search( Valor ).draw(); 
 
+  }
+});*/
+
+$("#chkMostrar").on('click', function(){
+  if( $("#chkMostrar").prop("checked") == true )
+  {
+    table = $('#all-tickets').DataTable( {
+      destroy:true,
+      "ajax": 'php/admin-tickets-cerrados.php',
+      "order": [[ 0, "desc" ]],
+      "scrollY":'60vh',
+      "scrollCollapse": true,
+      "paging": false,
+      "dom": '<"wrapper"lpti>',
+      "language": {
+	loadingRecords: "Cargando...",
+        zeroRecords: "No hay tickets activos",
+        info: "Viendo  _TOTAL_ de _MAX_ registros.",
+        infoEmpty: "Viendo  _TOTAL_ de _MAX_ registros.",
+        infoFiltered:   "",
+        paginate: {
+          first:      "Primero",
+          previous:   "Anterior",
+          next:       "Siguiente",
+          last:       "Último"
+        }
+      },
+      "columns":[
+      {"data":"Folio"},
+      {"data":"Solicita"},
+      {"data":"Titulo"},
+      {"data":"Descripcion"},
+      {"data":"Departamento"},
+      {"data":"Registro"},
+      {"data":"Agente",
+      "render": function ( data, type, full, meta ) {
+        return "<select class='personal-dt'>"+data+"</select>";
+      }},
+      {"data":"Prioridad",
+      "render": function ( data, type, full, meta ) {
+        return "<select class='select-prio'>"+data+"</select>";
+      }},
+      {"data":"Compromiso"},
+      {"data":"Estatus",
+      "width":"12%",
+      "render": function ( data, type, full, meta ) {
+        return "<select class='selEstado'>"+data+"</select>";
+      }},
+      {"data":"Finalizado"},
+      {"defaultContent":"<a class='waves-effect waves-teal btn-flat btn-detalles'><i class='material-icons'>web</i></a>"},
+      {"data":"Correo"}
+      ],
+      "columnDefs": [
+      {
+        "targets": [ 3, 4, 12 ],
+        "visible": false,
+        "searchable": false
+      }
+      ]
+    } );    
+  }
+  else
+  {
+	location.reload();
   }
 });
 

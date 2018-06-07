@@ -5,11 +5,11 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = utf8_decode(mb_strtoupper($_POST["NombreUsuario"]));
-$Titulo =  utf8_decode(mb_strtoupper($_POST['txtTitulo']));
-$Tarea =  utf8_decode(mb_strtoupper($_POST['txtProblema']));
-$Departamento = utf8_decode(mb_strtoupper($_POST["Departamento"]));
-$Id_Categoria = utf8_decode(mb_strtoupper($_POST['selCategoria']));
+$NombreUsuario = mb_strtoupper($_POST["NombreUsuario"]);
+$Titulo =  mb_strtoupper($_POST['txtTitulo']);
+$Tarea =  mb_strtoupper($_POST['txtProblema']);
+$Departamento = mb_strtoupper($_POST["Departamento"]);
+$Id_Categoria = mb_strtoupper($_POST['selCategoria']);
 $Correo = $_POST["CorreoUsuario"];
 
 $F = new DateTime();

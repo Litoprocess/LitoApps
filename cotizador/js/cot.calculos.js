@@ -66,7 +66,7 @@ $(document).ready(function()
     });
 
     $("#cancelar6").click(function(){
-        $("#dialog_mat_especial").dialog("close");
+        $("#dialog_mat_especial").modal("close");
         
         $("#mat_especial").prop("checked", false);
         $("#div_medida_especial").hide();
@@ -831,6 +831,7 @@ $(document).ready(function()
                 {
                     if(data.validacion=="true")
                     {
+
                         for(var i=0; i<data.rows.length; i++)
                         {
                             Traslucido=data.rows[i].medidaEspecial;
@@ -845,6 +846,7 @@ $(document).ready(function()
                                     {
                                         if(data.validacion_tinta=="true")
                                         {
+                                            
                                             for(var i=0; i<data.rowdos.length; i++)
                                             {
                                                 costoTraslucido = data.rowdos[i].baja;
@@ -868,6 +870,7 @@ $(document).ready(function()
                                                     {
                                                         if(data.validacion_tinta=="true")
                                                         {
+                                                            
                                                             for(var i=0; i<data.rowdos.length; i++)
                                                             {
                                                                 //--Variables de la Base de Datos...
@@ -929,6 +932,7 @@ $(document).ready(function()
                                     {
                                         if(data.validacion_tinta=="true")
                                         {
+                                            
                                             for(var i=0; i<data.rowdos.length; i++)
                                             {
                                                 //--Variables de la Base de Datos...
@@ -944,6 +948,7 @@ $(document).ready(function()
                                                     {
                                                         if(data.validacion_tinta=="true")
                                                         {
+                                                            
                                                             for(var i=0; i<data.rowdos.length; i++)
                                                             {
                                                                 //--Variables de la Base de Datos...
@@ -973,6 +978,7 @@ $(document).ready(function()
                     }
                 },"json"
             );
+
         }
         else
         {
@@ -1214,6 +1220,7 @@ $(document).ready(function()
                 var valor =  (parseFloat(costoBajaBD) + traslucido) * parseFloat(areaImpresion);
 
                 $("#resTinta").val(currency(valor));
+                $.manoobra();
             }
             else if (resolucion == "1440")
             {
@@ -1223,10 +1230,12 @@ $(document).ready(function()
                 var valor =  (parseFloat(costoAltaBD) + traslucido) * parseFloat(areaImpresion);
 
                 $("#resTinta").val(currency(valor));
+                $.manoobra();
             }
             else if (resolucion == "0")
             {
                 $("#resTinta").val("0");
+                $.manoobra();
             }
             else if (resolucion == "Sandwich")
             {
@@ -1235,6 +1244,7 @@ $(document).ready(function()
 
                 //$("#pasadas_imp").val("1");
                 $("#resTinta").val(currency(valor));
+                $.manoobra();
             }
         //}
         //else if (PasadasImpresio == "2")
@@ -1248,6 +1258,7 @@ $(document).ready(function()
                 var valor =  ((parseFloat(costoBajaBD) + traslucido) * parseFloat(areaImpresion)) + parseFloat(valor2);
 
                 $("#resTinta").val(currency(valor));
+                $.manoobra();
             }
             else if (resolucion == "1440")
             {
@@ -1258,10 +1269,12 @@ $(document).ready(function()
                 var valor =  ((parseFloat(costoAltaBD) + traslucido) * parseFloat(areaImpresion)) + parseFloat(valor2);
 
                 $("#resTinta").val(currency(valor));
+                $.manoobra();
             }
             else if (resolucion == "0")
             {
                 $("#resTinta").val("0");
+                $.manoobra();
             }
             else if (resolucion == "Sandwich")
             {
@@ -1271,6 +1284,7 @@ $(document).ready(function()
                 //$("#pasadas_imp").val("1");
                 $.mod();
                 $("#resTinta").val(currency(valor));
+                $.manoobra();
             }
         //}
         
@@ -2173,18 +2187,18 @@ $(document).ready(function()
         {
             $("#dialogoerror").html("");            
             $("#dialogoerror").html('<span style="color:red;">Error El Acabado no cuenta con Unidad</span>');
-            $("#dialogoerror").dialog("open");
+            $("#dialogoerror").modal("open");
         }
         
         if(numAcabado == 1)
         {
             $("#resAcab1").val(currency(valor));
-            $("#label-Acab1").html(descripcion);
+            $("#label-Acab1").html(descripcion.substr(0,8));
         }
         else if(numAcabado == 2)
         {
             $("#resAcab2").val(currency(valor));
-            $("#label-Acab2").html(descripcion);
+            $("#label-Acab2").html(descripcion.substr(0,8));
         }
         else if(numAcabado == 3)
         {
@@ -2194,19 +2208,20 @@ $(document).ready(function()
         else if(numAcabado == 4)
         {
             $("#resAcab4").val(currency(valor));
-            $("#label-Acab4").html(descripcion);
+            $("#label-Acab4").html(descripcion.substr(0,8));
         }
         else if(numAcabado == 5)
         {
             $("#resAcab5").val(currency(valor));
-            $("#label-Acab5").html(descripcion);
+            $("#label-Acab5").html(descripcion.substr(0,8));
         }
         else if(numAcabado == 6)
         {
             $("#resAcab6").val(currency(valor));
-            $("#label-Acab6").html(descripcion);
+            $("#label-Acab6").html(descripcion.substr(0,8));
         }
         $.calculos();
+
     }
     
     //--------------------------------------------------------------------------
@@ -2227,12 +2242,14 @@ $(document).ready(function()
         if($("#costoadic1").val() == "0")
         {
             $("#resAdic1").val("0");
+            $("#label-Adic1").html("Adicional 1:");
             $.calculos();
         }
         else
         {
             var adicional = $("#costoadic1").val();
             var valor  = (parseFloat(adicional) * parseInt($("#cantidad").val()));
+            $("#label-Adic1").html($("#adic1").val().substr(0,8));
             
             $("#resAdic1").val(currency(valor));
 
@@ -2249,12 +2266,15 @@ $(document).ready(function()
         if($("#costoadic2").val() == "0")
         {
             $("#resAdic2").val("0");
+            $("#label-Adic2").html("Adicional 2:");
             $.calculos();
+            
         }
         else
         {
             var adicional = $("#costoadic2").val();
             var valor  = (parseFloat(adicional) * parseInt($("#cantidad").val()));
+            $("#label-Adic2").html($("#adic2").val().substr(0,8));
 
             $("#resAdic2").val(currency(valor));
 
@@ -2262,6 +2282,7 @@ $(document).ready(function()
 
             //$("#costoadic2").val(currency(adicional));
             $.calculos();
+            
         }
     }
 
@@ -2270,12 +2291,15 @@ $(document).ready(function()
         if($("#costoadic3").val() == "0")
         {
             $("#resAdic3").val("0");
+            $("#label-Adic3").html("Adicional 3:");
             $.calculos();
+            
         }
         else
         {
             var adicional = $("#costoadic3").val();
             var valor  = (parseFloat(adicional) * parseInt($("#cantidad").val()));
+            $("#label-Adic3").html($("#adic3").val().substr(0,8));
 
             $("#resAdic3").val(currency(valor));
 
@@ -2283,6 +2307,7 @@ $(document).ready(function()
 
             //$("#costoadic3").val(currency(adicional));
             $.calculos();
+            
         }
     }
     
@@ -2291,12 +2316,15 @@ $(document).ready(function()
         if($("#costoadic4").val() == "0")
         {
             $("#resAdic4").val("0");
+            $("#label-Adic4").html("Adicional 4:");
             $.calculos();
+            
         }
         else
         {
             var adicional = $("#costoadic4").val();
             var valor  = (parseFloat(adicional) * parseInt($("#cantidad").val()));
+            $("#label-Adic4").html($("#adic4").val().substr(0,8));
             
             $("#resAdic4").val(currency(valor));
 
@@ -2304,6 +2332,7 @@ $(document).ready(function()
             
             //$("#costoadic4").val(currency(adicional));
             $.calculos();
+            
             return false;
         }
     }
@@ -2313,12 +2342,15 @@ $(document).ready(function()
         if($("#costoadic5").val() == "0")
         {
             $("#resAdic5").val("0");
+            $("#label-Adic5").html("Adicional 5:");
             $.calculos();
+            
         }
         else
         {
             var adicional = $("#costoadic5").val();
             var valor  = (parseFloat(adicional) * parseInt($("#cantidad").val()));
+            $("#label-Adic5").html($("#adic5").val().substr(0,8));
 
             $("#resAdic5").val(currency(valor));
 
@@ -2326,6 +2358,7 @@ $(document).ready(function()
 
             //$("#costoadic5").val(currency(adicional));
             $.calculos();
+            
         }
     }
 
@@ -2334,12 +2367,15 @@ $(document).ready(function()
         if($("#costoadic6").val() == "0")
         {
             $("#resAdic6").val("0");
+            $("#label-Adic6").html("Adicional 6:");
             $.calculos();
+            
         }
         else
         {
             var adicional = $("#costoadic6").val();
             var valor  = (parseFloat(adicional) * parseInt($("#cantidad").val()));
+            $("#label-Adic6").html($("#adic6").val().substr(0,8));
 
             $("#resAdic6").val(currency(valor));
 
@@ -2347,6 +2383,7 @@ $(document).ready(function()
 
             //$("#costoadic6").val(currency(adicional));
             $.calculos();
+            
         }
     }
     
@@ -2448,6 +2485,7 @@ $(document).ready(function()
         $("#resImprimart").val(currency("0"));
         $('resLito').val(currency("0"));
         $.costoImprimart();
+        
     }
 
 
@@ -2653,6 +2691,23 @@ $(document).ready(function()
 
         $("#resLito").val(currency(valuelito));
     }
+
+    //--------------------------------------------------------------------------
+    //                     CALCULAR EL % DE TINTA Y MANO DE OBRA
+    //--------------------------------------------------------------------------
+    $.manoobra = function()
+    {
+        var tinte = parseFloat($("#resTinta").val().replace(/,/gi, ''));
+        var porcientoTinta = (tinte - (tinte * 0.20));
+        $("#porTinta").val(currency(porcientoTinta));
+
+        var porcientomanoobra = (tinte - (tinte * 0.80));
+        $("#manoObra").val(currency(porcientomanoobra));
+        $ 
+    }
+
+
+
     
     //--------------------------------------------------------------------------
     //                             Fromato de Peso

@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+if(window.location.pathname == '/litoapps/inventarioSistemas/inventario.php')
+{
+  $("#inventario").addClass("active");
+  $("#detalle").removeClass("active");
+}     
+
+$(".button-collapse").sideNav();
+
     $("#usuario").focus();
 
     $('select').material_select();

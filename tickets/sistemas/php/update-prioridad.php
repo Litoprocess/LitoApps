@@ -16,7 +16,7 @@ if( $stmt === false) {
 	die( print_r( sqlsrv_errors(), true) );
 }
 
-$texto = utf8_decode("LA PRIORIDAD CAMBIÃ“ A: ".$data);
+$texto = "LA PRIORIDAD CAMBIÓ A: ".$data;
 
 $seg = "INSERT INTO SeguimientoTickets (Id_Ticket, NombreUsuario, FechaEvento, Notas)
 VALUES ('$IdTicket', '$NombreUsuario', GetDate(), '$texto' )";

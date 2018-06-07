@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+if(window.location.pathname == '/litoapps/nissan/escaner.php')
+{
+  $("#escaner").addClass("active");
+  $("#base").removeClass("active");
+  $("#bitacora").removeClass("active");
+} 	
+
+$(".button-collapse").sideNav(); 
+
 	var guia, sku, estatus;
 
 	$("#guia").focus();

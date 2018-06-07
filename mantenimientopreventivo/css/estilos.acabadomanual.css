@@ -1,0 +1,74 @@
+//Estilos actividades
+#cancelar {
+    background-color: #2196f3;
+}
+#borrar {
+    background-color: #fff;
+    color: #000;
+}
+  table.dataTable.compact tbody th, table.dataTable.compact tbody td {
+    padding: 0px;
+}
+.datagrid table 
+{ 
+    border-collapse: collapse;
+     text-align: left; 
+     width: 100%; 
+} 
+ .datagrid 
+ {
+    font: normal 9px/150% Arial, Helvetica, sans-serif;
+    background: #e2e2e2;
+    overflow: hidden;
+    border: 1px solid #757575 ;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+ }
+ .datagrid table td, .datagrid table th 
+ { 
+    //padding: 1px 0px; 
+ }
+ .datagrid table tbody td 
+ { 
+    color: #000;
+    border-left: 1px solid #757575 ;
+    font-size: 9px;
+    border-bottom: 1px solid #757575 ;
+    font-weight: normal; 
+    text-align: center;
+    height: 30px;
+    //width: 5px;
+ }
+    .datagrid table tbody td:first-child 
+    { 
+        border-left: none; 
+    }
+    .datagrid table tbody tr:last-child td 
+    { 
+        border-bottom: none;
+    }
+table.dataTable tbody th, table.dataTable tbody td {
+    padding: 2px 2px;
+}   
+//Estilos Empleados
+#cancelaEmpleado {
+    background-color: #2196f3;
+}	
+.btn-clave {
+    height: 56px;
+    line-height: 56px;
+    background-color: grey;
+	color: #fff;
+	margin-top: 100px;
+}
+.btn-clave:focus, .btn-clave-large:focus, .btn-clave-floating:focus {
+    background-color: grey;
+}
+.btn-clave:hover, .btn-clave-large:hover {
+    background-color: grey;
+}
+#clave{
+	text-align: center;
+	vertical-align: middle;
+}

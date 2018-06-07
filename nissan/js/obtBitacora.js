@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+if(window.location.pathname == '/litoapps/nissan/bitacora.php')
+{
+  $("#escaner").removeClass("active");
+  $("#base").removeClass("active");
+  $("#bitacora").addClass("active");
+}     
+
+$(".button-collapse").sideNav(); 
+
   $('#tblBitacora').DataTable(
   { 
     dom: 'Bfrtip',

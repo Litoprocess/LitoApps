@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="../css/estilos.css">
   <link rel="stylesheet" type="text/css" href="css/estilosInventario.css">  
-  <title>Inventario Sistrmas</title>
+  <title>Inventario Sistemas</title>
 </head>
 <body>
     <?php require 'layout/aside.php'; ?>
@@ -25,13 +25,45 @@
         <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Inventario Sistemas</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li class="active"><a href="index.php">Inventario</a></li>
-          <li><a href="detalle.php">Detalle</a></li> 
+
+          <?php switch( $_SESSION['Permisos']["UserInventario"] ) { 
+          case 1: ?>
+          <li id="inventario"><a href="inventario.php">Inventario</a></li>
+          <li id="detalle"><a href="detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="inventario"><a href="inventario.php">Inventario</a></li>
+          <li id="detalle"><a href="detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?> 
+           
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li class="active"><a href="index.php">Inventario</a></li>
-          <li><a href="detalle.php">Detalle</a></li>                   
+
+          <?php switch( $_SESSION['Permisos']["UserInventario"] ) { 
+          case 1: ?>
+          <li id="sideinventario"><a href="inventario.php">Inventario</a></li>
+          <li id="sidedetalle"><a href="detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="sideinventario"><a href="inventario.php">Inventario</a></li>
+          <li id="sidedetalle"><a href="detalle.php">Detalle</a></li>               
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?> 
+
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               

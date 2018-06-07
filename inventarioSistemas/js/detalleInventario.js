@@ -1,5 +1,13 @@
 $(document).ready(function(){
 
+if(window.location.pathname == '/litoapps/inventarioSistemas/detalle.php')
+{
+  $("#inventario").removeClass("active");
+  $("#detalle").addClass("active");
+}  	
+
+$(".button-collapse").sideNav();
+
 	var id,usuario;
 
 	var table = $('#tblDetalle').DataTable(
@@ -28,9 +36,7 @@ $(document).ready(function(){
       								81,82,83,84,85] },
       { "width": "100px", "targets": [2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100] },
       {"width":"150px", "targets": [3,33]},
-
     ],		    
-      
       "columns":
       [          
 		{"data":"idequipo"},

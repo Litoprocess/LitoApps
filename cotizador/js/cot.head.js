@@ -437,7 +437,7 @@ $(document).ready(function()
                                 $.adicional5();
                                 $.adicional6();
                                 $.valiAdicional();
-                                $.recalcular();
+                                $.recalcular();                                                
                                 $("#li-imprimir2").show();
                                 
                                 if(data.rows[0].orprod == 0)
@@ -630,7 +630,7 @@ $(document).ready(function()
     //Dialogo de generacionde No. de Orden
     $("#aceptar4").click(function(){
         $.impresionOrden();
-        $("#dialogo_or_production").modal("close");
+        $("#dialogo_imp_orden").modal("open");
     });
 
 

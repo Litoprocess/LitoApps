@@ -7,12 +7,11 @@ if(isset($_SESSION["Permisos"]['UserInventario']))
 		case '1':
 		require 'views/detalle.view.php';
 		break;
-		case '2':
-		require 'views/detalle.view.php';
-		break;
+
 		case '3':
 		require 'views/detalle.view.php';
-		break;
+		break;		
+
 		default:
 		header('Location: index.php');
 		break;

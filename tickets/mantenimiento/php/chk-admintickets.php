@@ -43,16 +43,16 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
 
 	$data[] = array("Folio"=>$row['Id_Ticket'],
-		"Solicitante"=>utf8_encode($row['Solicitante']),
-		"Departamento"=>utf8_encode($row['Departamento']),
-		"Tarea"=>trim(utf8_encode($row['Tarea'])),
+		"Solicitante"=>$row['Solicitante'],
+		"Departamento"=>$row['Departamento'],
+		"Tarea"=>trim($row['Tarea']),
 		"FechaRegistro"=>$row['FechaRegistro']->format("d-m-Y"),
-		"Agente"=>utf8_encode($row['Asignado']),
+		"Agente"=>$row['Asignado'],
 		"FechaCompromiso"=>$Compromiso,
 		"FechaVencimiento"=>$Vencimiento,
-		"Prioridad"=>utf8_encode($row['Prioridad']),
-		"Estado"=>utf8_encode($row['Estado']),
-		"Correo"=>utf8_encode($row['CorreoSolicitante'])); 
+		"Prioridad"=>$row['Prioridad'],
+		"Estado"=>$row['Estado'],
+		"Correo"=>$row['CorreoSolicitante']); 
 
 }
 

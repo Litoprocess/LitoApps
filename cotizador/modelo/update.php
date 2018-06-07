@@ -127,20 +127,9 @@
     $insertar = "UPDATE bitacora SET CLIENTE='$CLIENTE', FECHA_HORA='$fecha', TRABAJO='$TRABAJO', CANTIDAD='$CANTIDAD', ANCHO='$ANCHO', ALTO='$ALTO', MEDIANIL_ANCHO='$MEDIANIL_ANCHO', MEDIANIL_ALTO='$MEDIANIL_ALTO', MAT_ESPECIAL='$MATERIAL_ESPECIAL', ID_MAT_ESPECIAL='$ID_MATERIAL_ESPECIAL', ID_MATERIAL='$ID_MATERIAL', MEDIDA='$vmedida2', RESOLUCION='$RESOLUCION', IMP_PASADAS='$Pasadas_impresion', BARNIZ='$BARNIZ', BARNIZ_PASADAS='$BARNIZ_PASADAS', BLANCO='$BLANCO', ID_ACABADO1='$ID_ACABADO1', ID_ACABADO2='$ID_ACABADO2', ID_ACABADO3='$ID_ACABADO3', ID_ACABADO4='$ID_ACABADO4', ID_ACABADO5='$ID_ACABADO5', ID_ACABADO6='$ID_ACABADO6', ID_LAMINADO='$ID_LAMINADO', A1_DESC='$A1_DESC', A1_PRECIO='$A1_PRECIO', A2_DESC='$A2_DESC', A2_PRECIO='$A2_PRECIO', A3_DESC='$A3_DESC', A3_PRECIO='$A3_PRECIO', A4_DESC='$A4_DESC', A4_PRECIO='$A4_PRECIO', A5_DESC='$A5_DESC', A5_PRECIO='$A5_PRECIO', A6_DESC='$A6_DESC', A6_PRECIO='$A6_PRECIO', OBSERVACIONES='$OBSERVACIONES', TOTAL='$TOTAL', COMISION='$PORCOMISION', MARGEN='$PORMERGEN', LITO2='$LITO2', LITO3='$LITO3', LITO4='$LITO4', LITO5='$LITO5', LITO6='$LITO6', LITO7='$LITO7', LITO8='$LITO8', LITO9='$LITO9', LITO10='$LITO10', LITO11='$LITO11', LITO12='$LITO12', LITO13='$LITO13', LITO14='$LITO14', LITO15='$LITO15', LITO16='$LITO16', LITO17='$LITO17', LITO18='$LITO18' where FOLIO='$foliob'";
     $stmt = sqlsrv_query($conn,$insertar);
 
-    $params = array();
-    $options =  array( "Scrollable" => SQLSRV_CURSOR_KEYSET );
-    $folio="SELECT @@IDENTITY AS idfolio";
-    $stmt2=sqlsrv_query($conn,$folio,$params,$options);
-    $num = sqlsrv_num_rows( $stmt2 );
-
-    while ($row =sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC)) 
-    {
-    $idfolio = trim($row["idfolio"]);
-    } 
-
-    if($num>0){
+    if($insertar){
         $response->validacion="true";
-        $response->folio=$idfolio;
+        $response->folio=$foliob;
     } else {
         $response->validacion="false";
     }

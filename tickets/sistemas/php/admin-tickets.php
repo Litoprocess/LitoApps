@@ -10,7 +10,7 @@ $SelectAgente = "";
 $SelectEstatus = "";
 $SelectPrioridad = "";
 
-$sql = "SELECT * FROM Tickets";
+$sql = "SELECT * FROM [dbo].[Tickets] WHERE Estado <> 'CANCELADO' AND Estado <> 'CERRADO RESUELTO' AND Estado <> 'CERRADO SIN RESOLVER'";
 $stmt = sqlsrv_query( $conn, $sql );
 
 //Verifica instruccion SQL
@@ -33,8 +33,8 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	}
 
 	$AgenteBD = $row['Asignado'];
-	$EstatusBD = utf8_encode($row['Estado']);
-	$PrioridadBD = utf8_encode($row['Prioridad']);
+	$EstatusBD = $row['Estado'];
+	$PrioridadBD = $row['Prioridad'];
 	
 
 	if($row['FechaCompromiso'] != null){
@@ -55,17 +55,18 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	require 'DB Table/select-prioridad.php';
 
 	$data[] = array("Folio"=>$row['Id_Ticket'],
-		"Solicita"=>utf8_encode($row['Solicitante']),
-		"Titulo"=>trim(utf8_encode($row['Titulo'])),
-		"Descripcion"=>trim(utf8_encode($row['Tarea'])),
-		"Departamento"=>utf8_encode($row['Departamento']),
+		"Solicita"=>$row['Solicitante'],
+		"Titulo"=>trim($row['Titulo']),
+		"Descripcion"=>trim($row['Tarea']),
+		"Departamento"=>$row['Departamento'],
 		"Registro"=>$row['FechaRegistro']->format("d-m-Y"),
 		"Estatus"=>$SelectEstatus,
 		"Compromiso"=>"<input type='date' class='Fcompro' value='".$Compromiso."'>",
 		"Agente"=>$SelectAgente,
 		"Finalizado"=>$Vencimiento,
 		"Prioridad"=>$SelectPrioridad,
-		"Correo"=>utf8_encode($row['CorreoSolicitante'])); 
+		"Correo"=>$row['CorreoSolicitante']
+		); 
 
 }
 

@@ -276,14 +276,15 @@ $(document).ready(function()
 
         if ($("#ancho").val() > 0 && $("#alto").val() > 0 )
         {
-            $("#720").prop("checked", true);
-            var medida = "1";
-            $.combo_medidas(medida);
-            $.resolucion();
-            $.acab1();
-            $.acab2();
-            $.acab3();
-            $.mod();
+                    $("#720").prop("checked", true);
+                    var medida = "1";
+                    $.combo_medidas(medida);
+                    $.resolucion();
+                    $.acab1();
+                    $.acab2();
+                    $.acab3();
+                    $.mod();                  
+
         }
         else
         {

@@ -1,4 +1,13 @@
 $(document).ready(function(){
+
+if(window.location.pathname == '/litoapps/reprocesos/reprocesosCalidad.php')
+{
+  $("#repProd").removeClass("active");
+  $("#repCali").addClass("active");
+  $("#consRep").removeClass("active");
+  $("#titulo").html("Reprocesos/Calidad");
+} 
+
 $('.button-collapse').sideNav();
 	
 	var orden, notas, amanual, aespecial, alito, almacen, cal, cli, entrega, lite, off, ope, prepre, 
@@ -6,7 +15,7 @@ $('.button-collapse').sideNav();
 
 	$("#orden").change(function(){
 		orden = $("#orden").val();
-		$.post('php/getreprocesoCalidad.php', {orden:orden},
+		$.post('php/getReprocesoCalidad.php', {orden:orden},
 			function(result){
 				if(result.data.length > 0)
 				{

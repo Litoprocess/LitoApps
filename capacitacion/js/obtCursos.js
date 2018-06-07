@@ -1,16 +1,24 @@
 $(document).ready(function() 
 {
+
+if(window.location.pathname == '/litoapps/capacitacion/resultado.php')
+{
+  $("#registro").removeClass("active");
+  $("#resultado").addClass("active");
+} 
+
   $('.button-collapse').sideNav();
   var id, curso, participantes, duracion, horasHombre, costoPP, costoTotal, id, estatus, mesReal;
 
-  $(".button-collapse").sideNav();  
+  $(".button-collapse").sideNav(); 
 
-  obtCumplimiento(obtMesCumplimiento(),obtMesActual());   
+var hoy = new Date();
+var yyyy = hoy.getFullYear();   
 
   $('#tblCurso').DataTable(
   {           
     "searching": true,
-    "scrollY":        '46vh',
+    "scrollY":        '50vh',
     "scrollX": true,
     "scrollCollapse": true,
     "paging":         false,
@@ -19,9 +27,14 @@ $(document).ready(function()
     "columnDefs": 
     [
       //{"className": "dt-head-center", "targets": "_all"},
-      {"className": "dt-center", "targets": "_all"},
-      { "width": "10%", "targets": [3,12] }        
-      ],
+      {"className": "dt-center", "targets": [3,4,5,6,7,8,9,10,11,12,13,14] },
+      //{ "width": "10%", "targets": [3,12] },
+      {
+      "targets": [ 14 ],
+      "visible": false,
+      "searchable": true
+      }
+    ],
       "ajax":
       {
         "method":"POST",
@@ -42,7 +55,8 @@ $(document).ready(function()
       {"data":"duracionReal"},
       {"data":"horasHombreReal"},
       {"data":"mesReal"},
-      {"data":"estatus"}
+      {"data":"estatus"},
+      {"data":"ano"}
       ],        
       "language": 
       {
@@ -58,6 +72,38 @@ $(document).ready(function()
     }); 
 var table = $('#tblCurso').DataTable();
 
+obtCumplimiento(obtMesCumplimiento(),obtMesActual(), yyyy);
+
+// FILTRO
+$("#tblCurso_filter").hide();
+table.search( yyyy ).draw(); 
+
+$("input[name=ano]").click(function () {  
+        $("#cumplimiento").html("");  
+        if( $('input:radio[name=ano]:checked').val() == "2017" )
+        {
+        table.search( "2017" ).draw();
+        obtCumplimiento(obtMesCumplimiento(),obtMesActual(), yyyy);
+        }
+        else if( $('input:radio[name=ano]:checked').val() == "2018" )
+        {
+        table.search( "2018" ).draw();
+        obtCumplimiento(obtMesCumplimiento(),obtMesActual(), yyyy);
+        }
+    });
+
+/*$('#chk2017').on('click', function() { 
+
+alert("2017");
+$("#chk2017").prop('checked', true);
+    $("#chk2018").prop('checked', false);
+    table.search( "2017" ).draw(); 
+    $("#cumplimiento").html("");
+    obtCumplimiento(obtMesCumplimiento(),obtMesActual(), yyyy);
+
+});*/
+// FILTRO
+
     $('#tblCurso tbody').on( 'click', 'tr', function () {
         if ( $(this).hasClass('selected') ) {
             $(this).removeClass('selected');
@@ -67,6 +113,7 @@ var table = $('#tblCurso').DataTable();
             $(this).addClass('selected');
         }
     } );
+    
 
 $('#tblCurso tbody').on('click', 'tr', function ()
 {
@@ -152,7 +199,7 @@ $("#reportar").click(function()
       Materialize.toast('Se registro', 1000,'green darken-4');
       cleanRes();
       $("#cumplimiento").html("");
-      obtCumplimiento(obtMesCumplimiento(), obtMesActual());      
+      obtCumplimiento(obtMesCumplimiento(), obtMesActual(),yyyy);      
     },'json');      
   }
 
@@ -300,39 +347,72 @@ switch(mm) {
 }
 }
 
-function obtCumplimiento(xmes,mactual)
+function obtCumplimiento(xmes,mactual,yyyy)
 {
-  $.post('php/obtenerCumplimiento.php', {xmes:xmes},
-    function(result){
+  if( $('input:radio[name=ano]:checked').val() == "2017" )
+  {
+    year = yyyy -1;
+    $.post('php/obtenerCumplimiento.php', {year:year},
+      function(result){
 
-      if(result.data.length>0){
+        if(result.data.length>0){
 
-        var horas = result.data[0].totalHoras;
-        var horasReales = result.data[0].totalHorasReales;
+          var horas = result.data[0].totalHoras;
+          var horasReales = result.data[0].totalHorasReales;
 
-        resultado = horasReales / horas;
+          resultado = horasReales / horas;
 
-        if(resultado <= 0.8)
-        {
-          var cumplimiento = resultado * 100;
-          $ ("#cumplimiento").html("<h4>% de cumplimiento hasta el mes de "+mactual+":</h4><h1 style='color:red; text-align:center;'>" + redondeo(cumplimiento,2) + "%</h1>");
+          if(resultado <= 0.8)
+          {
+            var cumplimiento = resultado * 100;
+            $ ("#cumplimiento").html("<span style='font-size:25px;'>% de cumplimiento hasta el mes de Diciembre del " + year + ":&nbsp;&nbsp;&nbsp; </span><span style='color:red; font-size:45px;'>" + redondeo(cumplimiento,2) + "%</span>");
+          }
+          if(resultado > 0.8 && resultado <= 0.9)
+          {
+            var cumplimiento = resultado * 100;
+            $ ("#cumplimiento").html("<span style='font-size:25px;'>% de cumplimiento hasta el mes de Diciembre del " + year + ":&nbsp;&nbsp;&nbsp; </span><span style='color:yellow; font-size:45px;'>" + redondeo(cumplimiento,2) + "%</span>");
+          }
+          if(resultado > 0.9)
+          {
+            var cumplimiento = resultado * 100;
+            $ ("#cumplimiento").html("<span style='font-size:25px;'>% de cumplimiento hasta el mes de Diciembre del " + year + ":&nbsp;&nbsp;&nbsp; </span><span style='color:green; font-size:45px;'>" + redondeo(cumplimiento,2) + "%</span>");
+          }        
+
         }
-        if(resultado > 0.8 && resultado <= 0.9)
-        {
-          var cumplimiento = resultado * 100;
-          $ ("#cumplimiento").html("<h4>% de cumplimiento hasta el mes de "+mactual+":</h4><h1 style='color:yellow; text-align:center;'>" + redondeo(cumplimiento,2) + "%</h1>");
+
+      },'json');    
+  }
+  else if( $('input:radio[name=ano]:checked').val() == "2018" )
+  {
+    $.post('php/obtenerCumplimiento.php', {xmes:xmes},
+      function(result){
+
+        if(result.data.length>0){
+
+          var horas = result.data[0].totalHoras;
+          var horasReales = result.data[0].totalHorasReales;
+
+          resultado = horasReales / horas;
+
+          if(resultado <= 0.8)
+          {
+            var cumplimiento = resultado * 100;
+            $ ("#cumplimiento").html("<span style='font-size:25px;'>% de cumplimiento hasta el mes de " + mactual + " del " + yyyy + ":&nbsp;&nbsp;&nbsp; </span><span style='color:red; font-size:45px;'>" + redondeo(cumplimiento,2) + "%</span>");
+          }
+          if(resultado > 0.8 && resultado <= 0.9)
+          {
+            var cumplimiento = resultado * 100;
+            $ ("#cumplimiento").html("<span style='font-size:25px;'>% de cumplimiento hasta el mes de " + mactual + " del " + yyyy + ":&nbsp;&nbsp;&nbsp; </span><span style='color:yellow; font-size:45px;'>" + redondeo(cumplimiento,2) + "%</span>");
+          }
+          if(resultado > 0.9)
+          {
+            var cumplimiento = resultado * 100;
+            $ ("#cumplimiento").html("<span style='font-size:25px;'>% de cumplimiento hasta el mes de " + mactual + " del " + yyyy + ":&nbsp;&nbsp;&nbsp; </span><span style='color:green; font-size:45px;'>" + redondeo(cumplimiento,2) + "%</span>");
+          }        
         }
-        if(resultado > 0.9)
-        {
-          var cumplimiento = resultado * 100;
-          $ ("#cumplimiento").html("<h4>% de cumplimiento hasta el mes de "+mactual+":</h4><h1 style='color:green; text-align:center;'>" + redondeo(cumplimiento,2) + "%</h1>");
-        }        
-
-      }
-
-    },'json');
+      },'json');    
+  }
 }
-
 
 function redondeo(numero, decimales)
 {

@@ -199,19 +199,26 @@ table = $('#tbl-pendiente').DataTable({
       next:       "Siguiente",
       last:       "Último"
     }
-  },
+  }
 });
 
 
-$('#tbl-pendiente tbody').on('click', 'tr', function () {
+$("#tbl-pendiente tbody").on("click", "a.btn-detalles", function () {
 
-  if ($(this).hasClass('selected')) {
-    $(this).removeClass('selected');
+    var datos = table.row($(this).parents("tr")).data();
+    IdTicket = datos[0];
+    Titulo = datos[1];
+    Tarea = datos[2];
+    Fecha = datos[3];
 
-  } else {
 
-    table.$('tr.selected').removeClass('selected');
-    $(this).addClass('selected');
+  //if ($(this).hasClass('selected')) {
+  //  $(this).removeClass('selected');
+//
+  //} else {
+
+    //table.$('tr.selected').removeClass('selected');
+    //$(this).addClass('selected');
     $("#SegTicket #DetallesTitulo").empty();
     $("#SegTicket #txt-seguimiento").val("");
     $('#SegTicket').modal('open');
@@ -221,11 +228,10 @@ $('#tbl-pendiente tbody').on('click', 'tr', function () {
     $("#txt-correo2").val("").siblings().removeClass("active");
     $("#chk-correo2").attr( "checked", false );
 
-    
-    IdTicket = $(this).find('td').eq(0).html();
-    Titulo = $(this).find('td').eq(1).html();
-    Tarea = $(this).find('td').eq(2).html();
-    Fecha = $(this).find('td').eq(3).html();
+    //IdTicket = $(this).find('td').eq(0).html();
+    //Titulo = $(this).find('td').eq(1).html();
+    //Tarea = $(this).find('td').eq(2).html();
+    //Fecha = $(this).find('td').eq(3).html();
 
     $("#SegTicket #DetallesTitulo").append("<h5>Ticket N°"+IdTicket+" - <small>" + Titulo + "</small></h5><blockquote>"+Tarea+"<br><small>"+Fecha+"</small></blockquote>");
 
@@ -272,7 +278,17 @@ $('#tbl-pendiente tbody').on('click', 'tr', function () {
 
     }, 'json');
 
-  }
+  //}
+});
+
+ $("#tbl-pendiente tbody").on("click", "a.btn-imp", function () {
+
+  var datos = table.row($(this).parents("tr")).data();
+  IdTicket = datos[0];
+
+  window.open('pdf.php?IdTicket='+IdTicket, '_blank');
+  
+
 });
 
 //Select de departamento

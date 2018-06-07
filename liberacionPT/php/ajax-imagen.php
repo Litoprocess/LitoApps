@@ -9,7 +9,7 @@ if (isset($_FILES["file"]))
     $dimensiones = getimagesize($ruta_provisional);
     $width = $dimensiones[0];
     $height = $dimensiones[1];
-    $carpeta = 'C:/xampp/htdocs/PanelAplicaciones/LiberacionPT/imagenes/';
+    $carpeta = 'imagenes/';
 
     if ($tipo != 'image/jpg' && $tipo != 'image/jpeg' && $tipo != 'image/png' && $tipo != 'image/gif')
     {
@@ -19,7 +19,6 @@ if (isset($_FILES["file"]))
     {
         $src = $carpeta.$nombre;
         move_uploaded_file($ruta_provisional, $src);
-        //move_uploaded_file($_FILES['file']['tmp_name'], SITE_ROOT.'imagenes/');
         echo $src;
     }
 

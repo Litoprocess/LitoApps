@@ -8,7 +8,7 @@
     <li><div class="divider"></div></li>
     <li class="bold">
       <a href="../" id="nav-tickets1">
-        <i class="material-icons">home</i>Página principal
+        <i class="material-icons">apps</i>LitoApps
       </a>
     </li>
     <li><div class="divider"></div></li>

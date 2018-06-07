@@ -11,6 +11,13 @@ h2, h4 {
   justify-content: center;
 }
 
+[type="checkbox"] + label:before, [type="checkbox"]:not(.filled-in) + label:after {
+    top: 5px;
+    left: 5px;
+    width: 12px;
+    height: 12px;
+}
+ 
 
 
 

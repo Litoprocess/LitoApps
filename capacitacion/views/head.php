@@ -25,13 +25,40 @@
         <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Capacitación</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li calss="active"><a href="index.php">Registro</a></li>
-          <li><a href="resultado.php">Listado</a></li>  
+
+          <?php switch( $_SESSION['Permisos']["UserCapacitacion"] ) { 
+          case 1: ?>
+          <li id="registro"><a href="registro.php">Registro</a></li>
+          <li id="resultado"><a href="resultado.php">Listado</a></li>          
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="registro"><a href="registro.php">Registro</a></li>
+          <li id="resultado"><a href="resultado.php">Listado</a></li>          
+          <?php
+          default:;
+          break;
+           } ?> 
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li calss="active"><a href="index.php">Registro</a></li>
-          <li><a href="resultado.php">Listado</a></li>                    
+
+          <?php switch( $_SESSION['Permisos']["UserCapacitacion"] ) { 
+          case 1: ?>
+          <li id="sideregistro"><a href="registro.php">Registro</a></li>
+          <li id="sideresultado"><a href="resultado.php">Listado</a></li>          
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="sideregistro"><a href="registro.php">Registro</a></li>
+          <li id="sideresultado"><a href="resultado.php">Listado</a></li>          
+          <?php
+          default:;
+          break;
+           } ?> 
+
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               

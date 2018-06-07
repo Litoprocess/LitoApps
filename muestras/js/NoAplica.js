@@ -1,16 +1,40 @@
 $(document).ready(function() 
 {
+
+if(window.location.pathname == '/litoapps/muestras/noaplica.php')
+{
+  $('#noaplica').addClass('active');
+  $('#ordenes').removeClass('active');
+  $('#nocumplido').removeClass('active');
+  $('#cumplido').removeClass('active');
+}
+
   var data,orden,cliente,cantidad,aplica;
   $(".button-collapse").sideNav();  
+
+  var d = new Date();
+  var month = d.getMonth()+1;
+  var day = d.getDate();
+
+  var output =  (day<10 ? '0' : '') + day + '-' +
+  (month<10 ? '0' : '') + month + '-' +
+  d.getFullYear();
   
 
   //LLenar la tabla con la BD
   $('#tblNoAplica').DataTable(
   {           
       "searching": true,
-      "scrollY":        '56vh',
+      "scrollY":        '59vh',
       "scrollCollapse": true,
       "paging":         false,
+        dom: 'Bfrtip',
+        buttons: [
+        {
+          extend: 'excelHtml5',
+          title: 'Control_de_Muestras_NoAplica_' + output 
+        },
+        ],      
       "ajax":
       {
         "method":"POST",

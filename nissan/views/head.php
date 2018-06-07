@@ -26,15 +26,45 @@
         <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Revision Nissan</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li id="baseNissan"><a href="base.php">Base</a></li>
-          <li id="escanerNissan" calss="active"><a href="index.php">Escaner</a></li>
-          <li id="bitacoraNissan"><a href="bitacora.php">Bitacora</a></li>  
+
+          <?php switch( $_SESSION['Permisos']["UserNissan"] ) { 
+          case 1: ?>
+          <li id="base"><a href="base.php">Base</a></li>
+          <li id="escaner" calss="active"><a href="index.php">Escaner</a></li>
+          <li id="bitacora"><a href="bitacora.php">Bitacora</a></li>              
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="base"><a href="base.php">Base</a></li>
+          <li id="escaner" calss="active"><a href="index.php">Escaner</a></li>
+          <?php          
+
+          default:;
+          break;
+           } ?> 
+ 
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-          <li id="baseNissan"><a href="base.php">Base</a></li>
-          <li id="escanerNissan" calss="active"><a href="index.php">Escaner</a></li>
-          <li id="bitacoraNissan"><a href="bitacora.php">Bitacora</a></li>                   
+
+          <?php switch( $_SESSION['Permisos']["UserNissan"] ) { 
+          case 1: ?>
+          <li id="sidebase"><a href="base.php">Base</a></li>
+          <li id="sideescaner" calss="active"><a href="index.php">Escaner</a></li>
+          <li id="sidebitacora"><a href="bitacora.php">Bitacora</a></li>              
+          <?php
+          break;
+
+          case 3: ?>
+          <li id="sidebase"><a href="base.php">Base</a></li>
+          <li id="sideescaner" calss="active"><a href="index.php">Escaner</a></li>
+          <?php          
+
+          default:;
+          break;
+           } ?>  
+
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               

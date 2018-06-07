@@ -1,0 +1,64 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+/* Color de fondo*/
+body {
+	background-color: #fafafa;
+}
+/* Alinear encabezados*/
+h2, h4, h6 {
+	text-align: center;
+}
+
+.logo {
+    display: inline-block;
+    height: 100%;
+}
+
+.logo>img {
+    vertical-align: middle;
+    width: 180px;
+}
+
+.navbar-brand {
+  padding: 0px;
+}
+
+.navbar-brand>img {
+  height: 100%;
+  padding: 5px;
+  width: auto;
+}
+
+.logo-resize .navbar-brand {
+  height: 150px;
+}
+
+.logo-resize .nav >li >a {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.logo-resize .navbar-toggle {
+  padding: 10px;
+  margin: 25px 15px 25px 0;
+}
+
+div #servicio, #tiempo, #calidad, #costo, #continuidad, #voz
+{
+background-color: #1565c0;
+color: rgba(255, 255, 255, 1);
+}
+
+label
+{
+  color: black;
+}
+
+
+
+
+
+
+
+

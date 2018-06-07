@@ -12,10 +12,10 @@ while( $data = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) )
 {
 
 		$arreglo[]= array("numorden"=>$data['NumOrden'],		
-			"trabajo"=>utf8_encode($data['NombreTrabajo']),
+			"trabajo"=>$data['NombreTrabajo'],
 			"cantentregar"=>number_format($data['CantEntregar']),
 			"cantentregada"=>number_format($data['CantEntregada']),
-			"cantidad"=>"<input type='text' class='in_cantidad' id='cantidad".$data['NumOrden']."' size='3'>",
+			"cantidad"=>"<input type='text' class='in_cantidad browser-default' id='cantidad".$data['NumOrden']."' size='3'>",
 			"aplica"=>"<input type='checkbox' class='cb_aplica' id='aplica".$data['NumOrden']."' size='3'><label for='aplica".$data['NumOrden']."'></label>"
 			);	
 }

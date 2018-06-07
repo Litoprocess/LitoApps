@@ -1,230 +1,113 @@
 $(document).ready(function(){
 
-$('#dirGeneral').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" },
-      //{"className": "dt-head-center", "targets": "_all"},      
-      {"className": "dt-body-center", "targets": [0]}
-      ],                    
-    }); 
-  var table = $('#tblNoAplica').DataTable();   	
+	$('select').material_select();
 
-$('#dirOpeyVen').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#dirOpeyVen').DataTable(); 
-  
-$('#dirVentas').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#dirVentas').DataTable(); 
+	$('#extension').each( function () 
+	{
+		var title = $(this).text();
+		$(this).html( '<input id="column0_search" type="text" class="browser-default" placeholder="'+title+'" /><label for="column0_search"></label>');
+	} );	
 
-$('#sistemas').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#sistemas').DataTable(); 
+	$('#nombre').each( function () 
+	{
+		var title = $(this).text();
+		$(this).html( '<input id="column1_search" type="text" class="browser-default" placeholder="'+title+'" /><label for="column1_search"></label>');
+	} );		
 
-$('#gerCalidad').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#gerCalidad').DataTable(); 
+	$('#departamento').each( function () 
+	{
+		var title = $(this).text();
+		$(this).html( '<input id="column2_search" type="text" class="browser-default" placeholder="'+title+'" /><label for="column2_search"></label>');
+	} );	
 
-$('#administracion').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#administracion').DataTable(); 
+	$('#puesto').each( function () 
+	{
+		var title = $(this).text();
+		$(this).html( '<input id="column3_search" type="text" class="browser-default" placeholder="'+title+'" /><label for="column3_search"></label>');
+	} );	
 
-  $('#gerSAM').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#gerSAM').DataTable(); 
+	$('#correo').each( function () 
+	{
+		var title = $(this).text();
+		$(this).html( '<input id="column4_search" type="text" class="browser-default" placeholder="'+title+'" /><label for="column4_search"></label>');
+	} );		
 
-  $('#capHumano').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
+	var table = $("#directorio").DataTable(
+	{            		
+		ajax:
+		{
+			url: 'php/consultardirectorio.php'
+		},	
+		"columns":
+		[
+		{data : "extension"},
+		{data : "nombre"},
+		{data : "departamento"},
+		{data : "puesto"},
+		{data : "correo"}
+		],
+		"columnDefs": 
+		[
+		{"className": "dt-center", "targets": 0},
+		{ "orderable": false, "targets": "_all" }
+		],	                   
+		"language": 
+		{    
+			zeroRecords: "No hay registros",
+			sInfo: "_END_ de _TOTAL_ registros",
+			sInfoEmpty: "0 de 0 registros",
+			sInfoFiltered: "(de _MAX_ registros en total)",                       
+			search: "Buscar:"
+		},
+		"info": false,
+		"searching": true,
+		//"scrollY":        '67vh',
+		//"scrollX": true,
+		//"scrollCollapse": true,
+		"paging":         false,
+		"responsive": true,
+		"order": []          
     }); 
-  var table = $('#capHumano').DataTable();    
 
-  $('#vigilancia').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#vigilancia').DataTable(); 
+	// OCULTAR INPUT DE BUSQUEDA GENERAL
+	$("#directorio_filter").hide();    
 
-  $('#salaJuntas').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#salaJuntas').DataTable();   
-  
-  $('#gerOperaciones').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#gerOperaciones').DataTable(); 
+	$('#column0_search').on( 'keyup', function () {
+		table
+		.columns( 0 )
+		.search( this.value )
+		.draw();
+	} );       
 
-  $('#gerPlanta').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#gerPlanta').DataTable(); 
+	$('#column1_search').on( 'keyup', function () {
+		table
+		.columns( 1 )
+		.search( this.value )
+		.draw();
+	} );       
 
-  $('#inkKong').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#inkKong').DataTable(); 
+	$('#column2_search').on( 'keyup', function () {
+		table
+		.columns( 2 )
+		.search( this.value )
+		.draw();
+	} );       
 
-  $('#gerVentas').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#gerVentas').DataTable();   
 
-  $('#emergencias').DataTable(
-  {           
-      "searching": false,
-      "scrollCollapse": true,
-      "paging":         false,
-      "bInfo": false,
-      "responsive": true,
-      "order": [],      
-      "columnDefs": 
-      [
-      { "orderable": false, "targets": "_all" }
-      ],                    
-    }); 
-  var table = $('#emergencias').DataTable(); 
+	$('#column3_search').on( 'keyup', function () {
+		table
+		.columns( 3 )
+		.search( this.value )
+		.draw();
+	} );   
+
+	$('#column4_search').on( 'keyup', function () {
+		table
+		.columns( 4 )
+		.search( this.value )
+		.draw();
+	} );       
+
+
 
 });

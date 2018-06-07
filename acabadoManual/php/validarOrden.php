@@ -1,24 +1,28 @@
-<?php
+<?php session_start();
 
-$serverName = "192.168.2.211"; 
-$connectionInfo = array( "Database"=>"AcabadoManual", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+include 'conexion.php';
 
-$orden=$_REQUEST['orden'];
+$orden= $_REQUEST['orden'];
 
 $response = new stdClass();
 $rows = array();
-$sql = "SELECT  * from vOrdenes WHERE NumOrden='$orden'";
+
+$sql = "SELECT * from vOrdenes WHERE NumOrden='$orden'";
 $stmt = sqlsrv_query( $conn,$sql);
+
 while( @$row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	
 	$NumOrden=$row['NumOrden'];
 	$trabajo=utf8_encode($row['Trabajo']);
+
 	if(isset($NumOrden)){
-		
+		$response->validacion = 'true';
 		$response->NumOrden=@$NumOrden;
-		$response->trabajo=$trabajo;
-		
+		$response->trabajo=$trabajo;		
+	}
+	else
+	{
+		$response->validacion = 'false';
 	}
 	
 	

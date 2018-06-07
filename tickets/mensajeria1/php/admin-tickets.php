@@ -29,8 +29,8 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 		$Vencimiento = $row['FechaFinalizado']->format("Y-m-d");
 	}
 
-	$EstatusBD = utf8_encode($row['Estatus']);
-	$PrioridadBD = utf8_encode($row['Prioridad']);
+	$EstatusBD = $row['Estatus'];
+	$PrioridadBD = $row['Prioridad'];
 
 //Select Estatus
 	require 'DB Table/select-estatus.php';
@@ -46,18 +46,18 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	}
 
 	$data[] = array("Folio"=>$row['IdTicket'],
-		"Solicita"=>utf8_encode($row['NombreUsuario']),
-		"Empresa"=>utf8_encode($row['NombreEmpresa']),
-		"Titulo"=>trim(utf8_encode($row['Titulo'])),
-		"Descripcion"=>trim(utf8_encode($row['Detalles'])),
-		"Departamento"=>utf8_encode($row['DepartamentoUsuario']),
+		"Solicita"=>$row['NombreUsuario'],
+		"Empresa"=>$row['NombreEmpresa'],
+		"Titulo"=>trim($row['Titulo']),
+		"Descripcion"=>trim($row['Detalles']),
+		"Departamento"=>$row['DepartamentoUsuario'],
 		"Registro"=>$row['FechaRegistro']->format("d-m-Y"),
 		"Prioridad"=>$SelectPrioridad,
 		"Estatus"=>$SelectEstatus,
 		"Entrega"=>$row['FechaEntrega']->format("d-m-Y"),
 		"Hora"=>$Hora1.$Hora2,
 		"Finalizado"=>$Vencimiento,
-		"Correo"=>utf8_encode($row['CorreoUsuario'])); 
+		"Correo"=>$row['CorreoUsuario']); 
 
 }
 

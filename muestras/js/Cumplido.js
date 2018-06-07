@@ -1,20 +1,44 @@
 $(document).ready(function() 
 {
+
+if(window.location.pathname == '/litoapps/muestras/cumplido.php')
+{
+  $("#noaplica").removeClass("active");
+  $("#ordenes").removeClass("active");
+  $("#nocumplido").removeClass("active");
+  $("#cumplido").addClass("active");
+} 
+
   var data,orden,cliente,cantidad,aplica;
   $(".button-collapse").sideNav();  
+
+  var d = new Date();
+  var month = d.getMonth()+1;
+  var day = d.getDate();
+
+  var output =  (day<10 ? '0' : '') + day + '-' +
+  (month<10 ? '0' : '') + month + '-' +
+  d.getFullYear();
 
 
   //LLenar la tabla con la BD
   $('#tblCumplido').DataTable(
   {             
       "searching": true,
-      "scrollY":        '56vh',
+      "scrollY":        '60.5vh',
       "scrollCollapse": true,
       "paging":         false,
+        dom: 'Bfrtip',
+        buttons: [
+        {
+          extend: 'excelHtml5',
+          title: 'Control_de_Muestras_Cumplido_' + output 
+        },
+        ],       
       "ajax":
       {
         "method":"POST",
-        "url":"php/obtCumplido.php"
+        "url":"php/ObtCumplido.php"
       },
       "responsive": true,      
       "columnDefs": 
@@ -39,7 +63,10 @@ $(document).ready(function()
         sInfoEmpty: "0 de 0 registros",
         sInfoFiltered: "(de _MAX_ registros en total)",                       
         search: "Buscar:"
-      }       
+      }        
     }); 
   var table = $('#tblCumplido').DataTable();
+
+
+
 });

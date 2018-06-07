@@ -21,7 +21,7 @@ $data = array();
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 
-	$EstatusBD = utf8_encode($row['Estado']);
+	$EstatusBD = $row['Estado'];
 
 	if($row['FechaCompromiso']== null){
 
@@ -43,16 +43,16 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 	//Select Estatus
 	require 'DB Table/select-estatus.php';
 
-	$data[] = array("Folio"=>utf8_encode($row['Id_Ticket']),
-		"Solicita"=>utf8_encode($row['Solicitante']),
-		"Titulo"=>utf8_encode($row['Titulo']),
-		"Descripcion"=>mb_strtoupper(utf8_encode($row['Tarea'])),
+	$data[] = array("Folio"=>$row['Id_Ticket'],
+		"Solicita"=>$row['Solicitante'],
+		"Titulo"=>$row['Titulo'],
+		"Descripcion"=>mb_strtoupper($row['Tarea']),
 		"Registro"=>$row['FechaRegistro']->format("Y-m-d"),
-		"Prioridad"=>utf8_encode($row['Prioridad']),
+		"Prioridad"=>$row['Prioridad'],
 		"Compromiso"=>$Compromiso,
 		"Estatus"=>$SelectEstatus,
 		"Finalizado"=>$FechaVencimiento,
-		"Correo"=>utf8_encode($row['CorreoSolicitante'])); 
+		"Correo"=>$row['CorreoSolicitante']); 
 
 }
 

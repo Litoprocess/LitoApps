@@ -6,7 +6,7 @@ $orden = $_POST['orden'];
 
 $sql = "SELECT * FROM Reprocesos WHERE NumOrden='$orden'";
 $stmt = sqlsrv_query($conn,$sql);
-$row_count = sqlsrv_has_rows ( $stmt );
+//$row_count = sqlsrv_has_rows ( $stmt );
 
 if($stmt === false){
 	die(print_r(sqlsrv_errors(),true));

@@ -1,4 +1,10 @@
 $(document).ready(function(){
+if(window.location.pathname == '/litoapps/capacitacion/registro.php')
+{
+  $("#registro").addClass("active");
+  $("#resultado").removeClass("active");
+} 
+
 $('.button-collapse').sideNav(); 
 	//$("#mes").material_select();
 	var participantes, duracion, horasHombre, costoPP, costoTotal, departamento, curso, mes;	
@@ -68,7 +74,7 @@ $("#costoPP").keyup(function()
 			'duracion' : duracion,
 			'horasHombre' : horasHombre,
 			'costoPP' : costoPP,
-			'costoTotal' : costoTotal,
+			'costoTotal' : costoTotal
 		},
 		function(result){
 			Materialize.toast('Se registro', 1000,'green darken-4');
@@ -132,6 +138,19 @@ function obtMesActual()
     }*/ 
     //hoy = mm+'/'+dd+'/'+yyyy;
 switch(mm) {
+	case 1: 		
+		$("select[id=mes]").find("option[value= '02) FEB']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '03) MAR']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '04) ABR']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '05) MAY']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '06) JUN']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '07) JUL']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '08) AGO']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '09) SEP']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '10) OCT']").prop("disabled",true);
+		$("select[id=mes]").find("option[value= '11) NOV']").prop("disabled",true);	
+		$("select[id=mes]").find("option[value= '12) DIC']").prop("disabled",true);
+		break;	
     case 2:
 		$("select[id=mes]").find("option[value= '01) ENE']").prop("disabled",true);
         break;

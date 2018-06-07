@@ -12,8 +12,6 @@
   <title>Liberación de producto Terminado</title>
 </head>
 <body>
-<body>
-
   <?php require 'layout/aside.php'; ?>
     <header>
     <ul class="dropdown-content" id="user_dropdown">
@@ -26,9 +24,35 @@
         <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Liberacion de Producto Terminado</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+          
+          <?php switch( $_SESSION['Permisos']["UserLibera"] ) { 
+          case 3: ?>
+          <!--li id="liberacion"><a href="liberacion.php">Liberaci&oacute;n</a></li-->               
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?>    
+
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
+            <span style="margin-left: 50px; font-size:14px;" class="white-text breadcrumb name">
+              <?php echo $_SESSION["Permisos"]["Departamento"];?>         
+            </span>
+            <span style="font-size:14px;" class="breadcrumb"><?php echo $_SESSION["Permisos"]["NombreUsuario"];?></span>          
         </ul>
-        <ul class="side-nav" id="mobile-demo">                 
+        <ul class="side-nav" id="mobile-demo">  
+
+          <?php switch( $_SESSION['Permisos']["UserLibera"] ) { 
+          case 3: ?>
+          <!--li id="sideliberacion"><a href="liberacion.php">Liberaci&oacute;n</a></li-->               
+          <?php
+          break;
+
+          default:;
+          break;
+           } ?>   
+                                
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               

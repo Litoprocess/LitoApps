@@ -29,7 +29,7 @@ $mail->addAddress($CorreoAtencion, $NombreUser);
 $mail->AddCC($Correo2);
 $mail->Subject = "Ha habido un cambio en el ticket N° ".$IdTicket;
 
-$mail->msgHTML("<b>Seguimiento del ticket N° $IdTicket</b><br><br>".utf8_encode($Notas)."<br><br>Para ver el seguimiento completo del ticket <a href='http://201.149.83.215:8080/tickets/mensajeria2/usuarios.php'>haz click aquí.</a>
+$mail->msgHTML("<b>Seguimiento del ticket N° $IdTicket</b><br><br>".utf8_encode($Notas)."<br><br>Para ver el seguimiento completo del ticket <a href='http://201.149.83.216/litoapps/login.php'>haz click aquí.</a>
 	<br><br><br><br><br><br><br>
 	<p style='color:#a1a1a1;'>Este e-mail se ha generado por un sistema automático. Por favor, no respondas a este e-mail directamente.</p>");
 

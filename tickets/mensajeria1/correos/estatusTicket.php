@@ -27,7 +27,7 @@ $mail->addAddress($CorreoSolicita, $NombreSolicita);
 $mail->Subject = "Ha habido una actualizacion en el ticket N° ".$IdTicket;
 
 $mail->msgHTML("El estado actual del ticket N° <b>$IdTicket</b> cambió.<br><br>Su ticket se encuentra <b>$data</b>
-	<br><br>Para conocer más información <a href='http://201.149.83.215:8080/tickets/mensajeria1/usuarios.php'>haz click aquí.</a>
+	<br><br>Para conocer más información <a href='http://201.149.83.216/litoapps/login.php'>haz click aquí.</a>
 	<br><br><br><br><br><br><br>
 	<p style='color:#a1a1a1;'>Este e-mail se ha generado por un sistema automático. Por favor, no respondas a este e-mail directamente.</p>");
 

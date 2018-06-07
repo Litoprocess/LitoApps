@@ -1,413 +1,475 @@
-<?php
-require('fpdf.php');
-class PDF extends FPDF
-{
+<?php session_start();
+use setasign\Fpdi\Fpdi;
+use setasign\Fpdi\PdfReader;
 
-    function Tabla()
-    {
-        include '../modelo/conexion.php';
+require_once('fpdf/fpdf.php');
+require_once('fpdi/src/autoload.php');
+require('../php/conexion.php');
 
-        $Folio=$_REQUEST['FOLIO'];
-        
-        $clientes="SELECT * FROM v_ord_prod where FOLIO=$Folio";
-        $consulta=mysql_query($clientes);
-        $num= mysql_num_rows($consulta);
-        	
-            if ( $num >0)
-            {
-                $folio=mysql_result($consulta,0,"FOLIO");
-                $FECHA_HORA=mysql_result($consulta,0,"FECHA_HORA");
-                $fentrega=mysql_result($consulta,0,"FECHA_ENTREGA");
-                $orProd=mysql_result($consulta,0,"ID_PRODUCTION");
-                $matrx=mysql_result($consulta,0,"OR_MATRIX");
-                
-                $trabajo=mysql_result($consulta,0,"TRABAJO");
-                $cliente=mysql_result($consulta,0,"CLIENTE");
-                
-                $cantidad=mysql_result($consulta,0,"CANTIDAD");
-                $ancho=mysql_result($consulta,0,"ANCHO");
-                $alto=mysql_result($consulta,0,"ALTO");
-                $medianil_ancho=mysql_result($consulta,0,"MEDIANIL_ANCHO");
-                $madianil_alto=mysql_result($consulta,0,"MEDIANIL_ALTO");
-                
-                $totAncho=mysql_result($consulta,0,"TOTAL_ANCHO");
-                $totAlto=mysql_result($consulta,0,"TOTAL_ALTO");
-                
-                $MAT_ESPECIAL=mysql_result($consulta,0,"MAT_ESPECIAL");
-                $nomMaterial1=mysql_result($consulta,0,"NOMBRE_MATERIAL");
-                if ($MAT_ESPECIAL=="on")
-                {
-                    $nomMaterial="Material Especial: ".$nomMaterial1;
-                }
-                else
-                {
-                    $nomMaterial="Material: ".$nomMaterial1;
-                }
-                
 
-                $titMat=mysql_result($consulta,0,"TIPO");
-                if ($titMat==R)
-                {
-                    $titMat1="MATERIAL RIGIDO";
-                }
-                else if ($titMat==F)
-                {
-                    $titMat1="MATERIAL FLEXIBLE";
-                }
-                
-                $medida=mysql_result($consulta,0,"M_MEDIDA");
-                $Ancho=mysql_result($consulta,0,"M_ANCHO");
-                $Alto=mysql_result($consulta,0,"M_ALTO");
-                $Entran=mysql_result($consulta,0,"M_ENTRA");
-                $Aprox=mysql_result($consulta,0,"M_APROV");
-                $Orientacion=mysql_result($consulta,0,"M_ORIENTA");
-                
-                $cantidad2=mysql_result($consulta,0,"RES_CANT");
-                $txtcantidad=mysql_result($consulta,0,"TIT_CANT_MAT");
-                
-                
-                
-                $resolucion=mysql_result($consulta,0,"RESOLUCION");
-                $imp_pasadas=mysql_result($consulta,0,"IMP_PASADAS");
-                
-                $barnizc=mysql_result($consulta,0,"BARNIZ");
-                if ($barnizc=="on")
-                {
-                    $barniz="Si";
-                    $barniz_pasadas=mysql_result($consulta,0,"BARNIZ_PASADAS");
-                    $barniz_pasadas_txt="Pasadas: ".$barniz_pasadas;
-                }
-                else
-                {
-                    $barniz="No";
-                    $barniz_pasadas="";
-                    $barniz_pasadas_txt="";
-                }
-                
-                $blancoc=mysql_result($consulta,0,"BLANCO");
-                if ($blancoc==on)
-                {
-                    $blanco="Si";
-                }
-                else
-                {
-                    $blanco="No";
-                }
-                
-                $id_Acabado1=mysql_result($consulta,0,"ID_ACABADO1");
-                $acabado1="SELECT * FROM acabados where ID_ACABADO=$id_Acabado1";
-                $consultaAcabado1=mysql_query($acabado1);
-                $nomAcabado1=mysql_result($consultaAcabado1,0,"DESCRIPCION");
-                $id_Acabado2=mysql_result($consulta,0,"ID_ACABADO2");
-                $acabado2="SELECT * FROM acabados where ID_ACABADO=$id_Acabado2";
-                $consultaAcabado2=mysql_query($acabado2);
-                $nomAcabado2=mysql_result($consultaAcabado2,0,"DESCRIPCION");
-                $id_Acabado3=mysql_result($consulta,0,"ID_ACABADO3");
-                $acabado3="SELECT * FROM acabados where ID_ACABADO=$id_Acabado3";
-                $consultaAcabado3=mysql_query($acabado3);
-                $nomAcabado3=mysql_result($consultaAcabado3,0,"DESCRIPCION");
-                $id_Acabado4=mysql_result($consulta,0,"ID_ACABADO4");
-                $acabado4="SELECT * FROM acabados where ID_ACABADO=$id_Acabado4";
-                $consultaAcabado4=mysql_query($acabado4);
-                $nomAcabado4=mysql_result($consultaAcabado4,0,"DESCRIPCION");
-                $id_Acabado5=mysql_result($consulta,0,"ID_ACABADO5");
-                $acabado5="SELECT * FROM acabados where ID_ACABADO=$id_Acabado5";
-                $consultaAcabado5=mysql_query($acabado5);
-                $nomAcabado5=mysql_result($consultaAcabado5,0,"DESCRIPCION");
-                $id_Acabado6=mysql_result($consulta,0,"ID_ACABADO6");
-                $acabado6="SELECT * FROM acabados where ID_ACABADO=$id_Acabado6";
-                $consultaAcabado6=mysql_query($acabado6);
-                $nomAcabado6=mysql_result($consultaAcabado6,0,"DESCRIPCION");
-                
-//                $id_Laminado=mysql_result($consulta,0,"ID_LAMINADO");
-//                $laminado="SELECT * FROM laminado_plotter where ID_LAMINADO=$id_Laminado";
-//                $consultaLaminado=mysql_query($laminado);
-//                $nomLaminado=mysql_result($consultaLaminado,0,"DESCRIPCION");
-                
-                $a1_desc=mysql_result($consulta,0,"A1_DESC");
-                $a2_desc=mysql_result($consulta,0,"A2_DESC");
-                $a3_desc=mysql_result($consulta,0,"A3_DESC");
-                $a4_desc=mysql_result($consulta,0,"A4_DESC");
-                $a5_desc=mysql_result($consulta,0,"A5_DESC");
-                $a6_desc=mysql_result($consulta,0,"A6_DESC");
-                $observaciones=mysql_result($consulta,0,"OBSERVACIONES");
-                
-                $this->Ln();
-                $this->SetFont('Arial','B',11);
-                $this->Cell(190,10,"ORDEN DE PRODUCCION",0,1,'R');
-                $this->Cell(100,10,"No. Cotizacion: $folio",0,0,'');
-                $this->Cell(50,10,"ODT NO. ",0,0,'R');
-                $this->Cell(40,10,"$orProd",1,0,'C');
-                
-                $this->Ln();
-                $this->Cell(100,8,"Fecha de OP: $FECHA_HORA",0,0,'');
-                $this->Cell(50,10,"NO. REF. ",0,0,'R');
-                $this->Cell(40,10,"$matrx",1,1,'C');
-                $this->Cell(190,8,"Fecha de entrega: $fentrega",0,1,'');
-                
-                //Encabezado
-                $this->Ln();
-                $this->Cell(190,8,"Trabajo: $trabajo",0,1,'');
-                $this->Cell(190,8,"Cliente: $cliente",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(190,10,"$nomMaterial",0,1,'C');
-                //Encabezado
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(43,5,"",0,0);
-                $this->Cell(87,5,"$titMat1",0,1,'C');
-                $this->Cell(33,5,"Cantidad: $cantidad Pzas.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->Cell(87,5,"Medida Cotizada",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(33,5,"Ancho: $ancho cm.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->SetTextColor(255, 128, 0);
-                $this->SetDrawColor(255, 128, 0);
-                $this->Cell(13,5,"Medida",1,0,'C');
-                $this->Cell(13,5,"Ancho",1,0,'C');
-                $this->Cell(13,5,"Alto",1,0,'C');
-                $this->Cell(13,5,"Entran",1,0,'C');
-                $this->Cell(15,5,"%Aprox",1,0,'C');
-                $this->Cell(20,5,"Orientacion",1,0,'C');
-                $this->SetTextColor(0, 0, 0);
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(10,5,"",0,0,'');
-                $this->Cell(35,5,"  Cantidad: $cantidad2 $txtcantidad",1,0);
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->SetTextColor(0, 0, 0);
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(33,5,"Alto: $alto cm.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->SetTextColor(255, 128, 0);
-                $this->SetDrawColor(255, 128, 0);
-                $this->Cell(13,5,"$medida",1,0,'C');
-                $this->SetTextColor(0, 0, 0);
-                $this->Cell(13,5,"$Ancho",1,0,'C');
-                $this->Cell(13,5,"$Alto",1,0,'C');
-                $this->Cell(13,5,"$Entran",1,0,'C');
-                $this->Cell(15,5,"$Aprox",1,0,'C');
-                $this->Cell(20,5,"$Orientacion",1,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(33,5,"Medianil ancho: $medianil_ancho cm.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(15,5,"",0,0,'C');
-                $this->Cell(20,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(33,5,"Medianil alto: $madianil_alto cm.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(15,5,"",0,0,'C');
-                $this->Cell(20,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(33,5,"Total Ancho: $totAncho cm.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(15,5,"",0,0,'C');
-                $this->Cell(20,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(33,5,"Total Alto: $totAlto cm.",1,0);
-                $this->Cell(10,5,"",0,0);
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(13,5,"",0,0,'C');
-                $this->Cell(15,5,"",0,0,'C');
-                $this->Cell(20,5,"",0,0,'C');
-                $this->SetDrawColor(0, 0, 0);
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(130,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','B',8);
-                $this->SetDrawColor(255, 128, 0);
-                $this->SetFillColor(255, 128, 0);
-                $this->Cell(41,5,"Tintas",1,0,'C');
-                $this->SetDrawColor(0, 0, 0);
-                $this->SetFillColor(1, 1, 1);
-                $this->Cell(89,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(41,5,"Resolucion: $resolucion",'RL',0,'');
-                $this->Cell(89,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(41,5,"Impresion Pasadas: $imp_pasadas",'RL',0,'');
-                $this->Cell(89,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(16,5,"Barniz: $barniz",'L',0,'');
-                $this->Cell(25,5,"$barniz_pasadas_txt",'R',0,'');
-                $this->Cell(89,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(41,5,"Blanco: $blanco",'RLB',0,'');
-                $this->Cell(89,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(130,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','B',8);
-                $this->SetDrawColor(255, 128, 0);
-                $this->SetFillColor(255, 128, 0);
-                $this->Cell(75,5,"Acabados",1,0,'C');
-                $this->SetDrawColor(0, 0, 0);
-                $this->SetFillColor(0, 0, 0);
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(75,5,"1er. Acabado: $nomAcabado1",'RL',0,'');
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(75,5,"2do. Acabado: $nomAcabado2",'RL',0,'');
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(75,5,"3er. Acabado: $nomAcabado3",'RL',0,'');
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(75,5,"4to. Acabado: $nomAcabado4",'RL',0,'');
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(75,5,"5to. Acabado: $nomAcabado5",'RL',0,'');
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(75,5,"6to. Acabado: $nomAcabado6",'RLB',0,'');
-                $this->Cell(55,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-//                $this->Ln();
-//                $this->Cell(75,5,"Laminado: $nomLaminado",'RLB',0,'');
-//                $this->Cell(55,5,"",0,0,'C');
-//                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(130,5,"",0,0,'C');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','B',8);
-                $this->SetDrawColor(255, 128, 0);
-                $this->SetFillColor(255, 128, 0);
-                $this->Cell(100,5,"Adicionales",1,0,'C');
-                $this->SetDrawColor(0, 0, 0);
-                $this->SetFillColor(0, 0, 0);
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(100,5,"$a1_desc",'LRB',0,'');
-                $this->Cell(30,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(100,5,"$a2_desc",'LRB',0,'');
-                $this->Cell(30,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(100,5,"$a3_desc",'LRB',0,'');
-                $this->Cell(30,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->SetFont('Arial','',8);
-                $this->Cell(100,5,"$a4_desc",'LRB',0,'');
-                $this->Cell(30,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(100,5,"$a5_desc",'LRB',0,'');
-                $this->Cell(30,5,"",0,0,'');
-                $this->Cell(10,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(100,5,"$a6_desc",'LRB',0,'');
-                $this->Cell(30,5,"",0,0,'');
-                
-                $this->Ln();
-                $this->Cell(130,5,"",0,0,'C');
-                
-                $this->Ln();
-                $this->SetFont('Arial','B',8);
-                $this->Cell(190,5,"Observaciones",1,1,'C');
-                $this->SetFont('Arial','',6);
-                $this->MultiCell(190,3,"$observaciones",1,1,'J');
-            }
+    $response = new stdClass();
+    $data =array();
+                          
+    $foliob=$_GET['foliob'];
+   
+    $sql="SELECT * FROM v_abrircotizaciones WHERE FOLIO='$foliob'";
+    $stmt = sqlsrv_query($conn,$sql);
+
+   while($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC))
+   {
+    $data[] = array(
+		"FOLIO"=>$row['FOLIO'],
+		"FECHA_HORA"=>$row['FECHA_HORA'],
+		"CLIENTE"=>$row['CLIENTE'],
+		"TRABAJO"=>$row['TRABAJO'],
+		"CANTIDAD"=>$row['CANTIDAD'],
+		"ANCHO"=>$row['ANCHO'],
+		"ALTO"=>$row['ALTO'],
+		"MEDIANIL_ANCHO"=>$row['MEDIANIL_ANCHO'],
+		"MEDIANIL_ALTO"=>$row['MEDIANIL_ALTO'],
+		"MAT_ESPECIAL"=>$row['MAT_ESPECIAL'],
+		"ID_MAT_ESPECIAL"=>$row['ID_MAT_ESPECIAL'],
+		"ID_MATERIAL"=>$row['ID_MATERIAL'],
+		"MEDIDA"=>$row['MEDIDA'],
+		"MATANCHO"=>$row['MATANCHO'],
+		"MATALTO"=>$row['MATALTO'],
+		"MATENTRAN"=>$row['MATENTRAN'],
+		"ORIENTA"=>$row['ORIENTA'],
+		"APROVECHAMIENTO"=>$row['APROVECHAMIENTO'],
+		"RESOLUCION"=>$row['RESOLUCION'],
+		"BLANCO"=>$row['BLANCO'],
+		"ID_ACABADO1"=>$row['ID_ACABADO1'],
+		"ID_ACABADO2"=>$row['ID_ACABADO2'],
+		"ID_ACABADO3"=>$row['ID_ACABADO3'],
+		"ID_ACABADO4"=>$row['ID_ACABADO4'],
+		"ID_ACABADO5"=>$row['ID_ACABADO5'],
+		"ID_ACABADO6"=>$row['ID_ACABADO6'],
+		"A1_DESC"=>$row['A1_DESC'],
+		"A1_PRECIO"=>$row['A1_PRECIO'],
+		"A2_DESC"=>$row['A2_DESC'],
+		"A2_PRECIO"=>$row['A2_PRECIO'],
+		"A3_DESC"=>$row['A3_DESC'],
+		"A3_PRECIO"=>$row['A3_PRECIO'],
+		"A4_DESC"=>$row['A4_DESC'],
+		"A4_PRECIO"=>$row['A4_PRECIO'],
+		"A5_DESC"=>$row['A5_DESC'],
+		"A5_PRECIO"=>$row['A5_PRECIO'],
+		"A6_DESC"=>$row['A6_DESC'],
+		"A6_PRECIO"=>$row['A6_PRECIO'],
+		"OBSERVACIONES"=>$row['OBSERVACIONES'],
+		"SUBTOTAL"=>$row['SUBTOTAL'],
+		"PORMARGEN"=>$row['PORMARGEN'],
+		"PUNITARIO"=>$row['PUNITARIO'],
+		"MARGEN"=>$row['MARGEN'],
+		"TOTAL"=>$row['TOTAL'],
+		"PORCOMISION"=>$row['PORCOMISION'],
+		"PROVEEDOR"=>$row['PROVEEDOR'],
+		"COMISION"=>$row['COMISION'],
+		"PRECIO_ACABADO1"=>$row['PRECIO_ACABADO1'],
+		"PRECIO_ACABADO2"=>$row['PRECIO_ACABADO2'],
+		"PRECIO_ACABADO3"=>$row['PRECIO_ACABADO3'],
+		"PRECIO_ACABADO4"=>$row['PRECIO_ACABADO4'],
+		"PRECIO_ACABADO5"=>$row['PRECIO_ACABADO5'],
+		"PRECIO_ACABADO6"=>$row['PRECIO_ACABADO6'],
+		"CANT_MAT"=>$row['CANT_MAT'],
+		"PRECIO_MAT"=>$row['PRECIO_MAT'],
+		"PRECIO_IMP"=>$row['PRECIO_IMP'],
+		"DESC_ACAB1"=>$row['DESC_ACAB1'],
+		"DESC_ACAB2"=>$row['DESC_ACAB2'],
+		"DESC_ACAB3"=>$row['DESC_ACAB3'],
+		"DESC_ACAB4"=>$row['DESC_ACAB4'],
+		"DESC_ACAB5"=>$row['DESC_ACAB5'],
+		"DESC_ACAB6"=>$row['DESC_ACAB6'],
+		"TIPO_CANT_MAT"=>$row['TIPO_CANT_MAT'],
+		"ID_PRODUCCION"=>$row['ID_PRODUCCION'],
+		"OR_MATRIX"=>$row['OR_MATRIX'],
+		"FECHA_ENTREGA"=>$row['FECHA_ENTREGA'],		
+		);	    
+
+		// initiate FPDI
+		$pdf = new Fpdi();
+		// add a page
+		$pdf->AddPage();
+		// set the source file
+		$pdf->setSourceFile('OrdenProduccionPlotterSinDatos2.pdf');
+		// import page 1
+		$tplIdx = $pdf->importPage(1);
+		// use the imported page and place it at position 10,10 with a width of 100 mm
+		$pdf->useTemplate($tplIdx, 10, 10, 200);
+
+		// now write some text above the imported page
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(177, 30.5);
+		$pdf->Cell(16,5,$row['FOLIO'],0,0,'R');
+		//$pdf->Write(0, $row['FOLIO']);
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(177, 35);
+		$pdf->Cell(16,5,$row['ID_PRODUCCION'],0,0,'R');
+		//$pdf->Write(0, $row['ID_PRODUCCION']);
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(177, 39.7);
+		$pdf->Cell(16,5,$row['OR_MATRIX'],0,0,'R');
+		//$pdf->Write(0, strtoupper($row['OR_MATRIX']));	
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(42, 51);
+		$pdf->Cell(93,5,$row['TRABAJO'],0,0,'L');
+		//$pdf->Write(0, $row['TRABAJO']);
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(59, 37.5);
+		$pdf->Write(0, $row['FECHA_HORA']);	
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(64, 43);
+		$pdf->Write(0, date('d-m-Y',strtotime($row['FECHA_ENTREGA'])));		
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(42, 60.5);
+		$pdf->Cell(93,5,$row['CLIENTE'],0,0,'L');
+		//$pdf->Write(0, $row['CLIENTE']);
+
+		$pdf->SetFont('Arial','','10');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(153, 60.5);
+		$pdf->Cell(30,5,$row['CANTIDAD'],0,0,'C');
+		//$pdf->Write(0, number_format($row['CANTIDAD']));	
+
+		//////////////////////////////////////////////
+		//              ESPECIFICACIONES			//
+		//////////////////////////////////////////////
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(53, 79);
+		$pdf->Cell(20,5,number_format($row['ANCHO']),0,0,'R');
+		//$pdf->Write(0, $row['ANCHO']);		
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(53, 84.5);
+		$pdf->Cell(20,5,number_format($row['ANCHO']),0,0,'R');
+		//$pdf->Write(0, $row['ALTO']);		
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(53, 90);
+		$pdf->Cell(20,5,number_format($row['MEDIANIL_ANCHO']),0,0,'R');
+		//$pdf->Write(0, $row['MEDIANIL_ANCHO']);						
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(53, 95.5);
+		$pdf->Cell(20,5,number_format($row['MEDIANIL_ALTO']),0,0,'R');
+		//$pdf->Write(0, $row['MEDIANIL_ALTO']);
+
+		$totancho = $row['ANCHO'] + $row['MEDIANIL_ANCHO'];
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(53, 101.3);
+		$pdf->Cell(20,5,number_format($totancho),0,0,'R');
+		//$pdf->Write(0, $totancho);		
+
+		$totalto = $row['ALTO'] + $row['MEDIANIL_ALTO'];
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(53, 107.5);
+		$pdf->Cell(20,5,number_format($totalto),0,0,'R');
+		//$pdf->Write(0, $totalto);
+
+		//////////////////////////////////////////////
+		//                MATERIAL					//
+		//////////////////////////////////////////////
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(113, 79);
+		$pdf->Cell(20,5,number_format($row['MATANCHO']),0,0,'R');
+		//$pdf->Write(0, $row['MATANCHO']);				
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(113, 84.5);
+		$pdf->Cell(20,5,number_format($row['MATALTO']),0,0,'R');
+		//$pdf->Write(0, $row['MATALTO']);		
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(113, 90);
+		$pdf->Cell(20,5,number_format($row['MATENTRAN']),0,0,'C');
+		//$pdf->Write(0, $row['MATENTRAN']);						
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(113, 95.5);
+		$pdf->Cell(20,5,number_format($row['APROVECHAMIENTO']),0,0,'C');
+		//$pdf->Write(0, $row['APROVECHAMIENTO']);
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(113, 101.3);
+		$pdf->Cell(20,5,$row['ORIENTA'],0,0,'R');
+		//$pdf->Write(0, $row['ORIENTA']);	
+
+		if($row['MAT_ESPECIAL'] == "on")
+		{
+			$matespecial=$row['ID_MAT_ESPECIAL'];
+			$sql3="SELECT NOMBRE_MATERIAL,TIPO,PROVEEDOR FROM materiales_especiales WHERE ID_MAT_ESPECIAL='$matespecial'";
+			$stmt3 = sqlsrv_query($conn,$sql3);
+		    while($row3 = sqlsrv_fetch_array($stmt3,SQLSRV_FETCH_ASSOC))
+		    {
+		    	if($row3['TIPO'] == 'F')
+		    	{
+		    		$tipo = "FLEXIBLE";
+		    	}
+		    	else if($row3['TIPO'] == 'R')
+		    	{
+		    		$tipo = "RIGIDO";
+		    	} 
+		    	else if($row3['TIPO'] == 'P')
+		    	{
+					$tipo = "FOTOGRAFICO";
+		    	}
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(118, 110);
+				$pdf->Write(0, $tipo);
+
+				$pdf->SetFont('Arial','B','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(85, 117);
+				$pdf->Write(0, substr($row3['NOMBRE_MATERIAL'],0,28));	
+				$pdf->SetFont('Arial','B','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(85, 121);
+				$pdf->Write(0, substr($row3['NOMBRE_MATERIAL'],29,50));	
+				$pdf->SetFont('Arial','B','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(85, 125);
+				$pdf->Write(0, "Proveedor:  ".$row3['PROVEEDOR']);									
+			}
+		}
+		else
+		{
+			$idmaterial=$row['ID_MATERIAL'];
+			$sql3="SELECT NOMBRE_MATERIAL,TIPO,PROVEEDOR FROM materiales_cotizador WHERE ID_MATERIAL='$idmaterial'";
+			$stmt3 = sqlsrv_query($conn,$sql3);
+		    while($row3 = sqlsrv_fetch_array($stmt3,SQLSRV_FETCH_ASSOC))
+		    {
+		    	if($row3['TIPO'] == 'F')
+		    	{
+		    		$tipo = "FLEXIBLE";
+		    	}
+		    	else if($row3['TIPO'] == 'R')
+		    	{
+		    		$tipo = "RIGIDO";
+		    	} 
+		    	else if($row3['TIPO'] == 'P')
+		    	{
+					$tipo = "FOTOGRAFICO";
+		    	}
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(118, 110);
+				$pdf->Write(0, $tipo);
+
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(85, 117);
+				$pdf->Write(0, substr($row3['NOMBRE_MATERIAL'],0,28));	
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(85, 121);
+				$pdf->Write(0, substr($row3['NOMBRE_MATERIAL'],29,50));	
+				$pdf->SetFont('Arial','B','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(85, 125);
+				$pdf->Write(0, "Proveedor:  ".$row3['PROVEEDOR']);												
+			}
+		}				
+		
+		//////////////////////////////////////////////
+		//                IMPRESION					//
+		//////////////////////////////////////////////
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(60, 128);
+		$pdf->Write(0, $row['RESOLUCION']);		
+
+		if($row['BLANCO'] > 0)
+		{
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(60, 134);
+		$pdf->Write(0, "SI");
+		
+		}
+		else
+		{
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(62, 117);
+		$pdf->Write(0, "NO");
+		}
+
+		//////////////////////////////////////////////
+		//                ACABADOS					//
+		//////////////////////////////////////////////
+		if($row['ID_ACABADO1'] > 0)
+		{
+			$idacabado=$row['ID_ACABADO1'];
+	    	$sql2="SELECT DESCRIPCION,IMPORTE FROM acabados WHERE ID_ACABADO='$idacabado'";
+	    	$stmt2 = sqlsrv_query($conn,$sql2);
+	        while($row2 = sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC))
+		    {
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(32, 147.5);
+				$pdf->Write(0, $row2['DESCRIPCION']);			   			   
+			}			
+		}
+		if($row['ID_ACABADO2'] > 0)
+		{
+			$idacabado=$row['ID_ACABADO2'];
+	    	$sql2="SELECT DESCRIPCION,IMPORTE FROM acabados WHERE ID_ACABADO='$idacabado'";
+	    	$stmt2 = sqlsrv_query($conn,$sql2);
+	        while($row2 = sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC))
+		    {
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(32, 153);
+				$pdf->Write(0, $row2['DESCRIPCION']);				   	
+			}			
+		}		
+		if($row['ID_ACABADO3'] > 0)
+		{
+			$idacabado=$row['ID_ACABADO3'];
+	    	$sql2="SELECT DESCRIPCION,IMPORTE FROM acabados WHERE ID_ACABADO='$idacabado'";
+	    	$stmt2 = sqlsrv_query($conn,$sql2);
+	        while($row2 = sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC))
+		    {
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(32, 159);
+				$pdf->Write(0, $row2['DESCRIPCION']);
+			}			
+		}	
+		if($row['ID_ACABADO4'] > 0)
+		{
+			$idacabado=$row['ID_ACABADO4'];
+	    	$sql2="SELECT DESCRIPCION,IMPORTE FROM acabados WHERE ID_ACABADO='$idacabado'";
+	    	$stmt2 = sqlsrv_query($conn,$sql2);
+	        while($row2 = sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC))
+		    {
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(32, 164.5);
+				$pdf->Write(0, $row2['DESCRIPCION']);
+			}			
+		}
+		if($row['ID_ACABADO5'] > 0)
+		{
+			$idacabado=$row['ID_ACABADO5'];
+	    	$sql2="SELECT DESCRIPCION,IMPORTE FROM acabados WHERE ID_ACABADO='$idacabado'";
+	    	$stmt2 = sqlsrv_query($conn,$sql2);
+	        while($row2 = sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC))
+		    {
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(32, 170);
+				$pdf->Write(0, $row2['DESCRIPCION']);
+			}			
+		}	
+		if($row['ID_ACABADO6'] > 0)
+		{
+			$idacabado=$row['ID_ACABADO6'];
+	    	$sql2="SELECT DESCRIPCION,IMPORTE FROM acabados WHERE ID_ACABADO='$idacabado'";
+	    	$stmt2 = sqlsrv_query($conn,$sql2);
+	        while($row2 = sqlsrv_fetch_array($stmt2,SQLSRV_FETCH_ASSOC))
+		    {
+				$pdf->SetFont('Arial','','9');
+				$pdf->SetTextColor(0, 0, 0);
+				$pdf->SetXY(32, 175.5);
+				$pdf->Write(0, $row2['DESCRIPCION']);
+			}			
+		}			
+		//////////////////////////////////////////////
+		//                ADICIONALES				//
+		//////////////////////////////////////////////
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 191);
+		$pdf->Write(0, $row['A1_DESC']);		
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 196.5);
+		$pdf->Write(0, $row['A2_DESC']);
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 202);
+		$pdf->Write(0, $row['A3_DESC']);
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 208);
+		$pdf->Write(0, $row['A4_DESC']);
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 213.5);
+		$pdf->Write(0, $row['A5_DESC']);
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 219);
+		$pdf->Write(0, $row['A6_DESC']);
+
+		//////////////////////////////////////////////
+		//               OBSERVACIONES			    //
+		//////////////////////////////////////////////
+		$pdf->SetFont('Arial','B','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(138, 72);
+		$pdf->Write(0, "TIEMPO DE PRODUCCION:	".$row['TIEMPO_PRODUCCION'] . "		HRS.");
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 242);
+		$pdf->Write(0, strtoupper(substr($row['OBSERVACIONES'],0,65)) );
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 246);
+		$pdf->Write(0, strtoupper(substr($row['OBSERVACIONES'],66,130)) );
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 250);
+		$pdf->Write(0, strtoupper(substr($row['OBSERVACIONES'],131,195)) );
+
+		$pdf->SetFont('Arial','','9');
+		$pdf->SetTextColor(0, 0, 0);
+		$pdf->SetXY(32, 254);
+		$pdf->Write(0, strtoupper(substr($row['OBSERVACIONES'],196,260)) );		
+
+		$pdf->Output();	           
     }
-}
 
-$pdf=new PDF();
-$pdf->AliasNbPages();
-$pdf->AddPage();
-$pdf->SetY(7);
-$pdf->SetX(5);
-$pdf->SetFont('Arial','',8);
-$pdf->Tabla();
+$response->validacion="true";    
+$response->data = $data;      
+echo json_encode ($response);
 
-$orProd=$_REQUEST['orprod'];
-$Folio=$_REQUEST['FOLIO'];
-$trabajo=$_REQUEST['trabajo'];
-$fecha=date("d-m-Y");
-                
-$URL="http://192.168.2.209/com.cotizadorAdmin/pdf/ordenproduccion/$orProd-$Folio-$trabajo-$fecha.pdf";
-$clientes="UPDATE or_produccion SET URL='$URL' WHERE FOLIO=$Folio";
-$consulta=mysql_query($clientes);
+	
 
-$pdf->Output("ordenproduccion/$orProd-$Folio-$trabajo-$fecha.pdf");
-echo "<script language='javascript'>window.open('ordenproduccion/$orProd-$Folio-$trabajo-$fecha.pdf', '_self');</script>";//paral archivo pdf generado exit;
+ ?>

@@ -1,10 +1,6 @@
-<?php
+<?php session_start();
 
-session_start();
-
-$serverName = "192.168.2.211"; //serverName\instanceName
-$connectionInfo = array( "Database"=>"AcabadoManual", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+include 'conexion.php';
 
 $usuario=$_SESSION['Permisos']["Departamento"]; 
 
@@ -18,48 +14,22 @@ if($usuario=="INT"){
  $where="WHERE dbo.vEmpAcabadoManual.idprov='$usuario'";
 }
 
-$sql = "SELECT
-dbo.vEmpAcabadoManual.NumEmpleado as ClaveID,
-dbo.vEmpAcabadoManual.Nombre,
-dbo.vEmpAcabadoManual.edad as Edad,
-dbo.vEmpAcabadoManual.genero AS Genero,
-dbo.vEmpAcabadoManual.imss as No_Imss,
-dbo.vEmpAcabadoManual.idprov as ID_proveedor
-
-from vEmpAcabadoManual $where Order by dbo.vEmpAcabadoManual.NumEmpleado DESC";
+$sql = "SELECT * from vEmpAcabadoManual $where Order by NumEmpleado DESC";
 $stmt = sqlsrv_query( $conn,$sql);
 
 
 while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-  
-  $nombre=utf8_encode($row['Nombre']);
-  $edad=$row['Edad'];
-  $genero=utf8_encode($row['Genero']);
-  $imss=$row['No_Imss'];
-  $proveedor=$row['ID_proveedor'];
-  $clave=$row['ClaveID'];
-  
+
   $rows[] = array( 
-   "Nombre"=>$nombre,
-   "Edad"=>$edad,
-   "Genero"=>$genero,
-   "No_Imss"=>$imss,
-   "ID_proveedor"=>$proveedor, 
-   "ClaveID"=>$clave
-   
+   "ClaveID"=>$row['NumEmpleado'],
+   "Nombre"=>$row['Nombre'],
+   "Edad"=>$row['edad'],
+   "Genero"=>$row['genero'],
+   "No_Imss"=>$row['imss'],   
+   "ID_proveedor"=>$row['idprov']
    );
-  $response->rows = $rows;
-
-  
+  $response->data = $rows;
 }
-
-
-
-
-
-
-
-
 
 echo json_encode ($response);
 

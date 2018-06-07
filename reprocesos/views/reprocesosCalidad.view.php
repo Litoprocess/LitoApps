@@ -89,7 +89,7 @@
 						<div class="row">
 							<div class="input-field col s8">
 								<input class="validate amt" type="text" name="almacen_" id="almacen_" placeholder="$0.00" >
-								<label for="almacen_">Almac&eacute;n:$0.00</label>											
+								<label for="almacen_">Almac&eacute;n</label>											
 							</div>							
 						</div>
 
@@ -150,14 +150,14 @@
 						<div class="row">
 							<div class="input-field col s8">
 								<input class="validate amt" type="text" name="maquila_interna" id="maquila_interna" placeholder="$0.00" >
-								<label for="maquila_interna">Proceso Maq.Interna</label>	
+								<label for="maquila_interna">Maquila Interna</label>	
 							</div>						
 						</div>
 
 						<div class="row">
 							<div class="input-field col s8">
 								<input class="validate amt" type="text" name="externa" id="externa" placeholder="$0.00" >
-								<label for="externa">Prov.Maq.Externa</label>											
+								<label for="externa">Maquila Externa</label>											
 							</div>							
 						</div>
 
@@ -178,7 +178,7 @@
 						<div class="row">
 							<div class="input-field col s8">
 								<input class="validate amt" type="text" name="indigo" id="indigo" placeholder="$0.00" >
-								<label for="indigo">Impresión Digital</label>											
+								<label for="indigo">Impresión Indigo</label>											
 							</div>							
 						</div>	
 

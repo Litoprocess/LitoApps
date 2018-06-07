@@ -5,14 +5,13 @@ if(isset($_SESSION["Permisos"]['UserInventario']))
 	switch ($_SESSION["Permisos"]['UserInventario']) 
 	{				
 		case '1':
-		require 'views/inventario.view.php';
+		header('Location: inventario.php');
 		break;
-		case '2':
-		require 'views/inventario.view.php';
-		break;
+
 		case '3':
-		require 'views/inventario.view.php';
-		break;
+		header('Location: detalle.php');
+		break;		
+
 		default:
 		header('Location: ../index.php');
 		break;

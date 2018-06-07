@@ -7,18 +7,17 @@ if(isset($_SESSION["Permisos"]['UserCapacitacion']))
 		case '1':
 		require 'views/resultado.view.php';
 		break;
-		case '2':
-		require 'views/resultado.view.php';
-		break;
+
 		case '3':
 		require 'views/resultado.view.php';
-		break;		
+		break;
+
 		default:
-		header('Location: ../index.php');
+		header('Location: index.php');
 		break;
 	}
 } else {
-	header('Location: ../index.php');	
+	header('Location: index.php');	
 }
 
 

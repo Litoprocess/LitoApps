@@ -1,12 +1,12 @@
 <?php
-$sql2 = "SELECT * FROM v_catUsuarios WHERE Departamento = 'SISTEMAS'";
+$sql2 = "SELECT * FROM v_catUsuarios WHERE Departamento = 'SISTEMAS' AND Estatus = 'ACTIVO'";
 $stmt2 = sqlsrv_query( $conn, $sql2 );
 
 $SelectAgente = "";
 
 while( $row2 = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC) ) {
 
-	$Agente = trim(utf8_encode($row2['Nombre']));
+	$Agente = trim($row2['Nombre']);
 
 	switch ($AgenteBD) {
 

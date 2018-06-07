@@ -26,6 +26,10 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
+            <span style="margin-left: 50px; font-size:14px;" class="white-text breadcrumb name">
+              <?php echo $_SESSION["Permisos"]["Departamento"];?>         
+            </span>
+            <span style="font-size:14px;" class="breadcrumb"><?php echo $_SESSION["Permisos"]["NombreUsuario"];?></span>           
         </ul>
         <ul class="side-nav" id="mobile-demo">                 
           <li><div class="divider"></div></li>                        

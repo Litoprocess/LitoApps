@@ -1,30 +1,20 @@
-<?php
+<?php session_start();
 
-session_start();
-$serverName = "192.168.2.211"; 
-$connectionInfo = array( "Database"=>"AcabadoManual", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+include 'conexion.php';
 
-$usuario=$_SESSION['Permisos']["Departamento"]; 
+$usuario=$_SESSION['Permisos']['Departamento']; 
+
 $response = new stdClass();
 $rows = array();
 $sql = "SELECT  * from ProveedoresMaquila WHERE Clave='$usuario'";
 $stmt = sqlsrv_query( $conn,$sql);
 while( @$row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-	
+
 	$Clave=$row['Clave'];
 	$nombre=$row['Nombre'];
 	$rows[]=array("Clave"=>$Clave,"Nombre"=>$nombre);
 
-	$response->rows=@$rows;
-
-
-	
-	
+	$response->data=@$rows;           
 }
 echo json_encode ($response);
-
-
-
-
 ?>

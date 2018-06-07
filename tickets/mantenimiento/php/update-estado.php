@@ -28,7 +28,7 @@ if( $stmt === false) {
 	die( print_r( sqlsrv_errors(), true) );
 }
 
-$texto = utf8_decode("EL ESTATUS DEL TICKET CAMBIÃ“ A: ".$data);
+$texto = "EL ESTATUS DEL TICKET CAMBIÓ: ".$data;
 
 $seg = "INSERT INTO SeguimientoTickets (Id_Ticket, NombreUsuario, FechaEvento, Notas)
 VALUES ('$IdTicket', '$NombreUsuario', GetDate(), '$texto' )";

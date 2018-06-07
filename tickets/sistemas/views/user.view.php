@@ -61,6 +61,6 @@
 
 <?php require ('../layout/scripts.php'); ?>
 <script type="text/javascript" src="js/mod-clientes.js?v=<?php echo(rand()); ?>"></script>
-
+<script language="javascript" src="js/fancywebsocket.js"></script>
 </body>
 </html>

@@ -1,19 +1,20 @@
-<?php
+<?php session_start();
 
-$serverName = "192.168.2.211"; 
-$connectionInfo = array( "Database"=>"AcabadoManual", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+include 'conexion.php';
 
-$idempleado=$_REQUEST['idempleado'];
+$noempleado = $_REQUEST['noempleado'];
 
 $response = new stdClass();
 $rows = array();
-$sql = "SELECT  * from vEmpAcabadoManual WHERE NumEmpleado='$idempleado'";
+
+$sql = "SELECT  * from vEmpAcabadoManual WHERE NumEmpleado='$noempleado'";
 $stmt = sqlsrv_query( $conn,$sql);
+
 while( @$row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
     $id=$row['NumEmpleado'];
-    $nom=utf8_encode($row['Nombre']);
-    $idProv=utf8_encode($row['idprov']);
+    $nom=$row['Nombre'];
+    $idProv=$row['idprov'];
+    
     if(isset($id)){
         	//extraer Nombre de proveedor
        $sql2 = "SELECT  * from ProveedoresMaquila WHERE Clave='$idProv'";
@@ -24,18 +25,12 @@ while( @$row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
            $proveedor=$row2['Nombre'];
            $response->NombreP=@$proveedor;
        }
-
-
-
-
         	//fin
        $response->validacion=@$nom;
        $response->prov=@$idProv;
-   }
-   
-   
+   }     
 }
-echo json_encode ($response);
 
+echo json_encode ($response);
 
 ?>

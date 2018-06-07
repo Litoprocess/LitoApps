@@ -7,7 +7,17 @@ $NombreUsuario = $_SESSION['Permisos']["NombreUsuario"];
 $cAgente = $_POST['cagente'];
 $Problema = $_POST['Problema'];
 
-date_default_timezone_set('Etc/UTC');
+$to      = $cAgente;
+$subject = 'Se te asigno el ticket No. '.$IdTicket;
+$message = $data . "---" . $Problema;
+$headers = 'From: envios2@litoprocess.com' . "\r\n" .    
+    'X-Mailer: PHP/' . phpversion();
+
+mail($to, $subject, $message, $headers);
+
+return "Enviado";
+
+/*date_default_timezone_set('Etc/UTC');
 require '../enviar_correo/PHPMailerAutoload.php';
 $mail = new PHPMailer;
 $mail->isSMTP();
@@ -26,11 +36,11 @@ $mail->CharSet = 'UTF-8';
 $mail->addAddress($cAgente, $data);
 $mail->Subject = "Se te asigno el ticket N° ".$IdTicket;
 
-$mail->msgHTML("$Problema"."<br><br>Para dar seguimiento al ticket <a href='http://201.149.83.215:8080/tickets/mensajeria2/agentes.php'>haz click aquí.</a>
+$mail->msgHTML("$Problema"."<br><br>Para dar seguimiento al ticket <a href='http://201.149.83.216/litoapps/login.php'>haz click aquí.</a>
 	<br><br><br><br><br><br><br>
 	<p style='color:#a1a1a1;'>Este e-mail se ha generado por un sistema automático. Por favor, no respondas a este e-mail directamente.</p>");
 $mail->AltBody = 'Litoprocess';
-$mail->send();
+$mail->send();*/
 
 
 ?>

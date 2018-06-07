@@ -6,7 +6,7 @@ if(isset($_SESSION['Permisos']['UserSistemas'])){
 	
 } else {
 
-	header ('Location: ../login.php');
+	header ('Location: ../../login.php');
 	
 }
 

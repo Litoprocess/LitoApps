@@ -57,26 +57,26 @@
 						<label for="error" class="lblFechas">Error de</label>
 						<select class="browser-default" name="error" id="error">
 							<option value="0" SELECTED>-- Seleccionar una opci&oacute;n --</option>
-							<option>A. MANUAL</option>
-							<option>ACAB. ESPECIAL</option>
-							<option>ACAB.LITO</option>
-							<option>ALMACEN</option>
-							<option>CALIDAD</option>
-							<option>CLIENTE</option>
-							<option>ENTREGAS</option>
-							<option>EXTERNA</option>
-							<option>INTERNA</option>
-							<option>LITERATURA VW</option>
-							<option>OFFSET</option>
-							<option>OPERACIONES/PRODUCCI&Oacute;N</option>
-							<option>PREPRENSA</option>
-							<option>PROCESO MAQUILA INTERNA</option>
-							<option>PROVEEDOR MAQUILA</option> 
-							<option>SISTEMAS</option>
-							<option>VENTAS</option>
-							<option>IMPRESIÓN INDIGO</option>
-							<option>IMPRESIÓN NUBERAS</option>
-							<option>IMPRESIÓN BUSKRO</option>
+							<option value="A. MANUAL">A. MANUAL</option>
+							<option value="ACAB. ESPECIAL">ACAB. ESPECIAL</option>
+							<option value="ACAB.LITO">ACAB.LITO</option>
+							<option value="ALMACEN">ALMACEN</option>
+							<option value="CALIDAD">CALIDAD</option>
+							<option value="CLIENTE">CLIENTE</option>
+							<option value="ENTREGAS">ENTREGAS</option>
+							<!--option>EXTERNA</option>
+							<option value="">INTERNA</option-->
+							<option value="LITERATURA VW">LITERATURA VW</option>
+							<option value="OFFSET">OFFSET</option>
+							<option value="OPERACIONES/PRODUCCION">OPERACIONES/PRODUCCI&Oacute;N</option>
+							<option value="PREPRENSA">PREPRENSA</option>
+							<option value="MAQUILA INTERNA">MAQUILA INTERNA</option>
+							<option value="MAQUILA EXTERNA">MAQUILA EXTERNA</option> 
+							<option value="SISTEMAS">SISTEMAS</option>
+							<option value="VENTAS">VENTAS</option>
+							<option value="IMPRESIÓN INDIGO">IMPRESIÓN INDIGO</option>
+							<option value="IMPRESIÓN NUBERAS">IMPRESIÓN NUBERAS</option>
+							<option value="IMPRESIÓN BUSKRO">IMPRESIÓN BUSKRO</option>
 						</select>							
 					</div>						
 				</div>

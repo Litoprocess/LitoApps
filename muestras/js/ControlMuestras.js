@@ -1,13 +1,31 @@
 $(document).ready(function() 
 {
+
+if(window.location.pathname == '/litoapps/muestras/ordenes.php')
+{
+  $('#noaplica').removeClass('active');
+  $('#ordenes').addClass('active');
+  $('#nocumplido').removeClass('active');
+  $('#cumplido').removeClass('active');
+}
+  
   var data,orden,cliente,cantidad,aplica;
   $(".button-collapse").sideNav();  
+
+  var d = new Date();
+  var month = d.getMonth()+1;
+  var day = d.getDate();
+
+  var output =  (day<10 ? '0' : '') + day + '-' +
+  (month<10 ? '0' : '') + month + '-' +
+  d.getFullYear();
+
 
   //LLenar la tabla con la BD
   $('#registros').DataTable(
   {           
       "searching": true,
-      "scrollY":        '62vh',
+      "scrollY":        '60.5vh',
       "scrollCollapse": true,
       "paging":         false,
       //"destroy": true,
@@ -17,6 +35,13 @@ $(document).ready(function()
       {"className": "dt-body-center", "targets": [2,3,4,5]},
       {"className": "dt-head-center", "targets": "_all"}
       ],
+        dom: 'Bfrtip',
+        buttons: [
+        {
+          extend: 'excelHtml5',
+          title: 'Control_de_muestras_Sin_Muestra_' + output 
+        },
+        ],      
       "ajax":
       {
         "method":"POST",

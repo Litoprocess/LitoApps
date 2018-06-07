@@ -10,13 +10,13 @@ $arreglo = array();
 while( $data = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) 
 {
 
-	$arreglo[]= array("numorden"=>$data['NumOrden'],		
-		"trabajo"=>utf8_encode($data['NombreTrabajo']),
-		"cantentregar"=>number_format($data['CantEntregar']),
-		"cantentregada"=>number_format($data['CantEntregada']),
-		"cantmuestras"=>number_format($data['CantMuestras']),	
-		"estatus"=>$data['Estatus']					
-		);	
+		$arreglo[]= array("numorden"=>$data['NumOrden'],		
+			"trabajo"=>$data['NombreTrabajo'],
+			"cantentregar"=>number_format($data['CantEntregar']),
+			"cantentregada"=>number_format($data['CantEntregada']),
+			"cantmuestras"=>number_format($data['CantMuestras']),	
+			"estatus"=>$data['Estatus']					
+			);	
 }
 
 $response->data=$arreglo;

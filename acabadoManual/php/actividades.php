@@ -1,23 +1,24 @@
-<?php
+<?php session_start();
+include 'conexion.php';
 
-$serverName = "192.168.2.211"; 
-$connectionInfo = array( "Database"=>"AcabadoManual", "UID"=>"sa", "PWD"=>"TcpkfcW8l1t0");
-$conn = sqlsrv_connect( $serverName, $connectionInfo);
+$sql = "SELECT * FROM Actividades_copy";
+$stmt = sqlsrv_query($conn,$sql);
 
+if($stmt === false){
+	die(print_r(sqlsrv_errors(),true));
+}
 
 $response = new stdClass();
-$rows = array();
-$sql = "SELECT  * from Actividades";
-$stmt = sqlsrv_query( $conn,$sql);
-while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
-	$id=$row['Id_Actividad'];
-	$actividad=$row['Actividad'];
-	
-	$rows[] = array( "id"=>$id,"actividad"=>$actividad);
-	$response->rows = $rows;
-	
+$arreglo = array();
+
+while($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC)){
+
+	$arreglo[]=array(
+		"id_actividad"=>$row['Id_Actividad'],
+		"actividad"=>$row['Actividad']
+		);				
 }
-echo json_encode ($response);
 
-
+$response->data=$arreglo;
+echo json_encode($response);
 ?>

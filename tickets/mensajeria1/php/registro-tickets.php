@@ -32,6 +32,9 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 		$FechaFin = $row['FechaFinalizado']->format("d-n-Y");
 	}
 
+	$detalle = "<a class='waves-effect waves-teal btn-flat btn-detalles'><i class='material-icons'>web</i></a>";
+	$print = "<a class='waves-effect waves-teal btn-flat btn-imp'><i class='material-icons'>print</i></a>";
+
 	$data[] = array(utf8_encode($row['IdTicket']),
 		utf8_encode($row['Titulo']),
 		utf8_encode($row['NombreEmpresa']),
@@ -39,7 +42,12 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
 		$Hora1.$Hora2,
 		utf8_encode($row['Prioridad']),
 		utf8_encode($row['Estatus']),
-		$FechaFin); 
+		$FechaFin,
+		$detalle,
+		$print
+
+
+		); 
 
 }
 

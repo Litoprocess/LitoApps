@@ -123,6 +123,62 @@ while($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC))
     </a>
   </li> 
 
+  <?php if ($_SESSION["Permisos"]["MenuReportesProduccion"] === 1): ?>   
+  <li class="bold" id="aside-cotizador">
+    <a class="waves-effect" href="../../reportesProduccion/index.php" id="nav-app17">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/reportar.png" alt="" width="25"></i>Reportes Prod.
+    </a>
+  </li>
+  <?php endif; ?>   
+
+  <?php if ($_SESSION["Permisos"]["MenuPreviewOP"] === 1): ?>   
+  <li class="bold" id="aside-cotizador">
+    <a class="waves-effect" href="../../informeOP/index.php" id="nav-app18">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/ordenproduccion.png" alt="" width="25"></i>Informe OP
+    </a>
+  </li>
+  <?php endif; ?>   
+
+    <?php if ($_SESSION["Permisos"]["MenuiDashboards"] === 1): ?>
+  <li class="bold" id="aside-iDashboards">
+    <a class="waves-effect" href="../../http://192.168.2.217:8080/idashboards/" target="_blank" id="nav-app8">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/idashboard.png" alt="" width="25"></i>iDashboards
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuDBxtra"] === 1): ?>
+  <li class="bold" id="aside-dbxtra">
+    <a class="waves-effect" href="../../http://192.168.2.211:8082/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app9">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/dbxtra.png" alt="" width="25"></i>DBxtra
+    </a>
+  </li> 
+  <?php endif; ?> 
+
+  <?php if ($_SESSION["Permisos"]["MenuKrispykreme"] === 1): ?>  
+  <li class="bold" id="aside-krispykreme">
+    <a class="waves-effect" href="../../http://192.168.2.211:8082/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app10">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/krispykreme.png" alt="" width="25"></i>KrispyKreme
+    </a>
+  </li> 
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuStarbucks"] === 1): ?>
+  <li class="bold" id="aside-starbucks">
+    <a class="waves-effect" href="../../http://192.168.2.211:8080/starbucks/public/login" target="_blank" id="nav-app11">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks.png" alt="" width="25"></i>Starbucks
+    </a>
+  </li>
+  <?php endif; ?>
+
+  <?php if ($_SESSION["Permisos"]["MenuStarbucks2"] === 1): ?>
+  <li class="bold" id="aside-starbucks2">
+    <a class="waves-effect" href="../../http://192.168.2.211:8080/starbucks2/public/login" target="_blank" id="nav-app12">
+      <i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks2.png" alt="" width="25"></i>Starbucks2
+    </a>
+  </li>
+  <?php endif; ?>  
+
   <?php if ($_SESSION["Permisos"]["MenuLibera"] === 1): ?>    
   <li class="bold" id="aside-libera">
     <a class="waves-effect" href="../../liberacionPT/index.php" id="nav-tickets3">
@@ -162,46 +218,6 @@ while($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC))
     </a>
   </li>
   <?php endif; ?>
-
-  <?php if ($_SESSION["Permisos"]["MenuiDashboards"] === 1): ?>
-  <li class="bold" id="aside-iDashboards">
-    <a class="waves-effect" href="../../http://192.168.2.217:8080/idashboards/" target="_blank" id="nav-app8">
-      <i class="material-icons blue-text text-darken-4"><img src="../../icons/idashboard.png" alt="" width="25"></i>iDashboards
-    </a>
-  </li>
-  <?php endif; ?>
-
-  <?php if ($_SESSION["Permisos"]["MenuDBxtra"] === 1): ?>
-  <li class="bold" id="aside-dbxtra">
-    <a class="waves-effect" href="../../http://192.168.2.211:8082/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app9">
-      <i class="material-icons blue-text text-darken-4"><img src="../../icons/dbxtra.png" alt="" width="25"></i>DBxtra
-    </a>
-  </li> 
-  <?php endif; ?> 
-
-  <?php if ($_SESSION["Permisos"]["MenuKrispykreme"] === 1): ?>  
-  <li class="bold" id="aside-krispykreme">
-    <a class="waves-effect" href="../../http://192.168.2.211:8082/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app10">
-      <i class="material-icons blue-text text-darken-4"><img src="../../icons/krispykreme.png" alt="" width="25"></i>KrispyKreme
-    </a>
-  </li> 
-  <?php endif; ?>
-
-  <?php if ($_SESSION["Permisos"]["MenuStarbucks"] === 1): ?>
-  <li class="bold" id="aside-starbucks">
-    <a class="waves-effect" href="../../http://192.168.2.211:8080/starbucks/public/login" target="_blank" id="nav-app11">
-      <i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks.png" alt="" width="25"></i>Starbucks
-    </a>
-  </li>
-  <?php endif; ?>
-
-  <?php if ($_SESSION["Permisos"]["MenuStarbucks2"] === 1): ?>
-  <li class="bold" id="aside-starbucks2">
-    <a class="waves-effect" href="../../http://192.168.2.211:8080/starbucks2/public/login" target="_blank" id="nav-app12">
-      <i class="material-icons blue-text text-darken-4"><img src="../../icons/starbucks2.png" alt="" width="25"></i>Starbucks2
-    </a>
-  </li>
-  <?php endif; ?> 
 
   <?php if ($_SESSION["Permisos"]["MenuCapacitacion"] === 1): ?>
   <li class="bold" id="aside-capacitacion">

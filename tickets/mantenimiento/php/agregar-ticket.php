@@ -5,9 +5,9 @@ include 'conn.php';
 
 //Asignacion de variables
 
-$NombreUsuario = utf8_decode($_POST["NombreUsuario"]);
-$Titulo =  utf8_decode(mb_strtoupper($_POST['txtTitulo']));
-$Tarea =  utf8_decode(mb_strtoupper($_POST['txtProblema']));
+$NombreUsuario = $_POST["NombreUsuario"];
+$Titulo =  mb_strtoupper($_POST['txtTitulo']);
+$Tarea =  mb_strtoupper($_POST['txtProblema']);
 $Departamento = $_POST["Departamento"];
 $Id_Categoria = $_POST['selCategoria'];
 $Correo = $_POST['CorreoUsuario'];

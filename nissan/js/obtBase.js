@@ -1,5 +1,14 @@
 $(document).ready(function(){
 
+if(window.location.pathname == '/litoapps/nissan/base.php')
+{
+  $("#escaner").removeClass("active");
+  $("#base").addClass("active");
+  $("#bitacora").removeClass("active");
+}   
+
+  $(".button-collapse").sideNav(); 
+
   var formData, ruta;
 
   $('#tblBase').DataTable(

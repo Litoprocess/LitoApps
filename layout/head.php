@@ -19,6 +19,7 @@
     <nav class="indigo darken-3" role="navigation">
       <div class="nav-wrapper">
         <a id="efecto" style="margin-left: 35px; font-size:24px;" class="breadcrumb" href="#!"></a>
+        <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">view_module</i></a>
         <ul class="right hide-on-med-and-down">
           <li>
             <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
@@ -26,9 +27,12 @@
               <?php echo $_SESSION["Permisos"]["Departamento"];?>         
             </span>
             <span style="font-size:14px;" class="breadcrumb"><?php echo $_SESSION["Permisos"]["NombreUsuario"];?></span>
-          </li>
-        </ul>
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">view_module</i></a>
+          </li>          
+        </ul> 
+        <!--a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">view_module</i></a-->
+        <ul class="side-nav" id="mobile-demo">                                              
+          <li><a href="cerrar.php">Cerrar sesión</a></li>
+        </ul>        
       </div>
     </nav>
   </header>

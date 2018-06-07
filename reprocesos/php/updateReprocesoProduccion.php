@@ -23,8 +23,8 @@ $response = new stdClass();
 
 if ( ($row_count) > 0)
 {
-	$sql = "UPDATE Reprocesos_copy set TipoRegistro = '$tipoRegistro', Cantidad ='$cantidadSol', Departamento ='$departamento', ImporteCotizado ='$importe', 
-	Nota ='$nota' WHERE NumOrden ='$orden'"; 
+	$sql = "UPDATE Reprocesos set TipoRegistro = '$tipoRegistro', Cantidad ='$cantidadSol', Departamento ='$departamento', ImporteCotizado ='$importe', 
+	Nota ='$nota' WHERE NumOrden ='$orden'";
 	$stmt = sqlsrv_query($conn,$sql);
 
 	$response->validation="true";
@@ -32,7 +32,7 @@ if ( ($row_count) > 0)
 
 } else {
 
-	$sql = "INSERT INTO Reprocesos_copy (NumOrden, ImporteCotizado, Departamento, Nota, NombreTrabajo, NombreCliente, FechaOrden, Cantidad, TipoRegistro) 
+	$sql = "INSERT INTO Reprocesos (NumOrden, ImporteCotizado, Departamento, Nota, NombreTrabajo, NombreCliente, FechaOrden, Cantidad, TipoRegistro) 
 	VALUES ('$orden', '$importe', '$departamento', '$nota', '$trabajo', '$nomCliente', '$fechOrden', '$cantidadSol', '$tipoRegistro')";
 	$stmt = sqlsrv_query($conn,$sql);
 

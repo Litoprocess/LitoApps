@@ -1,4 +1,13 @@
 $(document).ready(function(){
+
+if(window.location.pathname == '/litoapps/reprocesos/reprocesosProduccion.php')
+{
+  $("#repProd").addClass("active");
+  $("#repCali").removeClass("active");
+  $("#consRep").removeClass("active");
+  $("#titulo").html("Reprocesos/Producción");
+} 
+
 $('.button-collapse').sideNav();	
 
 	var orden, tipoRegistro, trabajo, nomCliente, fechOrden, cantidadSol, departamento, importe, nota;

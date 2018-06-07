@@ -37,7 +37,7 @@ $mail->msgHTML("Detalles del ticket N° <b>$IdTicket</b>.
 	<br><br>Asunto: ".utf8_encode($Tarea)."
 	<br><br>Categoría: $Id_Categoria
 	<br><br>Fecha de registro: $Fecha
-	<br><br>Para conocer más información <a href='http://201.149.83.215:8080/tickets/sistemas/usuarios.php'>haz click aquí.</a>
+	<br><br>Para conocer más información <a href='http://201.149.83.216/litoapps/login.php'>haz click aquí.</a>
 	<br><br><br><br><br><br><br>
 	<p style='color:#a1a1a1;'>Este e-mail se ha generado por un sistema automático. Por favor, no respondas a este e-mail directamente.</p>");
 $mail->AltBody = 'Litoprocess';

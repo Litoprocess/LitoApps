@@ -28,6 +28,8 @@
               <th>Prioridad</th>
               <th>Estatus</th>
               <th>Fecha finalizado</th>
+              <th>Detalle</th>
+              <th>Reporte</th>
             </tr>
           </thead>
           <tbody>
