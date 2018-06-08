@@ -36,7 +36,7 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         "MenuMensaje2" => $row['EstatusTMensajerias2'],
         
         "Departamento" => $row['Departamento'],
-	"Puesto" => $row['Puesto'],
+        "Puesto" => $row['Puesto'],	       
         "CorreoUsuario" => $row['Correo'],
         "CorreoCopia" => $row['Correo2'],
 
@@ -71,7 +71,9 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         "MenuPreviewOP" => $row['EstatusPreviewOP'],
         "UserPreviewOP" => $row['TipoUsuarioPreviewOP'],
         "MenuMantenimiento" => $row['EstatusMantenimiento'],
-        "UserMantenimiento" => $row['TipoUsuarioMantenimiento']        
+        "UserMantenimiento" => $row['TipoUsuarioMantenimiento'],
+        "MenuReqPersonal" => $row['EstatusReqPersonal'],
+        "UserReqPersonal" => $row['TipoUsuarioReqPersonal']                
 
         );
 

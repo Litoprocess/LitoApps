@@ -57,7 +57,7 @@
 
   <?php if ($_SESSION["Permisos"]["MenuDBxtra"] === 1): ?>
   <li class="bold" id="aside-dbxtra">
-    <a class="waves-effect" href="http://192.168.2.211:8081/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app9">
+    <a class="waves-effect" href="http://192.168.2.211:8083/DBxtra.NET/LogIn.aspx" target="_blank" id="nav-app9">
       <i class="material-icons blue-text text-darken-4"><img src="../icons/dbxtra.png" alt="" width="25"></i>DBxtra
     </a>
   </li> 
@@ -73,7 +73,8 @@
 
   <?php if ($_SESSION["Permisos"]["MenuStarbucks"] === 1): ?>
   <li class="bold" id="aside-starbucks">
-    <a class="waves-effect" href="http://192.168.2.211:8080/starbucks/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>" target="_blank" id="nav-app11">
+    <!--a class="waves-effect" href="http://192.168.2.211:8080/starbucks/public/login?usuario=<?php ////echo $_SESSION['Permisos']['usuario'];?>&password=<?php //echo $_SESSION['Permisos']['password'];?>" target="_blank" id="nav-app11"-->
+    <a class="waves-effect" href="http://192.168.2.209/starbucks/login" target="_blank" id="nav-app11">  
       <i class="material-icons blue-text text-darken-4"><img src="../icons/starbucks.png" alt="" width="25"></i>Starbucks
     </a>
   </li>
@@ -81,8 +82,9 @@
 
   <?php if ($_SESSION["Permisos"]["MenuStarbucks2"] === 1): ?>
   <li class="bold" id="aside-starbucks2">
-    <a class="waves-effect" href="http://192.168.2.211:8080/starbucks2/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>" target="_blank" id="nav-app12">
-      <i class="material-icons blue-text text-darken-4"><img src="../icons/starbucks2.png" alt="" width="25"></i>Starbucks2
+    <!--a class="waves-effect" href="http://192.168.2.211:8080/starbucks2/public/login?usuario=<?php //echo $_SESSION['Permisos']['usuario'];?>&password=<?php //echo $_SESSION['Permisos']['password'];?>" target="_blank" id="nav-app12"-->
+    <a class="waves-effect" href="http://192.168.2.209/starbucks2/login" target="_blank" id="nav-app12">
+      <i class="material-icons blue-text text-darken-4"><img src="../icons/starbucks.png" alt="" width="25"></i>Starbucks2
     </a>
   </li>
   <?php endif; ?>  
@@ -171,7 +173,15 @@
       <i class="material-icons blue-text text-darken-4"><img src="../icons/mantenimiento.png" alt="" width="25"></i>Mantenimiento
     </a>
   </li>
-  <?php endif; ?>      
+  <?php endif; ?> 
+
+  <?php if ($_SESSION["Permisos"]["MenuReqPersonal"] === 1): ?>
+  <li class="bold" id="aside-reqpersonal">
+    <a class="waves-effect" href="../requisiciondepersonal/index.php" id="nav-app18">
+      <i class="material-icons blue-text text-darken-4"><img src="../icons/candidatos.png" alt="" width="25"></i>Req.Personal
+    </a>
+  </li>
+  <?php endif; ?>        
 
   <li><div class="divider"></div></li>
 
