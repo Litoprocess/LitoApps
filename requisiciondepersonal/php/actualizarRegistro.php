@@ -2,12 +2,14 @@
 
 include 'conexion.php';
 	
-$Id = $_POST['Id'];
+$Id1 = $_POST['Id1'];
+$estatus = $_POST['estatus'];
+$altaFecha = new DateTime($_POST['altaFecha']);
+$altaFecha = $altaFecha->format('Y-m-d');
+
 $response = new stdClass();
 
-$estatus = $_POST['estatus'];
-
-$sql = "UPDATE Requisiciones SET estatus = '$estatus' WHERE Id = '$Id'";
+$sql = "UPDATE Requisiciones SET Estatus = '$estatus', FechaAlta = '$altaFecha', FechaFinElaboracion = getdate() WHERE Id = '$Id1'";
 $stmt = sqlsrv_query($conn,$sql);
 
 if ($stmt) 

@@ -21,10 +21,10 @@
 		<div class="col s12">
 		<ul class="tabs">
 		  	<!--li class="tab col s3"><a class="active" href="#test1">Información General</a></li-->
-		  	<li class="tab col s3"><a href="#test1">Información del Puesto a Cubrir</a></li>
+		  	<li id="uno" class="tab col s3"><a href="#test1">Información del Puesto a Cubrir</a></li>
 		  	<!--li class="tab col s3"><a href="#test3">Uso exclusivo de Capital Humano</a></li-->
-		  	<li class="tab col s3"><a href="#test2">Caracteristicas del Candidato</a></li>
-		  	<li class="tab col s3"><a href="#test3">Comentarios Adicionales</a></li>
+		  	<li id="dos" class="tab col s3"><a href="#test2">Caracteristicas del Candidato</a></li>
+		  	<li id="tres" class="tab col s3"><a href="#test3">Comentarios Adicionales</a></li>
 		</ul>
 		</div>
 		<br>
@@ -111,7 +111,7 @@
 					  </p>                                                    
 					</div>
 					<div class="input-field col s4">
-					  <input id="txtMeses" name="txtMeses" type="number" class="validate" min="1" max="12">
+					  <input id="txtMeses" name="txtMeses" type="number" class="validate" min="1" max="12" disabled>
 					  <label for="txtMeses">Meses</label>
 					</div>
 				</div>
@@ -151,9 +151,13 @@
 							  <input id="txtEdad" name="txtEdad" type="number" class="validate" min="18" max="99" required>
 							  <label for="txtEdad">Edad</label>
 							</div>	
-							<div class="input-field col s5 offset-s2">
-							  <input id="txtSexo" name="txtSexo" type="text" class="validate" required>
-							  <label for="txtSexo">Sexo</label>
+							<div class="col s5 offset-s2">
+							  <label>Sexo</label>
+							  <select class="browser-default" id="txtSexo" name="txtSexo" required>
+							    <option value="Ninguno" disabled selected>Selecciona una opción</option>
+							    <option value="Femenino">Femenino</option>
+							    <option value="Masculino">Masculino</option>
+							  </select>
 							</div>	
 							<div class="input-field col s12">
 							  <input id="txtEscolaridad" name="txtEscolaridad" type="text" class="validate" required>
@@ -412,7 +416,7 @@
 				<div class="row">
 					<div class="col s4 offset-s4">
 						<a id="btn1-cancelar" class="waves-effect waves-green btn-flat">Limpiar</a>    
-						<button type="submit" value="Submit" class="waves-effect waves-green btn-flat" style="background-color:#283593; color: white;">Guardar</button>				
+						<button type="submit" value="Submit" class="waves-effect waves-green btn-flat indigo darken-4 white-text">Guardar</button>				
 					</div>					
 				</div>
 				<br>
@@ -423,8 +427,17 @@
 				<a id="btn1-cancelar" class="waves-effect waves-green btn-flat">Cerrar</a>    
 				<button type="submit" value="Submit" class="waves-effect waves-green btn-flat" style="background-color:#283593; color: white;">Guardar</button>				
 			</div-->
-		</form>
+		</form>		 
 	</div>  
+	<div class="row">
+		<!--div class="col s2 offset-s4 center previous">
+		<a href="#!"><i class="material-icons">navigate_before</i></a>			
+		</div>
+
+		<div class="col s2 center next">
+		<a href="#!"><i class="material-icons">navigate_next</i></a>			
+		</div-->		
+	</div>	
 </main>
 <?php require '../layout/scripts.php'; ?>
 <script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
@@ -437,6 +450,8 @@
 <script type="text/javascript">
 $(document).ready(function()
 {
+	$('select').material_select();
+
 	$('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -498,13 +513,35 @@ $("#generarSolicitud").submit(function(event)
 		{
 			if(result.validacion === true)
 			{
-				console.log("Success");
+				Materialize.toast('Se guardo', 1200,'green darken-4');
+				window.setTimeout('location.reload()', 1201);
 			}
-			console.log("Unsuccess");
+			else
+			{
+				Materialize.toast('Algo salio mal', 1200,'red darken-4');
+			}
 		} 		
 	});	
 
 });
+
+	$("#planta").click(function(){
+		$("#txtMeses").prop("disabled",true);
+	});
+
+	$("#temporal").click(function(){
+		$("#txtMeses").prop("disabled",false);
+	});
+
+	$(".next").click(function(){
+		if( $("#uno a").hasClass('active') )
+		{
+			alert("true");
+			window.location.href = "#test2";
+			$(".tabs").find("#dos a").addClass('active');
+			$(".tabs #uno a").removeClass('active');
+		}
+	});
 
 });
 </script>

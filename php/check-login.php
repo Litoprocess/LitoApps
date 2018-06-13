@@ -73,7 +73,8 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         "MenuMantenimiento" => $row['EstatusMantenimiento'],
         "UserMantenimiento" => $row['TipoUsuarioMantenimiento'],
         "MenuReqPersonal" => $row['EstatusReqPersonal'],
-        "UserReqPersonal" => $row['TipoUsuarioReqPersonal']                
+        "UserReqPersonal" => $row['TipoUsuarioReqPersonal'],                
+        "MenuMesaControl" => $row['EstatusMesaControl']
 
         );
 

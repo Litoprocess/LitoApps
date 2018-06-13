@@ -169,11 +169,27 @@
 
   <?php if ($_SESSION["Permisos"]["MenuMantenimiento"] === 1): ?>   
   <li class="bold" id="aside-mantenimiento">
-    <a class="waves-effect" href="mantenimientopreventivo/index.php" id="nav-app16">
+    <a class="waves-effect" href="mantenimientopreventivo/index.php" id="nav-app17">
       <i class="material-icons blue-text text-darken-4"><img src="icons/mantenimiento.png" alt="" width="25"></i>Mantenimiento
     </a>
   </li>
+  <?php endif; ?>   
+
+  <?php if ($_SESSION["Permisos"]["MenuReqPersonal"] === 1): ?>
+  <li class="bold" id="aside-reqpersonal">
+    <a class="waves-effect" href="requisiciondepersonal/index.php" id="nav-app18">
+      <i class="material-icons blue-text text-darken-4"><img src="icons/candidatos.png" alt="" width="25"></i>Req.Personal
+    </a>
+  </li>
   <?php endif; ?>     
+
+  <?php if ($_SESSION["Permisos"]["MenuMesaControl"] === 1): ?>
+  <li class="bold" id="aside-mesacontrol">
+    <a class="waves-effect" href="http://192.168.2.209/mesacontrol/" target="_blank" id="nav-app19">
+      <i class="material-icons blue-text text-darken-4"><img src="icons/solucion.png" alt="" width="25"></i>Mesa de Control
+    </a>
+  </li>
+  <?php endif; ?>   
 
   <li><div class="divider"></div></li>
   <li class="bold">
