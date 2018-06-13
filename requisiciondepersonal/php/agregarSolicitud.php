@@ -43,7 +43,7 @@ $txtCandidatoInterno = $_POST['txtCandidatoInterno'];
 
 $response = new stdClass();
 $sql = "INSERT INTO Requisiciones (
-	FechaElaboracion,
+	FechaInicioElaboracion,
 	NombreSolicitante,
 	DepartamentoSolicitante,
 	PuestoSolicitante,
@@ -132,6 +132,7 @@ else
 	$response->validacion = false;
 }
 
-
+header('Content-Type: application/json');
 echo json_encode($response);
 
+?>

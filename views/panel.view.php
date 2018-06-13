@@ -85,8 +85,7 @@
 
 						<?php if ($_SESSION["Permisos"]["MenuStarbucks"] === 1): ?>
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-starbucks">
-							<!--a href="http://192.168.2.211:8080/starbucks/public/login?usuario=<?php //echo $_SESSION['Permisos']['usuario'];?>&password=<?php //echo $_SESSION['Permisos']['password'];?>"  target="_blank"-->
-							<a href="http://192.168.2.209/starbucks/login"  target="_blank">
+							<a href="http://192.168.2.209/starbucks/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
 									<img src="icons/starbucks.png" width="70" class="responsive-img" /><br>
 									<span style="color:#067655;"><h5>Starbucks</h5></span>
@@ -97,8 +96,7 @@
 
 						<?php if ($_SESSION["Permisos"]["MenuStarbucks2"] === 1): ?>
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-starbucks2">
-							<!--a href="http://192.168.2.211:8080/starbucks2/public/login?usuario=<?php //echo $_SESSION['Permisos']['usuario'];?>&password=<?php //echo $_SESSION['Permisos']['password'];?>"  target="_blank"-->
-							<a href="http://192.168.2.209/starbucks2/login"  target="_blank">							
+							<a href="//192.168.2.209/starbucks2/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank"-->
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
 									<img src="icons/starbucks.png" width="70" class="responsive-img" /><br>
 									<span style="color:#067655;"><h5>Starbucks2</h5></span>
@@ -233,7 +231,18 @@
 								</div>
 							</a>
 						</div> 
-						<?php endif; ?>							
+						<?php endif; ?>	
+
+						<?php if ($_SESSION["Permisos"]["MenuMesaControl"] === 1): ?>					
+						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-mesacontrol">
+							<a href="http://192.168.2.209/mesacontrol/" target="_blank">
+								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
+									<img src="icons/solucion.png" width="70" class="responsive-img" /><br>
+									<span style="color: #0524A1;"><h5>Mesa de Control</h5></span>
+								</div>
+							</a>
+						</div> 
+						<?php endif; ?>												
 																							
 					</div>
 				</div>

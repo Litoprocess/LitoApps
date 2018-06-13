@@ -49,7 +49,7 @@ include 'conexion.php';
 		}
 		else
 		{
-			$fecha = $row['FechaAlta']->format('d-m-Y H:i');
+			$fecha = $row['FechaAlta']->format('d-m-Y');
 		}
 
 		$data[]=array(
@@ -68,4 +68,8 @@ include 'conexion.php';
 			//var_dump($data);
 			//exit();		
 	$response->data=$data;
-	echo json_encode($response);	
+
+header('Content-Type: application/json');	
+echo json_encode($response);	
+
+?>
