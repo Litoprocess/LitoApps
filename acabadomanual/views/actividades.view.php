@@ -14,11 +14,11 @@ $fecha = date('Y-m-d');
 		          </div>
 		        <!--/div-->
 				<div class="col s2 m2 l2 xl2">		
-			      <input class="with-gap" type="radio" id="lito" name="tipo_maquila" disabled/>
+			      <input class="with-gap" type="radio" id="lito" name="tipo_maquila" readonly/>
 			      <label for="lito">Interno</label>												
 				</div>	
 				<div class="col s2 m2 l2 xl2">
-			      <input class="with-gap" type="radio" id="maq" name="tipo_maquila" disabled/>
+			      <input class="with-gap" type="radio" id="maq" name="tipo_maquila" readonly/>
 			      <label for="maq">Maquila</label>					
 				</div>
 				<div class="offset-s1 offset-m1 offset-l1 offset-xl1 col s2 m2 l2 xl2">
@@ -37,16 +37,16 @@ $fecha = date('Y-m-d');
 			</div>
 			<div class="row">
 				<div class="input-field col s2 m2 l2 xl2">
-					<input type="text" name="op" id="op" required>
+					<input type="text" id="op" name="op" type="text" class="validate">
 					<label for="op">OP</label>				
 				</div>
 				<div class="input-field col s5 m5 l5 xl5">
-					<input type="text" id='valorOrden'>
+					<input type="text" id='valorOrden' name='valorOrden'>
 					<label for="valorOrden">Trabajo</label>				
 				</div>
 				<div class="select col s4 m4 l4 xl4">
 					<label>Maquina</label>
-					<select class="browser-default" name='costos' id='costos' required>
+					<select class="browser-default" name='costos' id='costos'>
 						<option value="0">Ninguna</option>
 					</select>			
 				</div>							
@@ -56,14 +56,17 @@ $fecha = date('Y-m-d');
 						<b>Fecha-Hora Inicio</b>
 					</div>
 					<div class="dato">
-						<div class="input-field col s6 m6 l6 xl6">			
-							<input type="datetime-local" class="date" name="fechInicio" id='fechInicio' required>
-							<label for="fechInicio"></label>				
+						<div class="input-field col s4 m4 l4 xl4">			
+							<input type="date" class="date" id='fechaInicio' required>
+							<label for="fechaInicio"></label>				
 						</div>
-						<!--div class="input-field col s3 m3 l3 xl3">			
-							<input type="time" name="inicio" id="inicio" required>
-							<label for="inicio">HH:MM</label>				
-						</div-->
+						<div class="input-field col s2 m2 l2 xl2">			
+							<input type="text" id="hrinicio" placeholder="HH:MM" required>
+							<label for="hrinicio">HH:MM</label>				
+						</div>
+						<div class="input-field col s1 m1 l1 xl1">			
+							<label>24Hrs</label>				
+						</div>						
 						<div class="input-field offset-s1 offset-m1 offset-l1 offset-xl1 col s3 m3 l3 xl3">			
 							<input type="text" name="repo" id="repo" required>
 							<label for="repo">Cantidad Rep.</label>				
@@ -75,14 +78,17 @@ $fecha = date('Y-m-d');
 						<b>Fecha-Hora Fin</b>
 					</div>
 					<div class="dato">
-						<div class="input-field col s6 m6 l6 xl6">			
-							<input type="datetime-local" name='fechFin' id='fechFin' required>
-							<label for="fechFin"></label>				
+						<div class="input-field col s4 m4 l4 xl4">			
+							<input type="date" id='fechaFin' required>
+							<label for="fechaFin"></label>				
 						</div>
-						<!--div class="input-field col s3 m3 l3 xl3">			
-							<input type="time" name="fin" id="fin" required>
-							<label for="fin">HH:MM</label>				
-						</div-->
+						<div class="input-field col s2 m2 l2 xl2">			
+							<input type="text" id="hrfin" placeholder="HH:MM" max="5" required>
+							<label for="hrfin">HH:MM</label>				
+						</div>
+						<div class="input-field col s1 m1 l1 xl1">			
+							<label>24Hrs</label>				
+						</div>						
 						<div class="input-field offset-s1 offset-m1 offset-l1 offset-xl1 col s4 m4 l4 xl4">
 							<input type='text' name='otro' id='otro' placeholder="Descripcion de la act.">
 							<label for="otro"><b>NOTA</b>:</label>
