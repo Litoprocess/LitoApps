@@ -74,7 +74,7 @@
 
 						<?php if ($_SESSION["Permisos"]["MenuKrispykreme"] === 1): ?>
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-krispykreme">
-							<a href="http://192.168.2.211:8080/KryspyKreme/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank">
+							<a href="http://192.168.2.209/kryspykreme/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>" target="_blank">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
 									<img src="icons/krispykreme.png" width="170" height="60" class="responsive-img" /><br>
 									<span style="color:#c52033;"><h5>KrispyKreme</h5></span>
