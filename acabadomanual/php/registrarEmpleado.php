@@ -2,11 +2,11 @@
 
 include 'conexion.php';
 
-$nombre=strtoupper($_REQUEST['nombre']);
-$edad=strtoupper($_REQUEST['edad']);
-$genero=strtoupper($_REQUEST['genero']);
-$imss=strtoupper($_REQUEST['imss']);
-$proveedor=strtoupper($_REQUEST['proveedor']);
+$nombre=($_REQUEST['nombre']);
+$edad=($_REQUEST['edad']);
+$genero=($_REQUEST['genero']);
+$imss=($_REQUEST['imss']);
+$proveedor=($_REQUEST['proveedor']);
 
 //consultamos registros en relación al proveedor
 
