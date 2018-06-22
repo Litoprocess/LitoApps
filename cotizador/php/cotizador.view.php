@@ -1,3 +1,4 @@
+
 <?php require 'views/head.php'; ?>
 <?php $fecha=date("d-m-Y"); ?>
 <style>
@@ -166,7 +167,15 @@
                         <option value="0" selected>Ninguno</option>
                         <?php include('php/materiales_cotizador.php'); ?>
                       </select>                                               
-                    </div>                                    
+                    </div>    
+                    
+                    <br><br><br>
+               <div class="col s12" style="vertical-align: center">
+                      <p>
+                        <input type="checkbox" id="solvente" name="solvente" style="display: none;" />
+                        <label for="solvente" style="display: none;">Solvente</label>
+                      </p>            
+                    </div>                               
                     <div id="div_medidas" class="col s12">
                       <br>
                       <h3 id="titMat"></h3>
@@ -181,7 +190,7 @@
 
                   <!------------ T A B L A     D E      M  E D I D A S ----------- -->
                   <div class="col s12">
-                    <table id="tblmedidas" class="compact cell-border" cellspacing="0" width="100%" style="text-align: center; font-size:8pt;">
+                    <table id="tblmedidas" class="compact cell-border" cellspacing="0" width="100%" style="text-align: center; font-size:6pt;">
                       <thead>
                         <tr>
                           <th>Med.</th>
@@ -396,7 +405,7 @@
               </div>
               <div class="col s2">
                 <p>
-                  <input name="resolucion" type="radio" id="720" value="720" />
+                  <input name="resolucion" type="radio" id="720" value="720" checked="true" />
                   <label for="720">720</label>
                 </p>                  
               </div>

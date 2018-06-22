@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    
+	
 var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacion,tblmedida,tblaprovecha, proveedor, MedEspecial,acab;    
 //--------------------------------------------------------------------------
-//                                  FUNCIONES
+//                  				FUNCIONES
 //--------------------------------------------------------------------------
 
     $.mat_espacial = function()
@@ -96,7 +96,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
         var tipo = tipo;
         var precio = precio;
         
-        //alert(id_medidas + " " + Ancho + " " + Alto + " " + tipo + " " + precio);
+      ///  alert(id_medidas + " " + Ancho + " " + Alto + " " + tipo + " " + precio);
         
         var totAncho=$("#totancho").val();
         var totAlto=$("#totalto").val();
@@ -138,7 +138,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
         }
         else
         {*/
-            $("#medidas1").append("<td>" + id_medidas + "</td>" + "<td>" + Ancho + "</td>" + "<td>" + Alto + "</td>");                  
+			$("#medidas1").append("<td>" + id_medidas + "</td>" + "<td>" + Ancho + "</td>" + "<td>" + Alto + "</td>");			     	
             if (tipo == "R")
             {
                 //Calcular a lo ancho/ancho...
@@ -172,20 +172,20 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     entran = orientacionAlto;
                     textoEntran = "A lo alto";
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>");
-                }                           
+                }							
 
                 //Obtener el porcentaje de Aprovechamiento...
                 aprovech = (( parseFloat( $("#totancho").val() ) * parseFloat( $("#totalto").val() ) * parseInt(entran) ) / (Ancho * Alto)) * 100;
                 porcentaje = aprovech.toFixed(2);                
-                $("#medidas1").append("<td>" + porcentaje + "</td>");
-                $("#medidas1").append("<td></td>" + "<td></td>");
+ 				$("#medidas1").append("<td>" + porcentaje + "</td>");
+ 				$("#medidas1").append("<td></td>" + "<td></td>");
 
             }
             else if (tipo== "F")
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(Ancho / $("#totancho").val() );
-                entranAlto = parseInt(Ancho /  $("#totalto").val());     
+                entranAlto = parseInt(Ancho /  $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil( $("#cantidad").val() / parseInt(Ancho / $("#totancho").val() ))* $("#totalto").val();
                 a_lo_alto = Math.ceil( $("#cantidad").val() / parseInt(Ancho /  $("#totalto").val()))*$("#totancho").val() ;
@@ -199,7 +199,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     textoEntran = 'A lo ancho';
                     var res22 = (( $("#totalto").val() * $("#totancho").val()  *  $("#cantidad").val()) / (Ancho * a_lo_ancho));
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");
+                	$("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");
                 }
                 else if (a_lo_ancho > a_lo_alto)
                 {
@@ -208,8 +208,8 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     entran = entranAlto;
                     textoEntran = 'A lo alto';
                     var res22 = (( $("#totalto").val() * $("#totancho").val()  *  $("#cantidad").val()) / (Ancho * a_lo_alto));
-                    $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");
+					$("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
+                	$("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");
                 }
                 else if (a_lo_ancho == a_lo_alto)
                 {
@@ -219,7 +219,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     textoEntran = 'A lo alto';
                     var res22 = (( $("#totalto").val() * $("#totancho").val()  *  $("#cantidad").val()) / (Ancho * a_lo_alto));
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");
+                	$("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");
                 }
                 else
                 {
@@ -231,7 +231,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(Ancho / totAncho);
-                entranAlto = parseInt(Ancho / totAlto);  
+                entranAlto = parseInt(Ancho / totAlto);	 
 
                 a_lo_ancho = Math.ceil(cantidad / parseInt(Ancho / totAncho))*totAlto;
                 a_lo_alto = Math.ceil(cantidad / parseInt(Ancho / totAlto))*totAncho;
@@ -245,7 +245,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     textoEntran = 'A lo ancho';
                     var res22 = ((totAlto * totAncho * cantidad) / (Ancho * a_lo_ancho));
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");                    
+                	$("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");                    
                 }
                 else if (a_lo_ancho > a_lo_alto)
                 {
@@ -255,7 +255,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     textoEntran = 'A lo alto';
                     var res22 = ((totAlto * totAncho * cantidad) / (Ancho * a_lo_alto));
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");                    
+                	$("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");                    
                 }
                 else if (a_lo_ancho == a_lo_alto)
                 {
@@ -265,7 +265,7 @@ var id_meterial, tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacio
                     textoEntran = 'A lo alto';
                     var res22 = ((totAlto * totAncho * cantidad) / (Ancho * a_lo_alto));
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>" + "<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");                    
+                	$("#medidas1").append("<td>" + a_lo_ancho + "</td>" + "<td>" + a_lo_alto + "</td>");                    
                 }
                 else
                 {
@@ -448,13 +448,13 @@ function(result)
 if(result.data.length>0)
 { 
 $.matTipo(result);   
-    if(result.data[0].ALTO1 != '' && result.data[0].ANCHO1 != '' )
-    {
-        //$("#medidas").append("<tr>");
-        $("#medidas1").append("<td>" + result.data[0].Medida_Mat_1 + "</td>" + "<td>" + result.data[0].ANCHO1 + "</td>" + "<td>" + result.data[0].ALTO1 + "</td>");
-            if (result.data[0].M_Tipo== "R")
+	if(result.data[0].ALTO1 != '' && result.data[0].ANCHO1 != '' )
+	{
+		//$("#medidas").append("<tr>");
+		$("#medidas1").append("<td>" + result.data[0].Medida_Mat_1 + "</td>" + "<td>" + result.data[0].ANCHO1 + "</td>" + "<td>" + result.data[0].ALTO1 + "</td>");
+		    if (result.data[0].M_Tipo== "R")
             {
-                //Calcular a lo ancho/ancho...
+		        //Calcular a lo ancho/ancho...
                 var resAncho = (result.data[0].ANCHO1 / parseFloat($("#totancho").val()));
                 resAlto = (result.data[0].ALTO1 / parseFloat($("#totalto").val()));
 
@@ -487,14 +487,14 @@ $.matTipo(result);
                 //Obtener el porcentaje de Aprovechamiento...
                 aprovech = (( parseFloat($("#totancho").val()) * parseFloat($("#totalto").val()) * parseInt(entran) ) / (result.data[0].ANCHO1 * result.data[0].ALTO1)) * 100;
                 porcentaje = aprovech.toFixed(2);                
-                $("#medidas1").append("<td>" + porcentaje + "</td>");
-                $("#medidas1").append("<td></td>" + "<td></td>");
-            }
+ 				$("#medidas1").append("<td>" + porcentaje + "</td>");
+ 				$("#medidas1").append("<td></td>" + "<td></td>");
+ 			}
             else if (result.data[0].M_Tipo == "F")
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO1 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO1 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO1 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO1 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO1 / $("#totalto").val()))*$("#totancho").val();
@@ -508,7 +508,7 @@ $.matTipo(result);
                     textoEntran = 'A lo ancho';
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>");
                     $("#medidas1").append("<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td >" + a_lo_ancho + "</td>" + "<td style='color:transparent;'>" + a_lo_alto + "</td>");
+                    $("#medidas1").append("<td style='color:transparent;'>" + a_lo_ancho + "</td>" + "<td style='color:transparent;'>" + a_lo_alto + "</td>");
                     //var res22 = ((totAlto * totAncho * cantidad) / (result.data[0].ANCHO1 * a_lo_ancho));
                 }
                 else if (a_lo_ancho > a_lo_alto)
@@ -519,7 +519,7 @@ $.matTipo(result);
                     textoEntran = 'A lo alto';
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>");
                     $("#medidas1").append("<td>" + porcentaje + "</td>");
-                    $("#medidas1").append("<td >" + a_lo_ancho + "</td>" + "<td style='color:transparent;'>" + a_lo_alto + "</td>");
+                    $("#medidas1").append("<td style='color:transparent;'>" + a_lo_ancho + "</td>" + "<td style='color:transparent;'>" + a_lo_alto + "</td>");
                     //var res22 = ((totAlto * totAncho * cantidad) / (result.data[0].ANCHO1 * a_lo_alto));
                 }
                 else if (a_lo_ancho == a_lo_alto)
@@ -530,7 +530,7 @@ $.matTipo(result);
                     textoEntran = 'A lo alto';
                     $("#medidas1").append("<td>" + entran + "</td>" + "<td>" + textoEntran + "</td>");
                     $("#medidas1").append("<td>" + porcentaje + "</td>");  
-                    $("#medidas1").append("<td >" + a_lo_ancho + "</td>" + "<td style='color:transparent;'>" + a_lo_alto + "</td>");                  
+                    $("#medidas1").append("<td style='color:transparent;'>" + a_lo_ancho + "</td>" + "<td style='color:transparent;'>" + a_lo_alto + "</td>");                  
                     //var res22 = ((totAlto * totAncho * cantidad) / (result.data[0].ANCHO1 * a_lo_alto));
                 }
                 else
@@ -542,7 +542,7 @@ $.matTipo(result);
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO1 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO1 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO1 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO1 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO1 / $("#totalto").val()))*$("#totancho").val();
@@ -585,14 +585,14 @@ $.matTipo(result);
                 {
                     //no hay otra condicion...
                 }
-            }                       
-    }
-    if(result.data[0].ALTO2 != '' && result.data[0].ANCHO2 !='' )
-    {
-        $("#medidas2").append("<td>" + result.data[0].Medida_Mat_2 + "</td>" + "<td>" + result.data[0].ANCHO2 + "</td>" + "<td>" + result.data[0].ALTO2 + "</td>");
-            if (result.data[0].M_Tipo== "R")
+            }             			
+	}
+	if(result.data[0].ALTO2 != '' && result.data[0].ANCHO2 !='' )
+	{
+		$("#medidas2").append("<td>" + result.data[0].Medida_Mat_2 + "</td>" + "<td>" + result.data[0].ANCHO2 + "</td>" + "<td>" + result.data[0].ALTO2 + "</td>");
+		    if (result.data[0].M_Tipo== "R")
             {
-                //Calcular a lo ancho/ancho...
+		        //Calcular a lo ancho/ancho...
                 var resAncho = (result.data[0].ANCHO2 / parseFloat($("#totancho").val()));
                 resAlto = (result.data[0].ALTO2 / parseFloat($("#totalto").val()));
 
@@ -625,14 +625,14 @@ $.matTipo(result);
                 //Obtener el porcentaje de Aprovechamiento...
                 aprovech = (( parseFloat($("#totancho").val()) * parseFloat($("#totalto").val()) * parseInt(entran) ) / (result.data[0].ANCHO2 * result.data[0].ALTO2)) * 100;
                 porcentaje = aprovech.toFixed(2);                
-                $("#medidas2").append("<td>" + porcentaje + "</td>");
-                $("#medidas2").append("<td></td>" + "<td></td>");           
-            }
+ 				$("#medidas2").append("<td>" + porcentaje + "</td>");
+ 				$("#medidas2").append("<td></td>" + "<td></td>");			
+ 			}
             else if (result.data[0].M_Tipo == "F")
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO2 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO2 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO2 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO2 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO2 / $("#totalto").val()))*$("#totancho").val();
@@ -680,7 +680,7 @@ $.matTipo(result);
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO2 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO2 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO2 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO2 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO2 / $("#totalto").val()))*$("#totancho").val();
@@ -723,14 +723,14 @@ $.matTipo(result);
                 {
                     //no hay otra condicion...
                 }
-            }                   
-    }
-    if(result.data[0].ALTO3 != '' && result.data[0].ANCHO3 !='' )
-    {
-        $("#medidas3").append("<td>" + result.data[0].Medida_Mat_3 + "</td>" + "<td>" + result.data[0].ANCHO3 + "</td>" + "<td>" + result.data[0].ALTO3 + "</td>");
-            if (result.data[0].M_Tipo== "R")
+            }               	
+	}
+	if(result.data[0].ALTO3 != '' && result.data[0].ANCHO3 !='' )
+	{
+		$("#medidas3").append("<td>" + result.data[0].Medida_Mat_3 + "</td>" + "<td>" + result.data[0].ANCHO3 + "</td>" + "<td>" + result.data[0].ALTO3 + "</td>");
+		    if (result.data[0].M_Tipo== "R")
             {
-                //Calcular a lo ancho/ancho...
+		        //Calcular a lo ancho/ancho...
                 var resAncho = (result.data[0].ANCHO3 / parseFloat($("#totancho").val()));
                 resAlto = (result.data[0].ALTO3 / parseFloat($("#totalto").val()));
 
@@ -763,14 +763,14 @@ $.matTipo(result);
                 //Obtener el porcentaje de Aprovechamiento...
                 aprovech = (( parseFloat($("#totancho").val()) * parseFloat($("#totalto").val()) * parseInt(entran) ) / (result.data[0].ANCHO3 * result.data[0].ALTO3)) * 100;
                 porcentaje = aprovech.toFixed(2);                
-                $("#medidas3").append("<td>" + porcentaje + "</td>");
-                $("#medidas3").append("<td></td>" + "<td></td>");
-            }
+ 				$("#medidas3").append("<td>" + porcentaje + "</td>");
+ 				$("#medidas3").append("<td></td>" + "<td></td>");
+ 			}
             else if (result.data[0].M_Tipo == "F")
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO3 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO3 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO3 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO3 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO3 / $("#totalto").val()))*$("#totancho").val();
@@ -818,7 +818,7 @@ $.matTipo(result);
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO3 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO3 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO3 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO3 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO3 / $("#totalto").val()))*$("#totancho").val();
@@ -861,14 +861,14 @@ $.matTipo(result);
                 {
                     //no hay otra condicion...
                 }
-            }       
-    }
-    if(result.data[0].ALTO4 != '' && result.data[0].ANCHO4 !='' )
-    {
-        $("#medidas4").append("<td>" + result.data[0].Medida_Mat_4 + "</td>" + "<td>" + result.data[0].ANCHO4 + "</td>" + "<td>" + result.data[0].ALTO4 + "</td>");
-            if (result.data[0].M_Tipo== "R")
+            }		
+	}
+	if(result.data[0].ALTO4 != '' && result.data[0].ANCHO4 !='' )
+	{
+		$("#medidas4").append("<td>" + result.data[0].Medida_Mat_4 + "</td>" + "<td>" + result.data[0].ANCHO4 + "</td>" + "<td>" + result.data[0].ALTO4 + "</td>");
+		    if (result.data[0].M_Tipo== "R")
             {
-                //Calcular a lo ancho/ancho...
+		        //Calcular a lo ancho/ancho...
                 var resAncho = (result.data[0].ANCHO4 / parseFloat($("#totancho").val()));
                 resAlto = (result.data[0].ALTO4 / parseFloat($("#totalto").val()));
 
@@ -901,14 +901,14 @@ $.matTipo(result);
                 //Obtener el porcentaje de Aprovechamiento...
                 aprovech = (( parseFloat($("#totancho").val()) * parseFloat($("#totalto").val()) * parseInt(entran) ) / (result.data[0].ANCHO4 * result.data[0].ALTO4)) * 100;
                 porcentaje = aprovech.toFixed(2);                
-                $("#medidas4").append("<td>" + porcentaje + "</td>");
-                $("#medidas4").append("<td></td>" + "<td></td>");
-            }
+ 				$("#medidas4").append("<td>" + porcentaje + "</td>");
+ 				$("#medidas4").append("<td></td>" + "<td></td>");
+ 			}
             else if (result.data[0].M_Tipo == "F")
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO4 / totAncho);
-                entranAlto = parseInt(result.data[0].ANCHO4 / totAlto);  
+                entranAlto = parseInt(result.data[0].ANCHO4 / totAlto);	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO4 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO4 / $("#totalto").val()))*$("#totancho").val();
@@ -956,7 +956,7 @@ $.matTipo(result);
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO4 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO4 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO4 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO4 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO4 / $("#totalto").val()))*$("#totancho").val();
@@ -999,14 +999,14 @@ $.matTipo(result);
                 {
                     //no hay otra condicion...
                 }
-            }       
-    }
-    if(result.data[0].ALTO5 != '' && result.data[0].ANCHO5 !='' )
-    {
-        $("#medidas5").append("<td>" + result.data[0].Medida_Mat_5 + "</td>" + "<td>" + result.data[0].ANCHO5 + "</td>" + "<td>" + result.data[0].ALTO5 + "</td>");
-            if (result.data[0].M_Tipo== "R")
+            }		
+	}
+	if(result.data[0].ALTO5 != '' && result.data[0].ANCHO5 !='' )
+	{
+		$("#medidas5").append("<td>" + result.data[0].Medida_Mat_5 + "</td>" + "<td>" + result.data[0].ANCHO5 + "</td>" + "<td>" + result.data[0].ALTO5 + "</td>");
+		    if (result.data[0].M_Tipo== "R")
             {
-                //Calcular a lo ancho/ancho...
+		        //Calcular a lo ancho/ancho...
                 var resAncho = (result.data[0].ANCHO5 / parseFloat($("#totancho").val()));
                 resAlto = (result.data[0].ALTO5 / parseFloat($("#totalto").val()));
 
@@ -1039,14 +1039,14 @@ $.matTipo(result);
                 //Obtener el porcentaje de Aprovechamiento...
                 aprovech = (( parseFloat($("#totancho").val()) * parseFloat($("#totalto").val()) * parseInt(entran) ) / (result.data[0].ANCHO5 * result.data[0].ALTO5)) * 100;
                 porcentaje = aprovech.toFixed(2);                
-                $("#medidas5").append("<td>" + porcentaje + "</td>");
-                $("#medidas5").append("<td></td>" + "<td></td>");
-            }
+ 				$("#medidas5").append("<td>" + porcentaje + "</td>");
+ 				$("#medidas5").append("<td></td>" + "<td></td>");
+ 			}
             else if (result.data[0].M_Tipo == "F")
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO5 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO5 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO5 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO5 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO5 / $("#totalto").val()))*$("#totancho").val();
@@ -1094,7 +1094,7 @@ $.matTipo(result);
             {
                 //Calcula largo de material a lo ancho y a lo alto de las piezas.
                 entranAncho = parseInt(result.data[0].ANCHO5 / $("#totancho").val());
-                entranAlto = parseInt(result.data[0].ANCHO5 / $("#totalto").val());  
+                entranAlto = parseInt(result.data[0].ANCHO5 / $("#totalto").val());	 
 
                 a_lo_ancho = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO5 / $("#totancho").val()))*$("#totalto").val();
                 a_lo_alto = Math.ceil($("#cantidad").val() / parseInt(result.data[0].ANCHO5 / totAlto))*$("#totancho").val();
@@ -1137,8 +1137,8 @@ $.matTipo(result);
                 {
                     //no hay otra condicion...
                 }
-            }   
-    }
+            }	
+	}
 }
 else
 {        
@@ -1149,18 +1149,18 @@ else
 
 $.matTipo = function(result)
 {
-    if (result.data[0].M_Tipo == "R")
-    {
-        $("#titMat").html("MATERIAL RIGIDO");
-    }
-    else if (result.data[0].M_Tipo == "F")
-    {
-        $("#titMat").html("MATERIAL FLEXIBLE");
-    }
-    else if (result.data[0].M_Tipo == "P")
-    {
-        $("#titMat").html("MATERIAL FOTOGRAFICO");
-    }   
+	if (result.data[0].M_Tipo == "R")
+	{
+	    $("#titMat").html("MATERIAL RIGIDO");
+	}
+	else if (result.data[0].M_Tipo == "F")
+	{
+	    $("#titMat").html("MATERIAL FLEXIBLE");
+	}
+	else if (result.data[0].M_Tipo == "P")
+	{
+	    $("#titMat").html("MATERIAL FOTOGRAFICO");
+	}	
 }
 
 
@@ -1269,7 +1269,7 @@ $.calculosmaterial = function(tblmedida,tblentran,tblAncho,tblAlto,tblaloancho,t
                 },'json');  
             }
             else
-///////////// /////////////////////// SIN MATERIAL ESPECIAL /////////////////7
+                /////////////////////// SIN MATERIAL ESPECIAL /////////////////7
             {
                 id_meterial = $("#material").val();
                 $.post('php/medidas.php', {id_meterial:id_meterial},               
@@ -1295,24 +1295,36 @@ $.calculosmaterial = function(tblmedida,tblentran,tblAncho,tblAlto,tblaloancho,t
 
                         } else if(result.data[0].M_Tipo == "F")
                         {
-                             if (solvente=="1") {
-                               
+                            if(id_meterial == "235" || id_meterial == "236" || id_meterial == "237" || id_meterial == "238")
+                            {
                                 //Cuentas Cantidad y Precio que no sean lona
                                 m2= ($("#totancho").val() / 100) * ($("#totalto").val() / 100);
-                                cantidad2 = ( ($("#totancho").val() / 100) * ($("#totalto").val() / 100) * $("#cantidad").val());    
-
-                                
-                                $.post("php/calcular_solvente.php",{cantidad2:cantidad2, id_meterial:id_meterial}, function(data) 
-                                {
-                                    totallona=data;
-                                                         
-                                 
+                                cantidad2 = ( ($("#totancho").val() / 100) * ($("#totalto").val() / 100) * $("#cantidad").val());                                
+                                    if(cantidad2 > 0 && cantidad2 <= 200)
+                                    {
+                                        totallona = cantidad2 * 75;
+                                    }
+                                    else if(cantidad2 >= 201 && cantidad2 <= 500)
+                                    {
+                                        totallona = cantidad2 * 65;
+                                    }
+                                    else if(cantidad2 >= 501 && cantidad2 <= 1000)
+                                    {
+                                        totallona = cantidad2 * 55;
+                                    }
+                                    else if(cantidad2 >= 1001 && cantidad2 <= 5000)
+                                    {
+                                        totallona = cantidad2 * 50;
+                                    }       
+                                    else if(cantidad2 > 5001)
+                                    {
+                                        totallona = cantidad2 * 45;
+                                    }
 
                                     $("#titCantMat").html("m.");
                                     $("#resCant").val(number_format(cantidad2,0));
                                     $("#resPrecio").val(number_format(totallona,0));
-                                    $.subtotal();  
-                                } );                                                                                                                          
+                                    $.subtotal();                                                                                                                           
                             }
                             else
                             {
@@ -2219,7 +2231,7 @@ $.calcularAcabados=function  (tblentran,tblorientacion,acab,acabado)
             },'json');
         }
 
-/////////////////////////////////// Sin material especial//////////////////////////
+        ///////////////////////////////// Sin material especial//////////////////////////
         else
         {          
         $.post('php/acabados.php', {idacabado1:idacabado1},               
@@ -2294,7 +2306,7 @@ $.calcularAcabados=function  (tblentran,tblorientacion,acab,acabado)
                                         $.subtotal();                                 
                                     }
                                 }
-                                else /// MATERIAL FLEXIBLE
+                                else 
                                 {                                    
                                     if (tblorientacion == "A lo alto")
                                     {                                           
@@ -2542,37 +2554,9 @@ $.costoAdicional = function(adicional)
     $.subtotal = function() 
    {
 
-        if (solvente=="1")
-         {
-            
-            $("#resMargen").val("0");
-            $("#resTinta").val("0");
-            $("#porTinta").val("0");
-            $("#resTinta").val("0");
-            $("#manoObra").val("0");
-            var resPrecio = parseFloat($("#resPrecio").val().replace(/,/gi,''));
-            var resTinta = parseFloat($("#resTinta").val().replace(/,/gi,''));
-           //var resBlanco = parseFloat($("#resBlanco").val().replace(/,/gi,''));
 
-        var resAdic1 = parseFloat($("#resAdic1").val().replace(/,/gi,''));
-        var resAdic2 = parseFloat($("#resAdic2").val().replace(/,/gi,''));
-        var resAdic3 = parseFloat($("#resAdic3").val().replace(/,/gi,''));
-        var resAdic4 = parseFloat($("#resAdic4").val().replace(/,/gi,''));
-        var resAdic5 = parseFloat($("#resAdic5").val().replace(/,/gi,''));
-        var resAdic6 = parseFloat($("#resAdic6").val().replace(/,/gi,''));
-         var value = parseFloat(resPrecio)+parseFloat(resAdic1)+parseFloat(resAdic2)+parseFloat(resAdic3)+parseFloat(resAdic4)+parseFloat(resAdic5)+parseFloat(resAdic6); //+parseFloat(resBarniz)+parseFloat(resLamina)
-        $("#resSubtotal").val(number_format(value,0));
-        
-        $.comision();
-        $.total();
-
-            }
-
-            else
-            {
-                $.resolucion720();
      
-         var resPrecio = parseFloat($("#resPrecio").val().replace(/,/gi,''));
+                var resPrecio = parseFloat($("#resPrecio").val().replace(/,/gi,''));
     
         var resTinta = parseFloat($("#resTinta").val().replace(/,/gi,''));
         //var resBarniz = parseFloat($("#resB").val().replace(/,/gi,''));
@@ -2595,7 +2579,6 @@ $.costoAdicional = function(adicional)
         $.margen();
         $.comision();
         $.total();
-            }
       
     }
 

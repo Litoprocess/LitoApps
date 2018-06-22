@@ -74,7 +74,7 @@
 
 						<?php if ($_SESSION["Permisos"]["MenuKrispykreme"] === 1): ?>
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-krispykreme">
-							<a href="http://192.168.2.209/kryspykreme/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>" target="_blank">
+							<a href="http://192.168.2.211:8080/KryspyKreme/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
 									<img src="icons/krispykreme.png" width="170" height="60" class="responsive-img" /><br>
 									<span style="color:#c52033;"><h5>KrispyKreme</h5></span>
@@ -85,9 +85,9 @@
 
 						<?php if ($_SESSION["Permisos"]["MenuStarbucks"] === 1): ?>
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-starbucks">
-							<a href="http://192.168.2.209/starbucks/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank">
+							<a href="http://192.168.2.211:8080/starbucks/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
-									<img src="icons/starbucks.png" width="70" class="responsive-img" /><br>
+									<img src="icons/starbucks_sinfondo.png" width="70" class="responsive-img" /><br>
 									<span style="color:#067655;"><h5>Starbucks</h5></span>
 								</div>
 							</a>
@@ -96,9 +96,9 @@
 
 						<?php if ($_SESSION["Permisos"]["MenuStarbucks2"] === 1): ?>
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-starbucks2">
-							<a href="//192.168.2.209/starbucks2/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank"-->
+							<a href="http://192.168.2.211:8080/starbucks2/public/login?usuario=<?php echo $_SESSION['Permisos']['usuario'];?>&password=<?php echo $_SESSION['Permisos']['password'];?>"  target="_blank">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
-									<img src="icons/starbucks.png" width="70" class="responsive-img" /><br>
+									<img src="icons/starbucks_sinfondo.png" width="70" class="responsive-img" /><br>
 									<span style="color:#067655;"><h5>Starbucks2</h5></span>
 								</div>
 							</a>
@@ -222,27 +222,20 @@
 						</div> 
 						<?php endif; ?>
 
-						<?php if ($_SESSION["Permisos"]["MenuReqPersonal"] === 1): ?>					
-						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-requisiciondepersonal">
-							<a href="requisiciondepersonal/index.php">
-								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
-									<img src="icons/candidatos.png" width="70" class="responsive-img" /><br>
-									<span style="color: #1A9AB0;"><h5>Req.Personal</h5></span>
-								</div>
-							</a>
-						</div> 
-						<?php endif; ?>	
+						
 
-						<?php if ($_SESSION["Permisos"]["MenuMesaControl"] === 1): ?>					
-						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-mesacontrol">
-							<a href="http://192.168.2.209/mesacontrol/" target="_blank">
+							<?php if ($_SESSION["Permisos"]["MenuMantenimiento"] === 1): ?>					
+						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-propuestasclientes">
+							<a href="propuestasclientes/index.php">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
-									<img src="icons/solucion.png" width="70" class="responsive-img" /><br>
-									<span style="color: #0524A1;"><h5>Mesa de Control</h5></span>
+									<img src="icons/propuestas (1).png" width="70" class="responsive-img" /><br>
+									<span style="color: #F3C21B;"><h5>Propuestas Clientes</h5></span>
 								</div>
 							</a>
 						</div> 
-						<?php endif; ?>												
+						<?php endif; ?>
+
+
 																							
 					</div>
 				</div>

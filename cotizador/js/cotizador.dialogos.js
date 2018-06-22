@@ -1,9 +1,14 @@
 $(document).ready(function(){
 
-		  $('.modal').modal({
+$("#solvente").css("display","none");
+$ ("label[for = 'solvente']"). css ("display", "none");
+$("#solvente").css("display","none");
+
+
+
+	  $('.modal').modal({
       dismissible: false // Modal can be dismissed by clicking outside of the modal
   });
-
 
 var id_meterial=0, tblentran=0,tblAncho=0,tblAlto=0,tblaloancho=0,tblaloalto=0,tblorientacion="",tblmedida=0,tblaprovecha=0, proveedor, MedEspecial,acab;
 
@@ -191,6 +196,30 @@ var id_meterial=0, tblentran=0,tblAncho=0,tblAlto=0,tblaloancho=0,tblaloalto=0,t
 
         if ($("#ancho").val() > 0 && $("#alto").val() > 0 )
         {
+        	
+        	var id_mat = $('#material').val();
+
+        	$.post("php/solvente.php",{id_mat:id_mat}, function(data)
+        	{
+        		if (data=="true")
+        		{
+        		alert("id: "+data);
+        		$("#solvente").css("display","block");
+				$ ("label[for = 'solvente']"). css ("display", "block");
+        		}
+        		else
+        		{
+        			alert("id: "+data);
+        			$("#solvente").css("display","none");
+					$ ("label[for = 'solvente']"). css ("display", "none");
+					$("#solvente").prop("checked",false);
+        		}
+        		
+        		
+        	});
+
+        	
+
 			$.medidasTabla();
 			$.resolucion720();
 			$.resolucion1440();
@@ -356,19 +385,25 @@ var id_meterial=0, tblentran=0,tblAncho=0,tblAlto=0,tblaloancho=0,tblaloalto=0,t
         //$.medidasTablaespecial();
 	
 	});
+
+
+
 ////////////////////////////   FUNCION DE LA TABLA DE MEDIDAS ////////////////////////
 
     $('#tblmedidas tbody').on( 'click', 'tr', function () {
     	var acab=0;
     	var acabado=0;
-        if ( $(this).hasClass('selected') ) {
+    
+	     if ( $(this).hasClass('selected') ) 
+	    {
             $(this).removeClass('selected');
         }
-        else {
+        else
+        {
             table.$('tr.selected').removeClass('selected');
             $(this).addClass('selected');
         }
-        	tblmedida = $(this).find('td').eq(0).html();
+       		tblmedida = $(this).find('td').eq(0).html();
 			tblentran = $(this).find('td').eq(3).html();
 			tblAncho = $(this).find('td').eq(1).html();
 			tblAlto = $(this).find('td').eq(2).html();
@@ -376,8 +411,20 @@ var id_meterial=0, tblentran=0,tblAncho=0,tblAlto=0,tblaloancho=0,tblaloalto=0,t
 			tblaloalto = $(this).find('td').eq(7).html();
 			tblorientacion = $(this).find('td').eq(4).html();
 			tblaprovecha = $(this).find('td').eq(5).html();
+			
 
-			$.calculosmaterial(tblmedida,tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacion,tblaprovecha);
+        	//  SI ESTA SELECCIONA EL SOLVENTE
+    	if ($("#solvente").prop("checked") == true)
+		{
+
+				//alert (" SOLVENTE");
+			solvente=1;
+		//alert (" SOLVENTE"+solvente);
+		}
+		else
+		{
+			solvente=0;
+        	
 
 			//$.acab1(tblentran,tblorientacion);
 			//$.acab2(tblentran,tblorientacion);
@@ -385,15 +432,20 @@ var id_meterial=0, tblentran=0,tblAncho=0,tblAlto=0,tblaloancho=0,tblaloalto=0,t
 			//$.acab4(tblentran,tblorientacion);
 			//$.acab5(tblentran,tblorientacion);
 			//$.acab6(tblentran,tblorientacion);
-
+			//alert (" SOLVENTE"+solvente);
+			
+		}
+		
+			$.calculosmaterial(tblmedida,tblentran,tblAncho,tblAlto,tblaloancho,tblaloalto,tblorientacion,tblaprovecha,solvente);
 			if ($("#resAcab1").val() > 0)
-    {acab=1
-    acabado=$("#acab1").val() 
+    		{acab=1
+   			 acabado=$("#acab1").val() 
    
-}
+			}
 
 			$.calcularAcabados(tblentran,tblorientacion,acab,acabado)	
-			$.tiempoproduccion(tblAlto);		
+			$.tiempoproduccion(tblAlto);
+			
     } );
 
 /////////////////////////////// T I N T A S ///////////////////////////77
