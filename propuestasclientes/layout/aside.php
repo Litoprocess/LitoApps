@@ -1,0 +1,1 @@
+<?php require '../directorio/layout/aside.php' ?>
