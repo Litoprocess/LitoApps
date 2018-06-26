@@ -15,14 +15,16 @@
 .row .col.s3 {
     width: 32%;
 }
+
+input{
+text-transform: uppercase;	
+}
 </style>
 <main class="container">
 	<div class="row">
 		<div class="col s12">
 		<ul class="tabs">
-		  	<!--li class="tab col s3"><a class="active" href="#test1">Información General</a></li-->
 		  	<li id="uno" class="tab col s3"><a href="#test1">Información del Puesto a Cubrir</a></li>
-		  	<!--li class="tab col s3"><a href="#test3">Uso exclusivo de Capital Humano</a></li-->
 		  	<li id="dos" class="tab col s3"><a href="#test2">Caracteristicas del Candidato</a></li>
 		  	<li id="tres" class="tab col s3"><a href="#test3">Comentarios Adicionales</a></li>
 		</ul>
@@ -30,33 +32,19 @@
 		<br>
 		<br>
 		<br>
-		<form id="generarSolicitud" method="POST" action="php/agregarSolicitud.php">
-
-			<!--div id="test1" class="col s12">
-				<div class="row">
-		            <div class="input-field col s12">
-		              <input type="text" name="txtDepartamento" id="txtDepartamento">
-		              <label for="txtDepartamento">Departamento Solicitante</label>
-		            </div>	
-		            <div class="input-field col s12">
-		              <input type="text" name="txtSolicitante" id="txtSolicitante">
-		              <label for="txtSolicitante">Nombre del Solicitante</label>
-		            </div>	
-		            <div class="input-field col s12">
-		              <input type="text" name="txtPuesto" id="txtPuesto">
-		              <label for="txtPuesto">Puesto del Solicitante</label>
-		            </div>
-		            <div class="input-field col s12">
-		              <input type="text" name="txtGerencia" id="txtGerencia">
-		              <label for="txtGerencia">Gerencia</label>
-		            </div>	            		            	            				
-		        </div>
-		        <br>
-		        <br>
-			</div-->		
+		<form id="generarSolicitud" method="POST" action="php/agregarSolicitud.php">	
 
 			<div id="test1" class="col s12">
 				<div class="row">
+					<div class="col s4">
+					  <label>Nivel</label>
+					  <select id="txtNivel" name="txtNivel" class="browser-default">
+					    <option value="" disabled selected>Elige una opcion</option>
+					    <option value="Operativo">Operativo</option>
+					    <option value="Especializado">Especializado</option>
+					    <option value="Gerencial y mandos Medios">Gerencial y mandos Medios</option>
+					  </select>				
+					</div>
 		            <div class="input-field col s12">
 		              <input type="text" name="txtPuestoSolicitado" id="txtPuestoSolicitado" required>
 		              <label for="txtPuestoSolicitado">Puesto Solicitado</label>
@@ -89,8 +77,8 @@
 		            </div>
 		            <div class="col s4">
 		              <p>
-		                <input name="group1" type="radio" id="adicional" value="Adicional" />
-		                <label for="adicional">Adicional</label>              
+		                <input name="group1" type="radio" id="temporal1" value="Temporal" />
+		                <label for="temporal1">Temporal</label>              
 		              </p>              
 		            </div>		        	
 		        </div>
@@ -106,8 +94,8 @@
 					</div>                                 
 					<div class="col s4">
 					  <p>
-					    <input name="group2" type="radio" id="temporal" value="Temporal" />
-					    <label for="temporal">Temporal</label>              
+					    <input name="group2" type="radio" id="temporal2" value="Temporal" />
+					    <label for="temporal2">Temporal</label>              
 					  </p>                                                    
 					</div>
 					<div class="input-field col s4">
@@ -117,7 +105,7 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s12">
-					  <textarea id="txtObjetivo" name="txtObjetivo" class="materialize-textarea" required></textarea>
+					  <textarea id="txtObjetivo" name="txtObjetivo" class="materialize-textarea" maxlength="254" required></textarea>
 					  <label for="txtObjetivo">Objetivo del puesto</label>
 					</div>
 				</div>						        
@@ -125,47 +113,17 @@
 		        <br>				
 			</div>
 
-			<!--div id="test3" class="col s12">
-				<div class="row">
-					<div class="col s12">
-					  <span>Rango de Sueldo:</span>
-					</div>
-					<div class="input-field col s4">
-					  <input id="txtDe" name="txtDe" type="text" class="validate">
-					  <label for="txtDe">De: $</label>
-					</div>		
-					<div class="input-field col s4 offset-s2">
-					  <input id="txtDe" name="txtDe" type="text" class="validate">
-					  <label for="txtDe">Hasta: $</label>
-					</div>								 		
-				</div>
-				<br>
-				<br>		
-			</div-->
-
 			<div id="test2" class="col s12">
 				<div class="row">
 					<div class="col s6">
-						<div class="row">
-							<div class="input-field col s5">
-							  <input id="txtEdad" name="txtEdad" type="number" class="validate" min="18" max="99" required>
-							  <label for="txtEdad">Edad</label>
-							</div>	
-							<div class="col s5 offset-s2">
-							  <label>Sexo</label>
-							  <select class="browser-default" id="txtSexo" name="txtSexo" required>
-							    <option value="Ninguno" disabled selected>Selecciona una opción</option>
-							    <option value="Femenino">Femenino</option>
-							    <option value="Masculino">Masculino</option>
-							  </select>
-							</div>	
+						<div class="row">	
 							<div class="input-field col s12">
-							  <input id="txtEscolaridad" name="txtEscolaridad" type="text" class="validate" required>
+							  <input id="txtEscolaridad" name="txtEscolaridad" type="text" class="validate" maxlength="254" required>
 							  <label for="txtEscolaridad">Escolaridad</label>
 							</div>
 							<div class="input-field col s12">
-							  <input id="txtConocimientosT" name="txtConocimientosT" type="text" class="validate" required>
-							  <label for="txtConocimientosT">Conocimientos Teóricos</label>
+							  <input id="txtConocimientosT" name="txtConocimientosT" type="text" class="validate" maxlength="254" required>
+							  <label for="txtConocimientosT">Conocimientos Técnicos</label>
 							</div>
 							<div class="input-field col s2">
 							  <input id="txtidioma1" name="txtidioma1" type="text" class="validate" required>
@@ -184,13 +142,9 @@
 							  <label for="txtPorIdi2">%</label>
 							</div>
 							<div class="input-field col s12">
-							  <input id="txtExperiencia" name="txtExperiencia" type="text" class="validate" required>
-							  <label for="txtExperiencia">Experiencia</label>
-							</div>
-							<div class="input-field col s12">
-							  <input id="txtConocimientosP" name="txtConocimientosP" type="text" class="validate" required>
-							  <label for="txtConocimientosP">Conocimientos Prácticos</label>
-							</div>																																																											
+							  <input id="txtExperiencia" name="txtExperiencia" type="number" class="validate" required>
+							  <label for="txtExperiencia">Experiencia(años)</label>
+							</div>																																																										
 						</div>
 						<div class="row">
 							<div class="col s12">
@@ -219,14 +173,14 @@
 							</div>           
 							<div class="col s4">
 							  <p>
-							    <input name="group4" type="radio" id="txtResidenciaSi" required/>
+							    <input name="group4" type="radio" id="txtResidenciaSi" value="Si" required/>
 							    <label for="txtResidenciaSi">Si</label>
 							  </p>  
 							</div>
 
 							<div class="col s4 offset-s2">
 							  <p>
-							    <input name="group4" type="radio" id="txtResidenciaNo" />
+							    <input name="group4" type="radio" id="txtResidenciaNo" value="No" />
 							    <label for="txtResidenciaNo">No</label>              
 							  </p>                                                    
 							</div>							
@@ -235,7 +189,7 @@
 					<div class="col s6">
 						<div class="row">
 							<div class="col s5">
-							  <span>Capacidad y Habilidades</span>
+							  <span>Competencias</span>
 							</div> 	
 							<div class="col s2">|</div>
 							<div class="col s5">
@@ -352,15 +306,15 @@
 								<span>Tolerancia a la Presión</span>								
 							</div>
 							<div class="col s2 offset-s1">
-							    <input name="group111" type="radio" id="txtTolPreBaj" value="Bajo" required/>
+							    <input name="group11" type="radio" id="txtTolPreBaj" value="Bajo" required/>
 							    <label for="txtTolPreBaj"></label>              
 							</div>
 							<div class="col s2">
-							    <input name="group111" type="radio" id="txtTolPreMed" value="Promedio" />
+							    <input name="group11" type="radio" id="txtTolPreMed" value="Promedio" />
 							    <label for="txtTolPreMed"></label>              
 							</div>
 							<div class="col s2">
-							    <input name="group111" type="radio" id="txtTolPreAlt" value="Alto" />
+							    <input name="group11" type="radio" id="txtTolPreAlt" value="Alto" />
 							    <label for="txtTolPreAlt"></label>              
 							</div>	
 
@@ -394,7 +348,15 @@
 							<div class="col s2">
 							    <input name="group13" type="radio" id="txtApeNorAlt" value="Alto" />
 							    <label for="txtApeNorAlt"></label>              
-							</div>																																																																									
+							</div>	
+
+							<div class="col s5">
+								<span>Otra:</span>								
+							</div>
+							<div class="col s6 offset-s1">
+							    <input type="text" id="otra" name="otra" maxlength="254" required/>
+							    <label for="otra"></label>              
+							</div>																																																																															
 						</div>
 					</div>
 				</div>
@@ -403,7 +365,7 @@
 			<div id="test3" class="col s12">
 				<div class="row">
 					<div class="input-field col s4">
-					  <input id="txtContratacionDeseada" name="txtContratacionDeseada" type="date" class="datepicker" required>
+					  <input id="txtContratacionDeseada" name="txtContratacionDeseada" type="date" class="datepicker" required readonly>
 					  <label for="txtContratacionDeseada">Fecha de Contratación deseada</label>
 					</div>		
 					<div class="input-field col s12">
@@ -415,7 +377,7 @@
 				<br>
 				<div class="row">
 					<div class="col s4 offset-s4">
-						<a id="btn1-cancelar" class="waves-effect waves-green btn-flat">Limpiar</a>    
+						<a id="btn-limpiar" class="waves-effect waves-green btn-flat">Limpiar</a>    
 						<button type="submit" value="Submit" class="waves-effect waves-green btn-flat indigo darken-4 white-text">Guardar</button>				
 					</div>					
 				</div>
@@ -514,7 +476,8 @@ $("#generarSolicitud").submit(function(event)
 			if(result.validacion === true)
 			{
 				Materialize.toast('Se guardo', 1200,'green darken-4');
-				window.setTimeout('location.reload()', 1201);
+				//window.setTimeout('location.reload()', 1201);
+				limpiar();
 			}
 			else
 			{
@@ -529,7 +492,7 @@ $("#generarSolicitud").submit(function(event)
 		$("#txtMeses").prop("disabled",true);
 	});
 
-	$("#temporal").click(function(){
+	$("#temporal2").click(function(){
 		$("#txtMeses").prop("disabled",false);
 	});
 
@@ -543,7 +506,20 @@ $("#generarSolicitud").submit(function(event)
 		}
 	});
 
+	$("#btn-limpiar").click(function(){
+		limpiar();
+	});
+
 });
+
+function limpiar()
+{
+	$('input[type=text]').not('[readonly]').val("");
+	$('input[type=number]').val("");
+	$('input[type=radio]').prop("checked",false);
+	$('textarea').val("");
+	$('ul.tabs a:first').click();
+}
 </script>
 </body>
 </html>

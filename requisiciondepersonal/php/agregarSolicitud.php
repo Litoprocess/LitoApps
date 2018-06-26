@@ -1,136 +1,58 @@
 <?php session_start();
 
-include 'conexion.php';
+include_once '../DAO/RequisicionDAO.php';
 
-$nombre = $_SESSION['Permisos']['NombreUsuario'];
-$departamento = $_SESSION['Permisos']['Departamento'];
-$puesto = $_SESSION['Permisos']['Puesto'];
-$gerencia = $_SESSION['Permisos']['Departamento'];
-
-$txtPuestoSolicitado = $_POST['txtPuestoSolicitado'];
-$txtNombreJefeInmediato = $_POST['txtNombreJefeInmediato'];
-$txtPuestoJefeInmediato = $_POST['txtPuestoJefeInmediato'];
-$group1 = $_POST['group1'];
-$group2 = $_POST['group2'];
-$txtMeses = $_POST['txtMeses'];
-$txtObjetivo = $_POST['txtObjetivo'];
-$txtEdad = $_POST['txtEdad'];
-$txtSexo = $_POST['txtSexo'];
-$txtEscolaridad = $_POST['txtEscolaridad'];
-$txtConocimientosT = $_POST['txtConocimientosT'];
-$txtidioma1 = $_POST['txtidioma1'];
-$txtPorIdi1 = $_POST['txtPorIdi1'];
-$txtidioma2 = $_POST['txtidioma2'];
-$txtPorIdi2 = $_POST['txtPorIdi2'];
-$txtExperiencia = $_POST['txtExperiencia'];
-$txtConocimientosP = $_POST['txtConocimientosP'];
-$group3 = $_POST['group3'];
-$txtViajarTiempo = $_POST['txtViajarTiempo'];
-$group4 = $_POST['group4'];
-$group5 = $_POST['group5'];
-$group6 = $_POST['group6'];
-$group7 = $_POST['group7'];
-$group8 = $_POST['group8'];
-$group9 = $_POST['group9'];
-$group10 = $_POST['group10'];
-$group111 = $_POST['group111'];
-$group12 = $_POST['group12'];
-$group13 = $_POST['group13'];
 $txtContratacionDeseada = $_POST['txtContratacionDeseada'];
-$txtCandidatoInterno = $_POST['txtCandidatoInterno'];
+$txtContratacionDeseada = new DateTime($txtContratacionDeseada);
+$txtContratacionDeseada = $txtContratacionDeseada->format('Y-m-d');
 
+$txtFechaInicioElaboracion = new DateTime();
+$txtFechaInicioElaboracion = $txtFechaInicioElaboracion->format('Y-m-d H:i:s');
 
+$dto = new stdClass();
+$dto->FechaInicioElaboracion = $txtFechaInicioElaboracion;
+$dto->NombreSolicitante = $_SESSION['Permisos']['NombreUsuario'];
+$dto->DepartamentoSolicitante = $_SESSION['Permisos']['Departamento'];
+$dto->PuestoSolicitante = $_SESSION['Permisos']['Puesto'];
+$dto->GerenciaSolicitante = $_SESSION['Permisos']['Departamento'];
+
+$dto->Nivel = $_POST['txtNivel'];
+$dto->PuestoSolicitado = $_POST['txtPuestoSolicitado'];
+$dto->JefeInmediato = $_POST['txtNombreJefeInmediato'];
+$dto->PuestoJefeInmediato = $_POST['txtPuestoJefeInmediato'];
+$dto->OrigenVacante = $_POST['group1'];
+$dto->TipoContrato = $_POST['group2'];
+$dto->ContratoMeses = (isset($_POST['txtMeses'])) ? $_POST['txtMeses'] : "";
+$dto->ObjetivoPuesto = $_POST['txtObjetivo'];
+$dto->Escolaridad = $_POST['txtEscolaridad'];
+$dto->ConocimientosTeoricos = $_POST['txtConocimientosT'];
+$dto->Idioma1 = $_POST['txtidioma1'];
+$dto->PorcentajeIdioma1 = $_POST['txtPorIdi1'];
+$dto->Idioma2 = $_POST['txtidioma2'];
+$dto->PorcentajeIdioma2 = $_POST['txtPorIdi2'];
+$dto->Experiencia = $_POST['txtExperiencia'];
+$dto->DisponibilidadViajar = $_POST['group3'];
+$dto->PorcentajeTiempoViajar = $_POST['txtViajarTiempo'];
+$dto->DisponibilidadCambioResidencia = $_POST['group4'];
+$dto->CapacidadIntelectual = $_POST['group5'];
+$dto->IniciativayEmpuje = $_POST['group6'];
+$dto->ManejodePersonal = $_POST['group7'];
+$dto->TomadeDesiciones = $_POST['group8'];
+$dto->RelacionesInterpersonales = $_POST['group9'];
+$dto->EstabilidadEmocional = $_POST['group10'];
+$dto->ToleranciaPresion = $_POST['group11'];
+$dto->Organizacion = $_POST['group12'];
+$dto->ApegoaNormas = $_POST['group13'];
+$dto->Otra = (isset($_POST['otra'])) ? $_POST['otra'] : "";
+$dto->FechaDeseadaContratacion = $txtContratacionDeseada;
+$dto->NombreCandidatoInterno = $_POST['txtCandidatoInterno'];
+$dto->Estatus = "PENDIENTE";
+
+$dao = new RequisicionDAO();
+$datos = $dao->generar($dto);
 
 $response = new stdClass();
-$sql = "INSERT INTO Requisiciones (
-	FechaInicioElaboracion,
-	NombreSolicitante,
-	DepartamentoSolicitante,
-	PuestoSolicitante,
-	GerenciaSolicitante,
-	PuestoSolicitado,
-	JefeInmediato,
-	PuestoJefeInmediato,
-	OrigenVacante,
-	TipoContrato,
-	ContratoMeses,
-	ObjetivoPuesto,
-	Edad,
-	Sexo,
-	Escolaridad,
-	ConocimientosTeoricos,
-	Idioma1,
-	PorcentajeIdioma1,
-	Idioma2,
-	PorcentajeIdioma2,
-	Experiencia,
-	ConocimientosPracticos,
-	DisponibilidadViajar,
-	PorcentajeTiempoViajar,
-	DisponibilidadCambioResidencia,
-	CapacidadIntelectual,
-	IniciativayEmpuje,
-	ManejodePersonal,
-	TomadeDesiciones,
-	RelacionesInterpersonales,
-	EstabilidadEmocional,
-	ToleranciaPresion,
-	Organizacion,
-	ApegoaNormas,
-	FechaDeseadaContratacion,
-	NombreCandidatoInterno,
-	Estatus
-) 
-VALUES (
-	getdate(),
-	'$nombre',
-	'$departamento',
-	'$puesto',
-	'$gerencia',
-	'$txtPuestoSolicitado',
-	'$txtNombreJefeInmediato',
-	'$txtPuestoJefeInmediato',
-	'$group1',
-	'$group2',
-	'$txtMeses',
-	'$txtObjetivo',
-	'$txtEdad',
-	'$txtSexo',
-	'$txtEscolaridad',
-	'$txtConocimientosT',
-	'$txtidioma1',
-	'$txtPorIdi1',
-	'$txtidioma2',
-	'$txtPorIdi2',
-	'$txtExperiencia',
-	'$txtConocimientosP',
-	'$group3',
-	'$txtViajarTiempo',
-	'$group4',
-	'$group5',
-	'$group6',
-	'$group7',
-	'$group8',
-	'$group9',
-	'$group10',
-	'$group111',
-	'$group12',
-	'$group13',
-	'$txtContratacionDeseada',
-	'$txtCandidatoInterno',
-	'PENDIENTE'
-)";
-
-$stmt = sqlsrv_query($conn,$sql);
-
-if ($stmt) 
-{
-    $response->validacion = true;
-}
-else
-{
-	$response->validacion = false;
-}
+$response->validacion = ($datos > 0) ? true : false;
 
 header('Content-Type: application/json');
 echo json_encode($response);

@@ -26,15 +26,49 @@
         <a style="margin-left: 50px; font-size:22px;" class="breadcrumb" href="#!">Requisición de Personal</a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li id="repProd"><a href="index.php">Requisición</a></li>
-          <li id="repProd"><a href="solicitudes.php">Solicitudes</a></li>
-          <!--li><a href="informes.php">Informes OP's</a></li-->
-          <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
+          <?php switch( $_SESSION['Permisos']["UserReqPersonal"] ) { 
+            case 1: ?>          
+              <li><a href="requisicion.php">Requisición</a></li>
+              <li><a href="solicitudes.php">Solicitudes</a></li>
+          <?php 
+          break;
+
+          case 2: ?>
+              <li><a href="requisicion.php">Requisición</a></li>
+          <?php 
+          break;
+
+          case 3: ?>   
+              <li><a href="solicitudes.php">Solicitudes</a></li>
+          <?php               
+          break;
+
+          default:;
+          break;
+           } ?>                                         
+              <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
         </ul>
         <ul class="side-nav" id="mobile-demo">
-        <li><a href="index.php">Requisición</a></li>
-        <li><a href="solicitudes.php">Solicitudes</a></li>
-        <!--li><a href="informes.php">Informes OP's</a></li-->
+          <?php switch( $_SESSION['Permisos']["UserReprocesos"] ) { 
+            case 1: ?>          
+              <li><a href="requisicion.php">Requisición</a></li>
+              <li><a href="solicitudes.php">Solicitudes</a></li>
+          <?php 
+          break;
+
+          case 2: ?>
+              <li><a href="requisicion.php">Requisición</a></li>
+          <?php 
+          break;
+
+          case 3: ?>   
+              <li><a href="solicitudes.php">Solicitudes</a></li>
+          <?php               
+          break;
+
+          default:;
+          break;
+           } ?> 
           <li><div class="divider"></div></li>                        
           <li class="bold" id="aside-atras"><a href="../" id="nav-tickets3">Atras</a></li>
           <li><div class="divider"></div></li>                                               

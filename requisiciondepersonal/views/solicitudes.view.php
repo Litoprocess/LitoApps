@@ -13,7 +13,8 @@
 						<th>Sueldo_Hasta$</th>
 						<th>Estatus</th> 
             <th>Finalizar</th>
-						<th>Fecha_Alta</th>         
+						<th>Fecha_Alta</th>    
+            <th>Imprimir</th>     
 					</tr>
 				</thead>
 				<tbody>
@@ -56,9 +57,11 @@
 <script>
 $(document).ready(function(){
 
-var data1 = "", Id1 = 0, altaFecha = "";
+var data1 = "", Id1 = 0, altaFecha = "", existe = 0;
 
-$('.modal').modal();
+$('.modal').modal({
+  dismissible: false
+});
 
   var table = $('#tblSolicitudes').DataTable(
   {             
@@ -75,7 +78,8 @@ $('.modal').modal();
     {data : "SueldoHasta"},
     {data : "Estatus"},
     {data : "Finalizar"},
-    {data : "FechaAlta"}
+    {data : "FechaAlta"},
+    {defaultContent : "<a class='waves-effect waves-teal btn-flat btn-imprimir'><i class='material-icons'>print</i></a>"},
     ],     
     "language": 
     {    
@@ -168,7 +172,7 @@ $('.modal').modal();
     }
   }); 
 
-  $("#idempleado").change(function(){
+  $("#idempleado").keyup(function(){
     var idempleado = $("#idempleado").val();
     $.post('php/consultarEmpleado.php',{idempleado:idempleado},
       function(result){
@@ -177,39 +181,70 @@ $('.modal').modal();
           altaFecha = result.data[0].fechaAlta;
           $("#nombreempleado").html("<b>Nombre del Empleado:</b> " + result.data[0].nombre + " " + result.data[0].apellidoPaterno + " " + result.data[0].apellidoMaterno);
           $("#altafecha").html("<br> <b>Fecha de Alta:</b> " + result.data[0].fechaAlta);
+          existe = 1;
+        }
+        else
+        {
+          $("#nombreempleado").html("<b>Nombre del Empleado:</b> No existe");
+          $("#altafecha").html("<br> <b>Fecha de Alta:</b> No existe");  
+          existe = 0;        
         }
       },'json'
     );
   });
 
   $("#btn-aceptar").click(function(){
-    var estatus = 'FINALIZADO';
-    $.post('php/actualizarRegistro.php', {estatus: estatus, Id1:Id1, altaFecha:altaFecha},
-      function(result)
-      {
-        if(result.validacion == true)
+    if($("#idempleado").val() !== "" && existe != 0)
+    {
+      var estatus = 'FINALIZADO';
+      $.post('php/actualizarRegistro.php', {estatus: estatus, Id1:Id1, altaFecha:altaFecha},
+        function(result)
         {
-          Materialize.toast('Se actualizo', 1200,'green darken-4');
-          table.ajax.reload();
-          $('#modal1').modal('close');
-          data1 = "";
-          Id1 = 0; 
-          altaFecha = "";
-        }
-        else
-        {
-          Materialize.toast('Error', 1200,'Red darken-4');
-          table.ajax.reload();
-          $('#modal1').modal('close');
-          data1 = "";
-          Id1 = 0; 
-          altaFecha = ""; 
-        }
-      },'json'
-    );
+          if(result.validacion == true)
+          {
+            Materialize.toast('Se actualizo', 1200,'green darken-4');          
+            limpiar();
+          }
+          else
+          {
+            Materialize.toast('Algo salio mal', 1200,'red darken-4');
+          }
+        },'json'
+      );
+    }
+    else
+    {
+      Materialize.toast('Completa los campos', 1200,'orange darken-4');
+    }
   });
 
+  $("#btn-cancelar").click(function(){
+    limpiar();
+  });
+
+ $("#tblSolicitudes tbody").on("click", "a.btn-imprimir", function () {
+
+  var datos = table.row($(this).parents("tr")).data();
+  id = datos.Id;
+  window.open('pdf/Solicitud.php?id='+id, '_blank');
+
+  });
+
+  function limpiar()
+  {
+    $('input[type=number]').not('[readonly]').val(""); 
+    $("#nombreempleado") .html("");
+    $("#altafecha").html("");
+    table.ajax.reload();
+    $('#modal1').modal('close');
+    data1 = "";
+    Id1 = 0; 
+    altaFecha = ""; 
+    existe = 0; 
+  }
+
 });
+
 </script>
 </body>
 </html>

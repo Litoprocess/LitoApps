@@ -1,26 +1,19 @@
 <?php session_start();
 
-include 'conexion.php';
+include_once '../DAO/RequisicionDAO.php';
 
-	$sql = "SELECT * from Requisiciones";
-	//var_dump($sql);
-	//exit();
-	$stmt = sqlsrv_query($conn,$sql);
+$response = new stdClass();
+$arreglo = array();
 
-	$response = new stdClass();
-	$data = array();
+	$dao = new RequisicionDAO();
+	$datos = $dao->listar(null);
 
-	while($row = sqlsrv_fetch_array($stmt,SQLSRV_FETCH_ASSOC))
-	{
 
-		if($row['RangoSueldoDe'] > 0)
-		{
-			$SueldoDe = "<input type='text' class='in_rangoSueldoDe' id='rangoSueldoDe_".$row['Id']."' value='".$row['RangoSueldoDe']."' size='3' disabled>";		
-		} 
-		else 
-		{
-			$SueldoDe = "<input type='text' class='in_rangoSueldoDe' id='rangoSueldoDe_".$row['Id']."' size='3'><label for='rangoSueldoDe_".$row['Id']."'></label>";
-		}
+	//$response->validacion = (count($datos) > 0) ? true : false;	
+
+	foreach ($datos as $row) {
+
+		$SueldoDe = ($row['RangoSueldoDe'] > 0) ? $SueldoDe = "<input type='text' class='in_rangoSueldoDe' id='rangoSueldoDe_".$row['Id']."' value='".$row['RangoSueldoDe']."' size='3' disabled>" : $SueldoDe = "<input type='text' class='in_rangoSueldoDe' id='rangoSueldoDe_".$row['Id']."' size='3'><label for='rangoSueldoDe_".$row['Id']."'></label>";
 
 		if($row['RangoSueldoHasta'] > 0)
 		{
@@ -49,10 +42,10 @@ include 'conexion.php';
 		}
 		else
 		{
-			$fecha = $row['FechaAlta']->format('d-m-Y');
+			$fecha = date("d-m-Y", strtotime($row['FechaAlta']));
 		}
 
-		$data[]=array(
+		$arreglo[]=array(
 			"Id"=>$row['Id'],
 			"Solicitante" => $row['NombreSolicitante'],
 			"Departamento" => $row['DepartamentoSolicitante'],
@@ -62,14 +55,11 @@ include 'conexion.php';
 			"Estatus" => $row['Estatus'],
 			"Finalizar" => $finalizar,
 			"FechaAlta" => $fecha
-			);	
+			);				
+	}
 
-	}	
-			//var_dump($data);
-			//exit();		
-	$response->data=$data;
+	$response->data = $arreglo;	
 
-header('Content-Type: application/json');	
-echo json_encode($response);	
-
+	header('Content-Type: application/json');
+	echo json_encode($response);	
 ?>

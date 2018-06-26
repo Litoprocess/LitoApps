@@ -1,33 +1,28 @@
 <?php session_start();
 
-include 'conexion.php';
-	
-$Id = $_POST['Id'];
-$response = new stdClass();
+include_once '../DAO/RequisicionDAO.php';
+
+$dto = new stdClass();	
+$dto->id = $_POST['Id'];
+
+$dao = new RequisicionDAO();
 
 if(isset($_POST['sueldoDe']))
 {
-	$sueldoDe = $_POST['sueldoDe'];
-
-	$sql = "UPDATE Requisiciones SET RangoSueldoDe = '$sueldoDe' WHERE Id = '$Id'";
-	$stmt = sqlsrv_query($conn,$sql);
+	$dto->sueldo = $_POST['sueldoDe'];
+	$dto->campo = "RangoSueldoDe";
+	$datos = $dao->agregarsueldo($dto);
 }
 else if(isset($_POST['sueldoHasta']))
 {
-	$sueldoHasta = $_POST['sueldoHasta'];
-
-	$sql = "UPDATE Requisiciones SET RangoSueldoHasta = '$sueldoHasta' WHERE Id = '$Id'";
-	$stmt = sqlsrv_query($conn,$sql);	
+	$dto->sueldo = $_POST['sueldoHasta'];
+	$dto->campo = "RangoSueldoHasta";
+	$datos = $dao->agregarsueldo($dto);	
 }
 
-if ($stmt) 
-{
-    $response->validacion = true;
-}
-else
-{
-	$response->validacion = false;
-}
+$response = new stdClass();
+$response->validacion = ($datos > 0) ? true : false;
+
 header('Content-Type: application/json');
 echo json_encode($response);
 ?>
