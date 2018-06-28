@@ -1,0 +1,11 @@
+$(document).ready(function()
+{
+    $("#listado_mat").hide();
+    $("#li-abrir").hide();
+    $("#li-guardar").hide();
+    $("#li-imprimir2").hide();
+    $("#li-imprimirord").hide();
+    $("#li-imprimir3").hide();
+    $("#li-limpiar").hide();
+    $("#li-nuevo").hide();
+});
