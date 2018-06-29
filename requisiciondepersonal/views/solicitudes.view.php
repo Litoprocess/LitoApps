@@ -1,4 +1,9 @@
 <?php require 'views/head.php'; ?>
+<style>
+  input{
+  text-transform: uppercase;  
+  }  
+</style>
 <main class="container">
 	<div class="row">
 		<div class="col s12">
@@ -11,6 +16,7 @@
 						<th>Puesto</th>                   
 						<th>Sueldo_De$</th>
 						<th>Sueldo_Hasta$</th>
+            <th>Candidato Interno(Opcional)</th>
 						<th>Estatus</th> 
             <th>Finalizar</th>
 						<th>Fecha_Alta</th>    
@@ -31,14 +37,28 @@
       <h4>Buscar Empleado</h4>
       <p>Ingresa el ID del Empleado</p>
         <div class="row">
+          <div class="col s12">
+            <p>
+              <input type="checkbox" id="externo" />
+              <label for="externo">Empleado Externo</label>
+            </p>            
+          </div>
           <div class="input-field col s3">
             <input id="idempleado" name="idempleado" type="number" class="validate">
             <label for="idempleado">ID empleado</label>
-          </div>                    
+          </div> 
+          <div id="oculto1" class="input-field col s6" style="display:none;">
+            <input id="extnombre" name="extnombre" type="text" class="validate">
+            <label for="extnombre">Nombre Empleado</label>
+          </div>     
+          <div id="oculto2" class="input-field col s3" style="display:none;">
+            <input id="extalta" name="extalta" type="date" class="validate">
+            <label for="extalta">Fecha de Alta</label>
+          </div>                                    
         </div>
-        <div class="row">
-          <span id="nombreempleado" name="nombreempleado"></span>
-          <span id="altafecha" name="altafecha"></span>
+        <div id="oculto3" class="row">
+          <span><b>Nombre del Empleado:</b> </span><span id="nombreempleado" name="nombreempleado"></span><br>
+          <span><b>Fecha de Alta:</b> </span><span id="altafecha" name="altafecha"></span>
         </div>
     </div>
     <div class="modal-footer">
@@ -76,6 +96,7 @@ $('.modal').modal({
     {data : "Puesto"},
     {data : "SueldoDe"},
     {data : "SueldoHasta"},
+    {data : "Candidato"},
     {data : "Estatus"},
     {data : "Finalizar"},
     {data : "FechaAlta"},
@@ -153,6 +174,34 @@ $('.modal').modal({
     );     
   });
 
+  $("#tblSolicitudes tbody").on("change","input[type='text'].in_candidato", function()
+  {
+    var x = $(this).attr("id");
+
+    var data = table.row( $(this).parents("tr") ).data();
+    var Id = data.Id
+    
+    var candidatoInterno = $("#"+x).val();
+
+    $.post('php/actualizarRangoSueldo.php', {candidatoInterno: candidatoInterno, Id:Id},
+      function(result)
+      {
+
+        if(result.validacion == true)
+        {
+          Materialize.toast('Se actualizo', 1200,'green darken-4');
+          table.ajax.reload();
+        }
+        else
+        {
+          Materialize.toast('Error', 1200,'Red darken-4');
+          table.ajax.reload();              
+        }
+
+      },'json'
+    );     
+  });  
+
   $("#tblSolicitudes tbody").on("click","input[type='checkbox'].cb_estatus", function()
   {
     if(this.checked)
@@ -172,21 +221,39 @@ $('.modal').modal({
     }
   }); 
 
-  $("#idempleado").keyup(function(){
-    var idempleado = $("#idempleado").val();
-    $.post('php/consultarEmpleado.php',{idempleado:idempleado},
+  $("#externo").click(function(){
+    if($(this).is(':checked')) 
+    {
+      $("#idempleado").val("9999").siblings().addClass("active");
+      $("#idempleado").prop("readonly",true);
+      $("#oculto1").show();
+      $("#oculto2").show();
+      $("#oculto3").hide();
+    }
+    else
+    {
+      $("#idempleado").val("");
+      $("#idempleado").prop("readonly",false);
+      $("#oculto1").hide();
+      $("#oculto2").hide();
+      $("#oculto3").show();
+    }
+  });
+
+  $("#idempleado").keyup(function(){    
+    $.post('php/consultarEmpleado.php',{idempleado:$("#idempleado").val()},
       function(result){
         if(result.validacion == true)
         {
           altaFecha = result.data[0].fechaAlta;
-          $("#nombreempleado").html("<b>Nombre del Empleado:</b> " + result.data[0].nombre + " " + result.data[0].apellidoPaterno + " " + result.data[0].apellidoMaterno);
-          $("#altafecha").html("<br> <b>Fecha de Alta:</b> " + result.data[0].fechaAlta);
+          $("#nombreempleado").html(result.data[0].nombre + " " + result.data[0].apellidoPaterno + " " + result.data[0].apellidoMaterno);
+          $("#altafecha").html(result.data[0].fechaAlta);
           existe = 1;
         }
         else
         {
-          $("#nombreempleado").html("<b>Nombre del Empleado:</b> No existe");
-          $("#altafecha").html("<br> <b>Fecha de Alta:</b> No existe");  
+          $("#nombreempleado").html("No existe");
+          $("#altafecha").html("No existe");
           existe = 0;        
         }
       },'json'
@@ -194,27 +261,46 @@ $('.modal').modal({
   });
 
   $("#btn-aceptar").click(function(){
-    if($("#idempleado").val() !== "" && existe != 0)
-    {
-      var estatus = 'FINALIZADO';
-      $.post('php/actualizarRegistro.php', {estatus: estatus, Id1:Id1, altaFecha:altaFecha},
-        function(result)
-        {
-          if(result.validacion == true)
+    if($("#externo").is(':checked')) 
+    {    
+        $.post('php/actualizarRegistro.php', {estatus: "FINALIZADO", Id1:Id1, idEmpleado:$("#idempleado").val(), altaFecha:$("#extalta").val(), nombreEmpleado: $("#extnombre").val()},
+          function(result)
           {
-            Materialize.toast('Se actualizo', 1200,'green darken-4');          
-            limpiar();
-          }
-          else
-          {
-            Materialize.toast('Algo salio mal', 1200,'red darken-4');
-          }
-        },'json'
-      );
+            if(result.validacion == true)
+            {
+              Materialize.toast('Se actualizo', 1200,'green darken-4');          
+              limpiar();
+            }
+            else
+            {
+              Materialize.toast('Algo salio mal', 1200,'red darken-4');
+            }
+          },'json'
+        );
     }
     else
     {
-      Materialize.toast('Completa los campos', 1200,'orange darken-4');
+      if($("#idempleado").val() !== "" && existe != 0)
+      {
+        $.post('php/actualizarRegistro.php', {estatus: "FINALIZADO", Id1:Id1, idEmpleado:$("#idempleado").val(), altaFecha:altaFecha, nombreEmpleado: $("#nombreempleado").text()},
+          function(result)
+          {
+            if(result.validacion == true)
+            {
+              Materialize.toast('Se actualizo', 1200,'green darken-4');          
+              limpiar();
+            }
+            else
+            {
+              Materialize.toast('Algo salio mal', 1200,'red darken-4');
+            }
+          },'json'
+        );
+      }
+      else
+      {
+        Materialize.toast('Completa los campos', 1200,'orange darken-4');
+      }      
     }
   });
 

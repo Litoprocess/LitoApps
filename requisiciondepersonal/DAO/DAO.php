@@ -23,23 +23,25 @@ class DAO {
     }
 
     protected function insertar($sql, $binds = null) {
+        $result = false;
         try {
             $stmt = $this->_dbh->prepare($sql);
-            $stmt->execute($binds);
+            $result = $stmt->execute($binds);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        return $stmt->execute();
+        return $result;
     }
 
     protected function actualizar($sql, $binds = null) {
+        $result = false;
         try {
             $stmt = $this->_dbh->prepare($sql);
-            $stmt->execute($binds);
+            $result = $stmt->execute($binds);
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
-        return $stmt->execute();
+        return $result;
     }    
 
 }

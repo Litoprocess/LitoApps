@@ -122,8 +122,10 @@ text-transform: uppercase;
 							  <label for="txtEscolaridad">Escolaridad</label>
 							</div>
 							<div class="input-field col s12">
-							  <input id="txtConocimientosT" name="txtConocimientosT" type="text" class="validate" maxlength="254" required>
-							  <label for="txtConocimientosT">Conocimientos Técnicos</label>
+							  <!--input id="txtConocimientosT" name="txtConocimientosT" type="text" class="validate" maxlength="254" required>
+							  <label for="txtConocimientosT">Conocimientos Técnicos</label-->
+							  <textarea id="txtConocimientosT" name="txtConocimientosT" class="materialize-textarea" maxlength="254" required></textarea>
+							  <label for="txtConocimientosT">Conocimientos Técnicos</label>							  
 							</div>
 							<div class="input-field col s2">
 							  <input id="txtidioma1" name="txtidioma1" type="text" class="validate" required>
@@ -142,7 +144,7 @@ text-transform: uppercase;
 							  <label for="txtPorIdi2">%</label>
 							</div>
 							<div class="input-field col s12">
-							  <input id="txtExperiencia" name="txtExperiencia" type="number" class="validate" required>
+							  <input id="txtExperiencia" name="txtExperiencia" type="text" class="validate" required>
 							  <label for="txtExperiencia">Experiencia(años)</label>
 							</div>																																																										
 						</div>
@@ -169,7 +171,7 @@ text-transform: uppercase;
 						</div>		
 						<div class="row">
 							<div class="col s12">
-							  <span>Disponibilidad para cambiar de Recidencia:</span>
+							  <span>Disponibilidad para cambiar de Residencia:</span>
 							</div>           
 							<div class="col s4">
 							  <p>
@@ -369,8 +371,10 @@ text-transform: uppercase;
 					  <label for="txtContratacionDeseada">Fecha de Contratación deseada</label>
 					</div>		
 					<div class="input-field col s12">
-					  <input id="txtCandidatoInterno" name="txtCandidatoInterno" type="text" class="validate" required>
-					  <label for="txtCandidatoInterno">Nombre del Candidato interno a considerar</label>
+					  <!--input id="txtCandidatoInterno" name="txtCandidatoInterno" type="text" class="validate" required>
+					  <label for="txtCandidatoInterno">Nombre del Candidato interno a considerar</label-->
+					  <textarea id="txtComentariosAdicionales" name="txtComentariosAdicionales" class="materialize-textarea" maxlength="254" required></textarea>
+					  <label for="txtComentariosAdicionales">Comentarios Adicionales</label>					  
 					</div>								 		
 				</div>
 				<br>
@@ -412,6 +416,8 @@ text-transform: uppercase;
 <script type="text/javascript">
 $(document).ready(function()
 {
+	var correousuario = localStorage.CorreoUsuario;
+
 	$('select').material_select();
 
 	$('.datepicker').pickadate({
@@ -476,7 +482,8 @@ $("#generarSolicitud").submit(function(event)
 			if(result.validacion === true)
 			{
 				Materialize.toast('Se guardo', 1200,'green darken-4');
-				//window.setTimeout('location.reload()', 1201);
+				$.post('php/enviar_correo/correoCliente.php');
+				$.post('php/enviar_correo/correoUsuario.php');
 				limpiar();
 			}
 			else

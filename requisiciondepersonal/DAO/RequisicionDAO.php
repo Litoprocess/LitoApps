@@ -4,15 +4,25 @@ include_once 'DAO.php';
 
 class RequisicionDAO extends DAO
 {
-	function listar()
+	function listar($where)
 	{
-		$sql = "SELECT * from Requisiciones";
-		return $this->consultar($sql,null);
+		if($where->NombreUsuario != "INTEGRACION")
+		{
+			$sql = "SELECT * from Requisiciones where NombreSolicitante = :NombreUsuario";
+			$parametros = array("NombreUsuario" => $where->NombreUsuario);
+			return $this->consultar($sql,$parametros);
+		}
+		else
+		{
+			$sql = "SELECT * from Requisiciones";
+			return $this->consultar($sql,null);			
+		}
 	}
 
 	function generar($requisicion)
 	{
-		$sql = "INSERT INTO Requisiciones(FechaInicioElaboracion,NombreSolicitante,DepartamentoSolicitante,PuestoSolicitante,GerenciaSolicitante,PuestoSolicitado,JefeInmediato,PuestoJefeInmediato,OrigenVacante,TipoContrato,ContratoMeses,ObjetivoPuesto,Escolaridad,ConocimientosTeoricos,Idioma1,PorcentajeIdioma1,Idioma2,PorcentajeIdioma2,Experiencia,DisponibilidadViajar,PorcentajeTiempoViajar,DisponibilidadCambioResidencia,CapacidadIntelectual,IniciativayEmpuje,ManejodePersonal,TomadeDesiciones,RelacionesInterpersonales,EstabilidadEmocional,ToleranciaPresion,Organizacion,ApegoaNormas,Otra,FechaDeseadaContratacion,NombreCandidatoInterno,Estatus,Nivel) VALUES(:FechaInicioElaboracion,:NombreSolicitante,:DepartamentoSolicitante,:PuestoSolicitante,:GerenciaSolicitante,:PuestoSolicitado,:JefeInmediato,:PuestoJefeInmediato,:OrigenVacante,:TipoContrato,:ContratoMeses,:ObjetivoPuesto,:Escolaridad,:ConocimientosTeoricos,:Idioma1,:PorcentajeIdioma1,:Idioma2,:PorcentajeIdioma2,:Experiencia,:DisponibilidadViajar,:PorcentajeTiempoViajar,:DisponibilidadCambioResidencia,:CapacidadIntelectual,:IniciativayEmpuje,:ManejodePersonal,:TomadeDesiciones,:RelacionesInterpersonales,:EstabilidadEmocional,:ToleranciaPresion,:Organizacion,:ApegoaNormas,:Otra,:FechaDeseadaContratacion,:NombreCandidatoInterno,:Estatus,:Nivel)";
+		echo "hola mundo";
+		$sql = "INSERT INTO Requisiciones(FechaInicioElaboracion,NombreSolicitante,DepartamentoSolicitante,PuestoSolicitante,GerenciaSolicitante,PuestoSolicitado,JefeInmediato,PuestoJefeInmediato,OrigenVacante,TipoContrato,ContratoMeses,ObjetivoPuesto,Escolaridad,ConocimientosTeoricos,Idioma1,PorcentajeIdioma1,Idioma2,PorcentajeIdioma2,Experiencia,DisponibilidadViajar,PorcentajeTiempoViajar,DisponibilidadCambioResidencia,CapacidadIntelectual,IniciativayEmpuje,ManejodePersonal,TomadeDesiciones,RelacionesInterpersonales,EstabilidadEmocional,ToleranciaPresion,Organizacion,ApegoaNormas,Otra,FechaDeseadaContratacion,ComentariosAdicionales,Estatus,Nivel) VALUES(:FechaInicioElaboracion,:NombreSolicitante,:DepartamentoSolicitante,:PuestoSolicitante,:GerenciaSolicitante,:PuestoSolicitado,:JefeInmediato,:PuestoJefeInmediato,:OrigenVacante,:TipoContrato,:ContratoMeses,:ObjetivoPuesto,:Escolaridad,:ConocimientosTeoricos,:Idioma1,:PorcentajeIdioma1,:Idioma2,:PorcentajeIdioma2,:Experiencia,:DisponibilidadViajar,:PorcentajeTiempoViajar,:DisponibilidadCambioResidencia,:CapacidadIntelectual,:IniciativayEmpuje,:ManejodePersonal,:TomadeDesiciones,:RelacionesInterpersonales,:EstabilidadEmocional,:ToleranciaPresion,:Organizacion,:ApegoaNormas,:Otra,:FechaDeseadaContratacion,:ComentariosAdicionales,:Estatus,:Nivel)";
 		$parametros = array(
 							"FechaInicioElaboracion" => $requisicion->FechaInicioElaboracion,
 							"NombreSolicitante" => $requisicion->NombreSolicitante,
@@ -20,7 +30,7 @@ class RequisicionDAO extends DAO
 							"PuestoSolicitante" => $requisicion->PuestoSolicitante,
 							"GerenciaSolicitante" => $requisicion->GerenciaSolicitante,
 							"Nivel" => $requisicion->Nivel,
-							"PuestoSolicitado" => $requisicion->GerenciaSolicitante,
+							"PuestoSolicitado" => $requisicion->PuestoSolicitado,
 							"JefeInmediato" => $requisicion->JefeInmediato,
 							"PuestoJefeInmediato" => $requisicion->PuestoJefeInmediato,
 							"OrigenVacante" => $requisicion->OrigenVacante,
@@ -48,13 +58,13 @@ class RequisicionDAO extends DAO
 							"ApegoaNormas" => $requisicion->ApegoaNormas,
 							"Otra" => $requisicion->Otra,
 							"FechaDeseadaContratacion" => $requisicion->FechaDeseadaContratacion,
-							"NombreCandidatoInterno" => $requisicion->NombreCandidatoInterno,
+							"ComentariosAdicionales" => $requisicion->ComentariosAdicionales,
 							"Estatus" => $requisicion->Estatus
 						);
 		return $this->insertar($sql,$parametros);
 	}
 
-	function agregarsueldo($datos)
+	function actualizarDatos($datos)
 	{
 		$sql = "UPDATE Requisiciones SET $datos->campo = :sueldo WHERE Id = :id";
 		$parametros = array(
@@ -66,11 +76,13 @@ class RequisicionDAO extends DAO
 
 	function finalizar($datos)
 	{
-		$sql = "UPDATE Requisiciones SET Estatus = :estatus, FechaAlta = :altaFecha, FechaFinElaboracion = getdate() WHERE Id = :id";
+		$sql = "UPDATE Requisiciones SET Estatus = :estatus, FechaAlta = :altaFecha, IdIntelisis = :idEmpleado, NombreEmpleado = :nombreEmpleado, FechaFinElaboracion = getdate() WHERE Id = :id";
 		$parametros = array(
 							"id" => $datos->id,
 							"estatus" => $datos->estatus,
-							"altaFecha" => $datos->altaFecha
+							"altaFecha" => $datos->altaFecha,
+							"nombreEmpleado" => $datos->nombreEmpleado,
+							"idEmpleado"=> $datos->idEmpleado
 			);
 		return $this->actualizar($sql,$parametros);
 	}

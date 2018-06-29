@@ -45,7 +45,7 @@ $dto->Organizacion = $_POST['group12'];
 $dto->ApegoaNormas = $_POST['group13'];
 $dto->Otra = (isset($_POST['otra'])) ? $_POST['otra'] : "";
 $dto->FechaDeseadaContratacion = $txtContratacionDeseada;
-$dto->NombreCandidatoInterno = $_POST['txtCandidatoInterno'];
+$dto->ComentariosAdicionales = $_POST['txtComentariosAdicionales'];
 $dto->Estatus = "PENDIENTE";
 
 $dao = new RequisicionDAO();

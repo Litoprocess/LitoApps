@@ -11,13 +11,19 @@ if(isset($_POST['sueldoDe']))
 {
 	$dto->sueldo = $_POST['sueldoDe'];
 	$dto->campo = "RangoSueldoDe";
-	$datos = $dao->agregarsueldo($dto);
+	$datos = $dao->actualizarDatos($dto);
 }
 else if(isset($_POST['sueldoHasta']))
 {
 	$dto->sueldo = $_POST['sueldoHasta'];
 	$dto->campo = "RangoSueldoHasta";
-	$datos = $dao->agregarsueldo($dto);	
+	$datos = $dao->actualizarDatos($dto);	
+}
+else if(isset($_POST['candidatoInterno']))
+{
+	$dto->sueldo = $_POST['candidatoInterno'];
+	$dto->campo = "NombreCandidatoInterno";
+	$datos = $dao->actualizarDatos($dto);	
 }
 
 $response = new stdClass();
