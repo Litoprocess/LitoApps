@@ -10,7 +10,7 @@ $txtFechaInicioElaboracion = new DateTime();
 $txtFechaInicioElaboracion = $txtFechaInicioElaboracion->format('Y-m-d H:i:s');
 
 $dto = new stdClass();
-$dto->FechaInicioElaboracion = $txtFechaInicioElaboracion;
+$dto->FechaRegistro = $txtFechaInicioElaboracion;
 $dto->NombreSolicitante = $_SESSION['Permisos']['NombreUsuario'];
 $dto->DepartamentoSolicitante = $_SESSION['Permisos']['Departamento'];
 $dto->PuestoSolicitante = $_SESSION['Permisos']['Puesto'];
@@ -32,7 +32,7 @@ $dto->Idioma2 = $_POST['txtidioma2'];
 $dto->PorcentajeIdioma2 = $_POST['txtPorIdi2'];
 $dto->Experiencia = $_POST['txtExperiencia'];
 $dto->DisponibilidadViajar = $_POST['group3'];
-$dto->PorcentajeTiempoViajar = $_POST['txtViajarTiempo'];
+$dto->PorcentajeTiempoViajar = (isset($_POST['txtViajarTiempo'])) ? $_POST['txtViajarTiempo'] : "";
 $dto->DisponibilidadCambioResidencia = $_POST['group4'];
 $dto->CapacidadIntelectual = $_POST['group5'];
 $dto->IniciativayEmpuje = $_POST['group6'];

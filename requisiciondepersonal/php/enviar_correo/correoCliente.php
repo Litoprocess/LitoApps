@@ -27,6 +27,7 @@ $message = "Te informamos que " . $nombreusuario . " ha registrado una solicitud
 	$mail->addAddress("integracion@litoprocess.com","Diana Santos");
 	$mail->addAddress("enhernandez@litoprocess.com","Enrique Hernandez");
 	$mail->addAddress("sgarcia@litoprocess.com","Sergio Garcia");
+	$mail->addAddress("maflores@litoprocess.com","Alejandro Flores");
 	$mail->Subject = 'Notificación de Nueva Requisición';
 	//$mail->AddEmbeddedImage("../../imagenes/" . $file, 'imagen');
 	$mensaje=$message;

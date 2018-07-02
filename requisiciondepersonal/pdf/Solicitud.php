@@ -10,7 +10,7 @@ $datos = $dao->pdf($dto);
 
 	foreach ($datos as $row) {
 			$id = $row['Id'];
-			$fechaelaboracion = date("d-m-Y", strtotime($row['FechaInicioElaboracion']));
+			$fechaelaboracion = date("d-m-Y", strtotime($row['FechaRegistro']));
 			$departamento = $row['DepartamentoSolicitante'];
 			$nombresolicitante = $row['NombreSolicitante'];
 			$puestolicitante = $row['PuestoSolicitante'];
@@ -61,7 +61,7 @@ class PDF extends FPDF
 	    // Movernos a la derecha
 	    $this->Cell(130);
 	    // Título
-	    $this->Cell(62,10,utf8_decode('REQUISICIÓN DE PERSONAL'),0,0,'C');
+	    $this->Cell(62,10,('REQUISICIÓN DE PERSONAL'),0,0,'C');
 	    // Salto de línea
 	    $this->Ln(20);
 	}
@@ -76,13 +76,13 @@ $pdf->AddPage();
 $pdf->SetFont('Times','',12);
 //$pdf->SetLeftMargin(15);
 $pdf->Cell(3.7);
-$pdf->Cell(40,4,utf8_decode('Fecha de elaboración: '),0,0,'R');
+$pdf->Cell(40,4,('Fecha de elaboración: '),0,0,'R');
 $pdf->Cell(62,4,$fechaelaboracion,0,0,'L');
 $pdf->SetLineWidth(0.1);
 $pdf->Line(55,29,95,29);
 
 //$pdf->SetLeftMargin(60);
-$pdf->Cell(40,4,utf8_decode('Fecha de recepción: '),0,0,'R');
+$pdf->Cell(40,4,('Fecha de recepción: '),0,0,'R');
 $pdf->Cell(44,4,$fechaelaboracion,0,1,'L');
 $pdf->SetLineWidth(0.1);
 $pdf->Line(155,29,195,29);
@@ -94,7 +94,7 @@ $pdf->Rect(15,31,180,250);
 
 $pdf->SetFont('Times','B',12);
 $pdf->Cell(5);
-$pdf->Cell(180,4,utf8_decode('INFORMACIÓN GENERAL'),0,1,'C');
+$pdf->Cell(180,4,('INFORMACIÓN GENERAL'),0,1,'C');
 $pdf->Ln(5);
 
 $pdf->SetFont('Times','',12);
@@ -128,7 +128,7 @@ $pdf->Ln(5);
 
 $pdf->SetFont('Times','B',12);
 $pdf->Cell(5);
-$pdf->Cell(180,4,utf8_decode('INFORMACIÓN DEL PUESTO A CUBRIR'),0,1,'C');
+$pdf->Cell(180,4,('INFORMACIÓN DEL PUESTO A CUBRIR'),0,1,'C');
 $pdf->Ln(5);
 
 $pdf->SetFont('Times','',12);
@@ -149,7 +149,7 @@ $pdf->Ln(3);
 $pdf->Cell(8);
 $pdf->Cell(41,4,'Origen de la Vacante: ',0,0,'L');
 $pdf->Cell(8);
-$pdf->Cell(20,4,utf8_decode('Reposición'),0,0,'C');
+$pdf->Cell(20,4,('Reposición'),0,0,'C');
 $pdf->Cell(10,4,($origenvacante == 'Reposicion') ? "x" : "",1,0,'C');
 $pdf->Cell(8);
 $pdf->Cell(27,4,'Puesto Nuevo',0,0,'C');
@@ -213,7 +213,7 @@ $pdf->Ln(5);
 
 $pdf->SetFont('Times','B',12);
 $pdf->Cell(5);
-$pdf->Cell(180,4,utf8_decode('CARACTERÍSTICAS DEL CANDIDATO'),0,1,'C');
+$pdf->Cell(180,4,('CARACTERÍSTICAS DEL CANDIDATO'),0,1,'C');
 $pdf->Ln(2);
 
 $pdf->SetFont('Times','',12);
@@ -241,7 +241,7 @@ $pdf->Cell(13,4,($capacidadintelectual == 'Alto') ? "x" : "",1,1,'C');
 $pdf->Ln(2);
 
 $pdf->Cell(8);
-$pdf->Cell(31,4,utf8_decode('Conoc. Técnicos'),0,0,'L');
+$pdf->Cell(31,4,('Conoc. Técnicos'),0,0,'L');
 $pdf->Cell(58,4,substr($conocimientostecnicos,0,16),0,0,'L');
 $pdf->SetLineWidth(0.1);
 $pdf->Line(49,173,100,173);
@@ -306,7 +306,7 @@ $pdf->Cell(22,4,$tiempoviajar,0,0,'L');
 $pdf->Cell(7,4,'No',0,0,'L');
 $pdf->Cell(10,4,($disponibilidadviajar == 'No') ? "x" : "",1,0,'C');
 $pdf->Cell(7,4,'',0,0,'C');
-$pdf->Cell(44,4,utf8_decode('Tolerancia a la Presión'),1,0,'C');
+$pdf->Cell(44,4,('Tolerancia a la Presión'),1,0,'C');
 $pdf->Cell(13,4,($toleranciapresion == 'Bajo') ? "x" : "",1,0,'C');
 $pdf->Cell(14,4,($toleranciapresion == 'Promedio') ? "x" : "",1,0,'C');
 $pdf->Cell(13,4,($toleranciapresion == 'Alto') ? "x" : "",1,1,'C');
@@ -314,7 +314,7 @@ $pdf->Ln(2);
 
 $pdf->Cell(8);
 $pdf->Cell(89,4,'Disponibilidad para Cambiar de Residencia:',0,0,'L');
-$pdf->Cell(44,4,utf8_decode('Organización'),1,0,'C');
+$pdf->Cell(44,4,('Organización'),1,0,'C');
 $pdf->Cell(13,4,($organizacion == 'Bajo') ? "x" : "",1,0,'C');
 $pdf->Cell(14,4,($organizacion == 'Promedio') ? "x" : "",1,0,'C');
 $pdf->Cell(13,4,($organizacion == 'Alto') ? "x" : "",1,1,'C');
@@ -344,12 +344,12 @@ $pdf->Ln(5);
 
 $pdf->SetFont('Times','B',12);
 $pdf->Cell(5);
-$pdf->Cell(180,4,utf8_decode('COMENTARIOS ADICIONALES'),0,1,'C');
+$pdf->Cell(180,4,('COMENTARIOS ADICIONALES'),0,1,'C');
 $pdf->Ln(4);
 
 $pdf->SetFont('Times','',12);
 $pdf->Cell(8);
-$pdf->Cell(55,4,utf8_decode('Fecha de Contratación deseada: '),0,0,'L');
+$pdf->Cell(55,4,('Fecha de Contratación deseada: '),0,0,'L');
 $pdf->Cell(122,4,$fechadeseadacontratacion,0,0,'L');
 $pdf->SetLineWidth(0.1);
 $pdf->Line(74,238,190,238);
@@ -387,11 +387,11 @@ $pdf->SetFont('Times','',12);
 $pdf->Cell(8);
 $pdf->Cell(39,4,'Solicitante',0,0,'C');
 $pdf->Cell(2.5,4,'',0,0,'L');
-$pdf->Cell(39,4,UTF8_DECODE('Dirección General'),0,0,'C');
+$pdf->Cell(39,4,('Dirección General'),0,0,'C');
 $pdf->Cell(2.5,4,'',0,0,'L');
-$pdf->Cell(39,4,UTF8_DECODE('Gerencia del Área'),0,0,'C');
+$pdf->Cell(39,4,('Gerencia del Área'),0,0,'C');
 $pdf->Cell(2.5,4,'',0,0,'L');
-$pdf->Cell(43,4,UTF8_DECODE('Integración y Desarrollo'),0,1,'C');
+$pdf->Cell(43,4,('Integración y Desarrollo'),0,1,'C');
 $pdf->Cell(2.5,4,'',0,0,'L');
 
 

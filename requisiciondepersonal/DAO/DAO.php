@@ -6,7 +6,7 @@ class DAO {
 
     function __construct() {
 
-        $dsn = 'sqlsrv:server=192.168.2.211;Database=RequisicionPersonal';
+        $dsn = 'sqlsrv:server=192.168.2.217;Database=RequisicionPersonal';
         $user = "sa";
         $password = "TcpkfcW8l1t0";
         $this->_dbh = new PDO($dsn, $user, $password);

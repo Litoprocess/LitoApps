@@ -19,23 +19,38 @@
 input{
 text-transform: uppercase;	
 }
+
+.lbl-titulo {
+    color: #283593;
+    text-shadow: 1px 1px 2px #d6d5d7;
+    width: 70px;
+    font-size: 20px;
+}
+
+strong {
+    font-weight: 500;
+}
+
 </style>
 <main class="container">
-	<div class="row">
-		<div class="col s12">
+	<!--div class="row"-->
+		<!--div class="col s12">
 		<ul class="tabs">
-		  	<li id="uno" class="tab col s3"><a href="#test1">Información del Puesto a Cubrir</a></li>
+		  	<li id="uno" class="tab col s3"><a href="#test1">Informaci�n del Puesto a Cubrir</a></li>
 		  	<li id="dos" class="tab col s3"><a href="#test2">Caracteristicas del Candidato</a></li>
 		  	<li id="tres" class="tab col s3"><a href="#test3">Comentarios Adicionales</a></li>
 		</ul>
 		</div>
 		<br>
 		<br>
-		<br>
+		<br-->
 		<form id="generarSolicitud" method="POST" action="php/agregarSolicitud.php">	
 
-			<div id="test1" class="col s12">
+			<!--div id="test1" class="col s12"-->
 				<div class="row">
+					<div class="col s12" style="text-align:center;">
+						<span class="lbl-titulo"><strong>INFORMACIÓN DEL PUESTO A CUBRIR</strong></span>
+					</div>
 					<div class="col s4">
 					  <label>Nivel</label>
 					  <select id="txtNivel" name="txtNivel" class="browser-default">
@@ -45,6 +60,10 @@ text-transform: uppercase;
 					    <option value="Gerencial y mandos Medios">Gerencial y mandos Medios</option>
 					  </select>				
 					</div>
+					<div class="input-field col s4 offset-s4">
+					  <input id="txtContratacionDeseada" name="txtContratacionDeseada" type="date" class="datepicker" required readonly>
+					  <label for="txtContratacionDeseada">Fecha de Contratación deseada</label>
+					</div>					
 		            <div class="input-field col s12">
 		              <input type="text" name="txtPuestoSolicitado" id="txtPuestoSolicitado" required>
 		              <label for="txtPuestoSolicitado">Puesto Solicitado</label>
@@ -111,10 +130,13 @@ text-transform: uppercase;
 				</div>						        
 		        <br>
 		        <br>				
-			</div>
+			<!--/div-->
 
-			<div id="test2" class="col s12">
+			<!--div id="test2" class="col s12"-->
 				<div class="row">
+					<div class="col s12" style="text-align:center;">
+						<span class="lbl-titulo"><strong>CARACTERÍSTICAS DEL CANDIDATO</strong></span>
+					</div>					
 					<div class="col s6">
 						<div class="row">	
 							<div class="input-field col s12">
@@ -123,16 +145,16 @@ text-transform: uppercase;
 							</div>
 							<div class="input-field col s12">
 							  <!--input id="txtConocimientosT" name="txtConocimientosT" type="text" class="validate" maxlength="254" required>
-							  <label for="txtConocimientosT">Conocimientos Técnicos</label-->
+							  <label for="txtConocimientosT">Conocimientos T�cnicos</label-->
 							  <textarea id="txtConocimientosT" name="txtConocimientosT" class="materialize-textarea" maxlength="254" required></textarea>
 							  <label for="txtConocimientosT">Conocimientos Técnicos</label>							  
 							</div>
 							<div class="input-field col s2">
-							  <input id="txtidioma1" name="txtidioma1" type="text" class="validate" required>
+							  <input id="txtidioma1" name="txtidioma1" type="text" class="validate">
 							  <label for="txtidioma1">Idioma</label>
 							</div>
 							<div class="input-field col s2 offset-s1">
-							  <input id="txtPorIdi1" name="txtPorIdi1" type="number" class="validate" min="1" max="100" required>
+							  <input id="txtPorIdi1" name="txtPorIdi1" type="number" class="validate" min="1" max="100">
 							  <label for="txtPorIdi1">%</label>
 							</div>	
 							<div class="input-field col s2 offset-s1">
@@ -356,20 +378,19 @@ text-transform: uppercase;
 								<span>Otra:</span>								
 							</div>
 							<div class="col s6 offset-s1">
-							    <input type="text" id="otra" name="otra" maxlength="254" required/>
+							    <input type="text" id="otra" name="otra" maxlength="254"/>
 							    <label for="otra"></label>              
 							</div>																																																																															
 						</div>
 					</div>
 				</div>
-			</div>	
+			<!--/div-->	
 
-			<div id="test3" class="col s12">
+			<!--div id="test3" class="col s12"-->
 				<div class="row">
-					<div class="input-field col s4">
-					  <input id="txtContratacionDeseada" name="txtContratacionDeseada" type="date" class="datepicker" required readonly>
-					  <label for="txtContratacionDeseada">Fecha de Contratación deseada</label>
-					</div>		
+					<div class="col s12" style="text-align:center;">
+						<span class="lbl-titulo"><strong>COMENTARIOS ADICIONALES</strong></span>
+					</div>						
 					<div class="input-field col s12">
 					  <!--input id="txtCandidatoInterno" name="txtCandidatoInterno" type="text" class="validate" required>
 					  <label for="txtCandidatoInterno">Nombre del Candidato interno a considerar</label-->
@@ -387,15 +408,15 @@ text-transform: uppercase;
 				</div>
 				<br>
 				<br>		
-			</div>			
+			<!--/div-->			
 
 			<!--div class="col s4 offset-s4">
 				<a id="btn1-cancelar" class="waves-effect waves-green btn-flat">Cerrar</a>    
 				<button type="submit" value="Submit" class="waves-effect waves-green btn-flat" style="background-color:#283593; color: white;">Guardar</button>				
 			</div-->
 		</form>		 
-	</div>  
-	<div class="row">
+	<!--/div-->  
+	<!--div class="row"-->
 		<!--div class="col s2 offset-s4 center previous">
 		<a href="#!"><i class="material-icons">navigate_before</i></a>			
 		</div>
@@ -403,16 +424,9 @@ text-transform: uppercase;
 		<div class="col s2 center next">
 		<a href="#!"><i class="material-icons">navigate_next</i></a>			
 		</div-->		
-	</div>	
+	<!--/div-->	
 </main>
 <?php require '../layout/scripts.php'; ?>
-<script type="text/javascript" src="js/dataTables.buttons.min.js"></script>
-<script type="text/javascript" src="js/buttons.flash.min.js"></script>
-<script type="text/javascript" src="js/jszip.min.js"></script>
-<script type="text/javascript" src="js/pdfmake.min.js"></script>
-<script type="text/javascript" src="js/vfs_fonts.js"></script>
-<script type="text/javascript" src="js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="js/reportes.js"></script>
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -432,11 +446,11 @@ $(document).ready(function()
         labelMonthPrev: 'Mes anterior',
 // The title label to use for the dropdown selectors
         labelMonthSelect: 'Selecciona un mes',
-        labelYearSelect: 'Selecciona un año',
+        labelYearSelect: 'Selecciona un a�o',
 // Months and weekdays
         monthsFull: [ 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ],
         monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
-        weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado' ],
+        weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Mi�rcoles', 'Jueves', 'Viernes', 'S�bado' ],
         weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
 // Materialize modified
         weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
@@ -503,14 +517,12 @@ $("#generarSolicitud").submit(function(event)
 		$("#txtMeses").prop("disabled",false);
 	});
 
-	$(".next").click(function(){
-		if( $("#uno a").hasClass('active') )
-		{
-			alert("true");
-			window.location.href = "#test2";
-			$(".tabs").find("#dos a").addClass('active');
-			$(".tabs #uno a").removeClass('active');
-		}
+	$("#txtViajarSi").click(function(){
+		$("#txtViajarTiempo").prop("disabled",false);
+	});
+
+	$("#txtViajarNo").click(function(){
+		$("#txtViajarTiempo").prop("disabled",true);
 	});
 
 	$("#btn-limpiar").click(function(){
