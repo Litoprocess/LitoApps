@@ -14,7 +14,7 @@ $file = $_POST['file'];
 
 $message = "Te informamos que Calidad ha rechazado la liberación de la orden: " . "<br><br>" .
 "<b>" . $orden . "</b>". "<br><br>" . 
-"Ya que se rechararon " . "<b>" . $muestraRechazada . "</b>". " piezas, siendo que el máximo permitido es de " . 
+"Ya que se rechazaron " . "<b>" . $muestraRechazada . "</b>". " piezas, siendo que el máximo permitido es de " . 
 "<b>" . $rechazado . "</b>" . "<br>" . " de acuerdo a la tabla de Inspección nivel " . "<b>" . $tabla . "</b>". 
 " autorizada." . "<br><br>" . " El tamaño  del lote rechazado es de " . "<b>" . $tamlote . "</b>" . " piezas." . "<br><br>" .
 "Teniendo las siguientes observaciones: " . "<br>" . $observaciones . "<br><br>" .

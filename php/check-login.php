@@ -76,8 +76,9 @@ while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
         "UserReqPersonal" => $row['TipoUsuarioReqPersonal'],                
         "MenuMesaControl" => $row['EstatusMesaControl'],
         "UserPropuestas" => $row['TipoUsuarioPropuestas'],                
-        "MenuPropuestas" => $row['EstatusPropuestas']
-
+        "MenuPropuestas" => $row['EstatusPropuestas'],
+        "UserAccountability" => $row['TipoUsuarioAccountability'],                
+        "MenuAccountability" => $row['EstatusAccountability']
         );
 
         $_SESSION['Permisos']=$permisos;

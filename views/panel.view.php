@@ -220,13 +220,9 @@
 								</div>
 							</a>
 						</div> 
-
-
-
-
 						<?php endif; ?>
-		<?php if ($_SESSION["Permisos"]["MenuReqPersonal"] === 1): ?>	
-											
+
+						<?php if ($_SESSION["Permisos"]["MenuReqPersonal"] === 1): ?>												
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-requisiciondepersonal">
 							<a href="requisiciondepersonal/index.php">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
@@ -237,8 +233,7 @@
 						</div> 
 						<?php endif; ?>
 
-		<?php if ($_SESSION["Permisos"]["MenuMesaControl"] === 1): ?>	
-											
+						<?php if ($_SESSION["Permisos"]["MenuMesaControl"] === 1): ?>											
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-mesacontrol">
 							<a href="../mesacontrol">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
@@ -248,11 +243,8 @@
 							</a>
 						</div> 
 						<?php endif; ?>
-
-						
-
-							<?php if ($_SESSION["Permisos"]["MenuPropuestas"] === 1): ?>	
-											
+					
+						<?php if ($_SESSION["Permisos"]["MenuPropuestas"] === 1): ?>												
 						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-propuestasclientes">
 							<a href="propuestasclientes/index.php">
 								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
@@ -263,8 +255,17 @@
 						</div> 
 						<?php endif; ?>
 
-
-																							
+						<?php if ($_SESSION["Permisos"]["MenuAccountability"] === 1): ?>												
+						<div class="col s12 m4 l4 xl3" style="margin-top:20px" id="panel-accountability">
+							<a href="accountability/index.php">
+								<div style="padding: 5px;" class="grey lighten-3 col s12 m12 l12 xl12 waves-effect">
+									<img src="icons/rompecabezas.png" width="70" class="responsive-img" /><br>
+									<span style="color: #e25748;"><h5>Accountability</h5></span>
+								</div>
+							</a>
+						</div> 
+						<?php endif; ?>	
+																																	
 					</div>
 				</div>
 			</div>

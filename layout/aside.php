@@ -129,7 +129,7 @@
 
   <?php if ($_SESSION["Permisos"]["MenuCapacitacion"] === 1): ?>
   <li class="bold" id="aside-capacitacion">
-    <a class="waves-effect" href="capacitacion/index.php" id="nav-app13">
+    <a class="waves-effect" href="capacitacion/index.php" id="nav-app12">
       <i class="material-icons blue-text text-darken-4"><img src="icons/capacitacion.png" alt="" width="25"></i>Capacitación
     </a>
   </li>
@@ -191,12 +191,19 @@
 
    <?php if ($_SESSION["Permisos"]["MenuPropuestas"] === 1): ?>   
   <li class="bold" id="aside-propuestasclientes">
-    <a class="waves-effect" href="propuestasclientes/index.php" id="nav-app17">
+    <a class="waves-effect" href="propuestasclientes/index.php" id="nav-app20">
       <i class="material-icons blue-text text-darken-4"><img src="icons/propuestas (1).png" alt="" width="25"></i>Propuestas Clientes
     </a>
   </li>
   <?php endif; ?>   
 
+   <?php if ($_SESSION["Permisos"]["MenuAccountability"] === 1): ?>   
+  <li class="bold" id="aside-accountability">
+    <a class="waves-effect" href="accountability/index.php" id="nav-app21">
+      <i class="material-icons blue-text text-darken-4"><img src="icons/rompecabezas.png" alt="" width="26"></i>Accountability
+    </a>
+  </li>
+  <?php endif; ?>
 
   <li><div class="divider"></div></li>
   <li class="bold">

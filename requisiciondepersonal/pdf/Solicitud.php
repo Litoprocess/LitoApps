@@ -10,7 +10,7 @@ $datos = $dao->pdf($dto);
 
 	foreach ($datos as $row) {
 			$id = $row['Id'];
-			$fechaelaboracion = date("d-m-Y", strtotime($row['FechaRegistro']));
+			$fechaelaboracion = date("m-d-Y", strtotime($row['FechaRegistro']));
 			$departamento = $row['DepartamentoSolicitante'];
 			$nombresolicitante = $row['NombreSolicitante'];
 			$puestolicitante = $row['PuestoSolicitante'];
@@ -51,7 +51,7 @@ $datos = $dao->pdf($dto);
 
 class PDF extends FPDF
 {
-	// Cabecera de página
+	// Cabecera de pÃ¡gina
 	function Header()
 	{
 	    // Logo
@@ -60,9 +60,9 @@ class PDF extends FPDF
 	    $this->SetFont('Arial','',12);
 	    // Movernos a la derecha
 	    $this->Cell(130);
-	    // Título
+	    // TÃ­tulo
 	    $this->Cell(62,10,('REQUISICIÓN DE PERSONAL'),0,0,'C');
-	    // Salto de línea
+	    // Salto de lÃ­nea
 	    $this->Ln(20);
 	}
 }
@@ -397,7 +397,7 @@ $pdf->Cell(2.5,4,'',0,0,'L');
 
 
 /*for($i=1;$i<=40;$i++)
-    $pdf->Cell(0,10,'Imprimiendo línea número '.$i,0,1);*/
+    $pdf->Cell(0,10,'Imprimiendo lí­nea número '.$i,0,1);*/
 
 $pdf->Output();
 ?>

@@ -6,7 +6,7 @@ class RequisicionDAO extends DAO
 {
 	function listar($where)
 	{
-		if($where->NombreUsuario != "INTEGRACION")
+		if($where->NombreUsuario != "INTEGRACION" && $where->NombreUsuario != "SERGIO GARCIA" )
 		{
 			$sql = "SELECT * from Requisiciones where NombreSolicitante = :NombreUsuario";
 			$parametros = array("NombreUsuario" => $where->NombreUsuario);
