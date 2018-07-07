@@ -22,6 +22,7 @@ $dto->fecha = $fecha;
 $dto->nombre = $_POST['nombre'];
 $dto->equipo = $_POST['equipo'];
 $dto->txa7 = $_POST['txa7'];
+$dto->radiobutton = $_POST['group1'];
 
 $dao = new CuestionarioDAO();
 $datos = $dao->nuevocuestionario($dto);

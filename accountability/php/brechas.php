@@ -20,7 +20,8 @@ for($i=0; $i<$longitud ;$i=$i++){
 					$i++;
 					break;
 				case 2:
-					$dto->cuando = $data[$i];
+					$cuando = new DateTime($data[$i]);
+					$dto->cuando = $cuando->format('Y-m-d');				
 					$i++;
 					break;
 				

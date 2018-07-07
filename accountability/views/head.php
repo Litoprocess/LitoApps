@@ -30,22 +30,20 @@
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <?php switch( $_SESSION['Permisos']["UserAccountability"] ) { 
             case 1: ?>          
-              <!--li><a href="cuestionario.php">Cuestionario</a></li-->
+              <li><a href="cuestionario.php">Cuestionario</a></li>
+              <li><a href="listado.php">Listado</a></li>
           <?php 
           break;
           default:;
           break;
            } ?>                                         
-          <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
-          <span style="margin-left: 50px; font-size:14px;" class="white-text breadcrumb name">
-            <?php echo $_SESSION["Permisos"]["Departamento"];?>         
-          </span>
-          <span style="font-size:14px;" class="breadcrumb"><?php echo $_SESSION["Permisos"]["NombreUsuario"];?></span>              
+          <a href="#!name" class='right dropdown-button' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>           
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <?php switch( $_SESSION['Permisos']["UserAccountability"] ) { 
             case 1: ?>          
-              <!--li><a href="cuestionario.php">Cuestionario</a></li-->
+              <li><a href="cuestionario.php">Cuestionario</a></li>
+              <li><a href="listado.php">Listado</a></li>
           <?php
           default:;
           break;
